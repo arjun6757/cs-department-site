@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import { Document, Model, Schema } from "mongoose";
 

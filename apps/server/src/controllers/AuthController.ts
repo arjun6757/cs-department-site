@@ -3,7 +3,7 @@ import User from "../models/user";
 import passport from "passport";
 import bcrypt from "bcrypt";
 
-const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
 	const { username, email, password } = req.body;
 
 	if (!username || !email || !password) {
@@ -21,11 +21,20 @@ const createUser = async (req: Request, res: Response) => {
 
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		const user = await User.create({ username, email, hashedPassword });
-		res.status(200).json({
-			message: "User signed up successfully!",
-			data: user,
-		});
+		const user: any = await User.create({ username, email, hashedPassword });
+
+		req.logIn(user, (err: Error) => {
+
+			if (err) return next(err);
+			const { _doc } = user;
+			const { hashedPassword: _, ...rest } = _doc;
+
+			return res.status(200).json({
+				message: "User signed up successfully!",
+				data: rest,
+			});
+		})
+
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ message: "Something went wrong!" });
@@ -35,7 +44,7 @@ const createUser = async (req: Request, res: Response) => {
 const handleLogin = async (req: Request, res: Response, next: NextFunction) => {
 	passport.authenticate(
 		"local",
-		(err: Error, user: typeof User, info?: { message: string }) => {
+		(err: Error, user: any, info?: { message: string }) => {
 			if (err) {
 				return next(err);
 			}
@@ -49,9 +58,20 @@ const handleLogin = async (req: Request, res: Response, next: NextFunction) => {
 					return next(err);
 				}
 
-				return res.status(200).json({ message: "Login successfully!", data: user })
+				const { _doc } = user;
+				const { hashedPassword: _, ...restOfDoc } = _doc;
+
+				return res.status(200).json({ message: "Logged in successfully!", data: restOfDoc })
 			});
 		})(req, res, next);
 };
 
-export { createUser, handleLogin };
+const handleLogOut = async (req: Request, res: Response, next: NextFunction) => {
+	req.logOut((err) => {
+		if (err) return next(err);
+
+		return res.status(200).json({ message: "Logged out successfully!" });
+	})
+}
+
+export { createUser, handleLogin, handleLogOut };
