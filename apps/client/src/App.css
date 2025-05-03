@@ -1,0 +1,212 @@
+/* Reset some basic elements */
+:root {
+  color-scheme: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+  display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+
+/* Main container with flex layout */
+.modal-container {
+  display: flex;
+  margin: 0 auto;
+  gap: 1rem;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* User modal (left side) */
+.user-modal {
+  flex: 1;
+  background-color: #f8f9fa;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #eaeaea;
+  border-radius: 10px;
+}
+
+.user-info {
+  text-align: center;
+  max-width: 300px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20px;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info h2 {
+  margin-bottom: 5px;
+  font-size: 24px;
+  color: #333;
+}
+
+.user-email {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.user-details {
+  text-align: left;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.user-details p {
+  margin-bottom: 10px;
+}
+
+.status-active {
+  color: #28a745;
+  font-weight: 500;
+}
+
+/* Sign in container (right side) */
+.sign-in-container {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sign-in-form {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sign-in-form h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.sign-in-form > p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input {
+  margin-right: 8px;
+}
+
+.forgot-password {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.sign-in-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sign-in-button:hover {
+  background-color: #3a80d2;
+}
+
+.sign-up-prompt {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.sign-up-prompt a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.sign-up-prompt a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .modal-container {
+    flex-direction: column;
+  }
+
+  .user-modal,
+  .sign-in-container {
+    padding: 30px 20px;
+  }
+}
