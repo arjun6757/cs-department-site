@@ -55,8 +55,8 @@ app.use(session({
     cookie: {
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
         secure: false,
-        // httpOnly: true, // server only
-        // sameSite: 'lax'
+        httpOnly: true, // server only
+        sameSite: 'strict'
     }
 
 }));

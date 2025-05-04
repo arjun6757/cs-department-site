@@ -21,13 +21,11 @@ passport.use(
 
 passport.serializeUser((user, done) => {
 	const MongoUser = user as IUserDocument;
-	console.log('serializeUser ran', new Date());
 	done(null, MongoUser._id);
 })
 
 passport.deserializeUser(async (id, done) => {
 	const user = await User.findById(id).select('-hashedPassword').exec();
 	if (!user) return done(null, false);
-	console.log('deserializeUser ran', new Date());
 	done(null, user);
 })
