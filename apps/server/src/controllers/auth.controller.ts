@@ -76,7 +76,7 @@ const handleLogOut = async (req: Request, res: Response, next: NextFunction) => 
 
 const whoAmI = async (req: Request, res: Response) => {
 	if (!req.user) {
-		res.status(401).json({ message: "Unauthorized access" })
+		res.status(401).json({ message: "Unauthorized access", data: req.user })
 		return;
 	}
 

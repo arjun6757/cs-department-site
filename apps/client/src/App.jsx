@@ -44,7 +44,8 @@ export default function UserModal() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        credentials: 'include'
       });
 
       if (!response.ok) {
@@ -178,6 +179,13 @@ export default function UserModal() {
               setIsLogIn(p => !p);
             }} >{isLogin ? 'Sign up' : 'Sign in'}</a>
           </p>
+
+          <button onClick={async() => {
+            const res = await fetch("http://localhost:3000/api/auth/whoami", { credentials: 'include' });
+            const result = await res.json();
+            console.log(result);
+          }} style={{ color: "white" }}>fetch items</button>
+
         </div>
       </div>
     </div>

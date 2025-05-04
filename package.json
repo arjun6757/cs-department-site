@@ -6,7 +6,7 @@
     "apps/*"
   ],
   "scripts": {
-    "sty": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\""
+    "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\""
   },
   "repository": {
     "type": "git",

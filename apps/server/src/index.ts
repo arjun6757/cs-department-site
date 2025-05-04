@@ -19,14 +19,10 @@ mongoose
         console.log("MongoDB successfully connected!")
     })
     .catch(err => {
-        console.error(err)
+        console.error("MongoDB connection error: ", err)
     });
 
 // middlewares
-
-// for parsing json data and append to req object
-// enabling cors for all origins
-app.use(cors());
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -46,15 +42,6 @@ interface E extends Error {
     statusCode?: number;
 }
 
-app.use((err: E, req: Request, res: Response, next: NextFunction) => {
-    err.statusCode = err.statusCode || 500
-    err.status = err.status || 'error'
-    res.status(err.statusCode).json({
-        status: err.statusCode,
-        message: err.message
-    })
-})
-
 app.use(session({
 
     secret: process.env.EXPRESS_SESSION_SECRET!,
@@ -65,14 +52,30 @@ app.use(session({
     // initially empty store
     saveUninitialized: false,
 
-}))
+    cookie: {
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
+        secure: false,
+        // httpOnly: true, // server only
+        // sameSite: 'lax'
+    }
+
+}));
 
 // passport setup
 app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.session());
 
 // router setup
 app.use("/api", API);
+
+app.use((err: E, req: Request, res: Response, next: NextFunction) => {
+    err.statusCode = err.statusCode || 500
+    err.status = err.status || 'error'
+    res.status(err.statusCode).json({
+        status: err.statusCode,
+        message: err.message
+    })
+})
 
 app.get("/", (req, res) => {
     res.send("hi from moon");

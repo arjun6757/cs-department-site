@@ -11,7 +11,7 @@ export default function AuthProvider({ children }) {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/auth/whoami")
+                const response = await fetch("http://localhost:3000/api/auth/whoami", { credentials: 'include' })
                 const result = await response.json();
 
                 if (!response.ok && response.status === 401) {
