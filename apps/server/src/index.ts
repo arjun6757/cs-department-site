@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import passport from "passport"
 import session from "express-session"
-import API from "./router/api";
+import API from "./router/api.router";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import "./.config/passport";
+import "./.config/passport.config";
+import cors from "cors"
 
 dotenv.config()
 
@@ -13,17 +14,25 @@ const app = express();
 
 // connecting to db
 mongoose
-.connect(process.env.MONGO_URI!)
-.then(() => {
-    console.log("MongoDB successfully connected!")
-})
-.catch(err => {
-    console.error(err)
-});
+    .connect(process.env.MONGO_URI!)
+    .then(() => {
+        console.log("MongoDB successfully connected!")
+    })
+    .catch(err => {
+        console.error(err)
+    });
 
 // middlewares
 
 // for parsing json data and append to req object
+// enabling cors for all origins
+app.use(cors());
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
+
 app.use(express.json());
 
 // for parsing incoming data
@@ -40,7 +49,7 @@ interface E extends Error {
 app.use((err: E, req: Request, res: Response, next: NextFunction) => {
     err.statusCode = err.statusCode || 500
     err.status = err.status || 'error'
-    res.status(err.statusCode).json({ 
+    res.status(err.statusCode).json({
         status: err.statusCode,
         message: err.message
     })
@@ -48,13 +57,14 @@ app.use((err: E, req: Request, res: Response, next: NextFunction) => {
 
 app.use(session({
 
-    secret: process.env.EXPRESS_SESSION_SECRET || "local",
+    secret: process.env.EXPRESS_SESSION_SECRET!,
 
     // session is only saved again if something changed
     resave: false,
 
     // initially empty store
-    saveUninitialized: false
+    saveUninitialized: false,
+
 }))
 
 // passport setup
@@ -65,9 +75,9 @@ app.use(passport.session())
 app.use("/api", API);
 
 app.get("/", (req, res) => {
-	res.send("hi from moon");
+    res.send("hi from moon");
 })
 
 app.listen(PORT, () => {
-	console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 })

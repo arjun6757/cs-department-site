@@ -21,7 +21,7 @@ const UserSchema: Schema<IUserDocument> = new Schema({
 	username: { type: String, required: true },
 	email: { type: String, required: true, unique: true },
 	hashedPassword: { type: String, required: true },
-});
+}, { timestamps: true });
 
 UserSchema.methods.verifyPassword = async function (password: string) { // here () => won't work don't know why
 	const result = await bcrypt.compare(password, this.hashedPassword);

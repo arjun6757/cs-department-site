@@ -6,7 +6,7 @@
     "apps/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sty": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\""
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "onlyBuiltDependencies": [
       "bcrypt"
     ]
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
   }
 }

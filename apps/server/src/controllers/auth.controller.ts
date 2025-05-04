@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import User from "../models/user";
+import User from "../models/user.model";
 import passport from "passport";
 import bcrypt from "bcrypt";
 
@@ -74,4 +74,13 @@ const handleLogOut = async (req: Request, res: Response, next: NextFunction) => 
 	})
 }
 
-export { createUser, handleLogin, handleLogOut };
+const whoAmI = async (req: Request, res: Response) => {
+	if (!req.user) {
+		res.status(401).json({ message: "Unauthorized access" })
+		return;
+	}
+
+	res.status(200).json({ message: "User retrieved successfully!", data: req.user })
+}
+
+export { createUser, handleLogin, handleLogOut, whoAmI };
