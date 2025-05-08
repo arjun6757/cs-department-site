@@ -37,11 +37,6 @@ app.use(express.urlencoded({ extended: false }))
 // global error handling middleware
 // to make it global error handling we need to pass 4 arguments
 
-interface E extends Error {
-    status?: string;
-    statusCode?: number;
-}
-
 app.use(session({
 
     secret: process.env.EXPRESS_SESSION_SECRET!,
@@ -67,6 +62,11 @@ app.use(passport.session());
 
 // router setup
 app.use("/api", API);
+
+interface E extends Error {
+    status?: string;
+    statusCode?: number;
+}
 
 app.use((err: E, req: Request, res: Response, next: NextFunction) => {
     err.statusCode = err.statusCode || 500

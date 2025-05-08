@@ -6,6 +6,7 @@ interface IUser {
 	username: string;
 	email: string;
 	hashedPassword: string;
+	role: string;
 }
 
 export interface IUserDocument extends IUser, Document {
@@ -21,6 +22,11 @@ const UserSchema: Schema<IUserDocument> = new Schema({
 	username: { type: String, required: true },
 	email: { type: String, required: true, unique: true },
 	hashedPassword: { type: String, required: true },
+	role: {
+		type: String,
+		enum: ["user", "admin"],
+		default: "user"
+	}
 }, { timestamps: true });
 
 UserSchema.methods.verifyPassword = async function (password: string) { // here () => won't work don't know why

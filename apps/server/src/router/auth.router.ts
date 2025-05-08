@@ -1,11 +1,13 @@
-import express, { NextFunction, Router } from "express";
-import { createUser, handleLogin, handleLogOut, whoAmI } from "../controllers/auth.controller";
+import express from "express";
+import { handleSignup, handleLogin, handleLogOut, handleAdminLogin, handleAdminLogout, whoAmI } from "../controllers/auth.controller";
 
-const router: Router = express.Router();
+const router = express.Router();
 
 router.get("/whoami", whoAmI);
 router.post("/login", handleLogin);
-router.post("/signup", createUser);
+router.post("/signup", handleSignup);
 router.post("/logout", handleLogOut);
+router.post("/admin/login", handleAdminLogin)
+router.post("/admin/logout", handleAdminLogout);
 
 export default router;
