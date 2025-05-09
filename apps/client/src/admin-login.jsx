@@ -10,7 +10,15 @@ export default function AdminLogin() {
     password: "",
   });
   const [error, setError] = useState("");
-  const { setUser } = useUser();
+  const { user, loading, setUser } = useUser();
+
+  useEffect(() => {
+    if (loading === undefined) return;
+
+    if (!loading && user && user.role === "admin") {
+      navigate("/admin/dashboard");
+    }
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (!error) return;

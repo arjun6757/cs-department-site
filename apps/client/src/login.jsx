@@ -10,7 +10,16 @@ export default function Login() {
     password: "",
   });
   const [error, setError] = useState("");
-  const { setUser } = useUser();
+  const { user, setUser, loading } = useUser();
+
+  useEffect(() => {
+    if (loading === undefined) return;
+
+    if (!loading && user && user.role === "user") {
+      navigate("/dashboard");
+    }
+
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (!error) return;
