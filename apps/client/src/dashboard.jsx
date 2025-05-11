@@ -17,7 +17,7 @@ const Dashboard = () => {
         }
 
         if(!loading && user && user.role !== "user") {
-            navigate("/login", { replace: true });
+            navigate("/login?message=Not a valid user", { replace: true });
         }
 
     }, [user, loading, navigate]);
@@ -34,7 +34,6 @@ const Dashboard = () => {
         try {
             await logout()
             setUser(null)
-            navigate("/login", { replace: true });
         } catch (error) {
             console.error('Logout error:', error);
             setError(error.message);
@@ -61,7 +60,7 @@ const Dashboard = () => {
                             <h2 className="text-lg font-medium text-blue-800">Profile Info</h2>
                             <div className="mt-3 space-y-2">
                                 <p className="text-gray-600">Role: {user?.role}</p>
-                                <p className="text-gray-600">Member since: {new Date(user?.createdAt).toLocaleDateString("IN", {
+                                <p className="text-gray-600">Member since: {new Date(user?.createdAt).toLocaleDateString("US", {
                                     year: 'numeric',
                                     month: 'long',
                                     day: '2-digit'

@@ -37,6 +37,7 @@ UserSchema.methods.verifyPassword = async function (password: string) { // here 
 UserSchema.methods.setPassword = async function (password: string) {
 	const hashed = await bcrypt.hash(password, 10);
 	this.hashedPassword = hashed;
+	await this.save();
 }
 
 UserSchema.statics.findByEmail = async function (email: string) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useUser } from "./context/auth.context";
 import { adminLogin } from "./actions/auth.action";
 
@@ -11,6 +11,18 @@ export default function AdminLogin() {
   });
   const [error, setError] = useState("");
   const { user, loading, setUser } = useUser();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const message = searchParams.get("message");
+
+  useEffect(() => {
+    if (!message) return;
+
+    const timeoutId = setTimeout(() => {
+      setSearchParams("");
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [message]);
 
   useEffect(() => {
     if (loading === undefined) return;
@@ -111,6 +123,12 @@ export default function AdminLogin() {
           {error && (
             <div className="text-red-500 text-center bg-gray-50 p-2 rounded-md">
               {error}
+            </div>
+          )}
+
+          {message && (
+            <div className="text-neutral-700 text-center bg-gray-50 p-2 rounded-md">
+              {message}
             </div>
           )}
         </form>

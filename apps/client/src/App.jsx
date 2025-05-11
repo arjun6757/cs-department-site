@@ -5,6 +5,7 @@ import Dashboard from "./dashboard";
 import Login from "./login";
 import Index from ".";
 import Signup from "./signup";
+import ForgotPassword from "./forgot-password";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
     </Routes>
   );
 }

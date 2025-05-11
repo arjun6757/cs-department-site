@@ -49,7 +49,7 @@ app.use(session({
 
     cookie: {
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
-        secure: false,
+        secure: false,  // need to change it to true for production
         httpOnly: true, // server only
         sameSite: 'strict'
     }

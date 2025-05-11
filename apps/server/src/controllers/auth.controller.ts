@@ -3,6 +3,49 @@ import User from "../models/user.model";
 import passport from "passport";
 import bcrypt from "bcrypt";
 
+const handleForgotPassword = async (req: Request, res: Response) => {
+	const { email, oldPassword, newPassword } = req.body;
+
+	if(!email || !oldPassword || !newPassword) {
+		res.status(400).json({ message: "Invalid user data" });
+		return;
+	}
+
+	if (newPassword.length < 4) {
+		res.status(400).json({ message: "Password must be atleast four characters" })
+		return;
+	}
+
+	try {
+		const user = await User.findByEmail(email);
+
+		if(!user) {
+			res.status(404).json({ message: "User doesn't exist by that email" })
+			return;
+		}
+
+		if (user.role !== "user") {
+			res.status(403).json({ message: "Not a valid user" });
+			return;
+		}
+
+		const isValid = await user.verifyPassword(oldPassword);
+
+		if(!isValid) {
+			res.status(401).json({ message: "Invalid credentials" });
+			return;
+		}
+
+		await user.setPassword(newPassword);
+
+		res.status(200).json({ message: "Password updated successfully!" });
+
+	} catch (err: any) {
+		console.error(err);
+		res.status(500).json({ message: err.message || "Something went wrong" });
+	}
+}
+
 const handleSignup = async (req: Request, res: Response, next: NextFunction) => {
 	const { username, email, password } = req.body;
 
@@ -136,4 +179,4 @@ const whoAmI = async (req: Request, res: Response) => {
 	res.status(200).json({ message: "User retrieved successfully!", data: req.user })
 }
 
-export { handleSignup, handleLogin, handleLogOut, handleAdminLogin, handleAdminLogout, whoAmI };
+export { handleSignup, handleLogin, handleLogOut, handleAdminLogin, handleAdminLogout, whoAmI, handleForgotPassword };

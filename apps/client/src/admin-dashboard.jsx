@@ -16,7 +16,7 @@ const Dashboard = () => {
         }
 
         if (!loading && user && user.role !== "admin") {
-            navigate("/admin/login", { replace: true });
+            navigate("/admin/login?message=Not a valid admin", { replace: true });
         }
 
     }, [user, loading, navigate]);
@@ -33,7 +33,6 @@ const Dashboard = () => {
         try {
             await adminLogout();
             setUser(null)
-            navigate("/admin/login", { replace: true });
         } catch (error) {
             console.error('Logout error:', error);
             setError(error.message || "Something went wrong");
@@ -59,7 +58,7 @@ const Dashboard = () => {
                             <h2 className="text-lg font-medium text-blue-800">Profile Info</h2>
                             <div className="mt-3 space-y-2">
                                 <p className="text-gray-600">Role: {user?.role}</p>
-                                <p className="text-gray-600">Member since: {new Date(user?.createdAt).toLocaleDateString("IN", {
+                                <p className="text-gray-600">Member since: {new Date(user?.createdAt).toLocaleDateString("US", {
                                     year: 'numeric',
                                     month: 'long',
                                     day: '2-digit'
