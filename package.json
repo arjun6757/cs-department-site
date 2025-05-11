@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arjun6757/fitness-tracker.git"
+    "url": "git+https://github.com/arjun6757/cs-department-site.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/arjun6757/fitness-tracker/issues"
+    "url": "https://github.com/arjun6757/cs-department-site/issues"
   },
-  "homepage": "https://github.com/arjun6757/fitness-tracker#readme",
+  "homepage": "https://github.com/arjun6757/cs-department-site#readme",
   "description": "",
   "pnpm": {
     "onlyBuiltDependencies": [
