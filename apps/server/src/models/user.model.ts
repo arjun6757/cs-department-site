@@ -15,21 +15,25 @@ export interface IUserDocument extends IUser, Document {
 }
 
 interface IUserModel extends Model<IUserDocument> {
-	findByEmail: (email : string) => Promise<IUserDocument>;
+	findByEmail: (email: string) => Promise<IUserDocument>;
 }
 
-const UserSchema: Schema<IUserDocument> = new Schema({
-	username: { type: String, required: true },
-	email: { type: String, required: true, unique: true },
-	hashedPassword: { type: String, required: true },
-	role: {
-		type: String,
-		enum: ["user", "admin"],
-		default: "user"
-	}
-}, { timestamps: true });
+const UserSchema: Schema<IUserDocument> = new Schema(
+	{
+		username: { type: String, required: true },
+		email: { type: String, required: true, unique: true },
+		hashedPassword: { type: String, required: true },
+		role: {
+			type: String,
+			enum: ["user", "admin"],
+			default: "user",
+		},
+	},
+	{ timestamps: true },
+);
 
-UserSchema.methods.verifyPassword = async function (password: string) { // here () => won't work don't know why
+UserSchema.methods.verifyPassword = async function (password: string) {
+	// here () => won't work don't know why
 	const result = await bcrypt.compare(password, this.hashedPassword);
 	return result;
 };
@@ -38,11 +42,11 @@ UserSchema.methods.setPassword = async function (password: string) {
 	const hashed = await bcrypt.hash(password, 10);
 	this.hashedPassword = hashed;
 	await this.save();
-}
+};
 
 UserSchema.statics.findByEmail = async function (email: string) {
 	return this.findOne({ email });
-}
+};
 
 const User = mongoose.model<IUserDocument, IUserModel>("User", UserSchema);
 export default User;
