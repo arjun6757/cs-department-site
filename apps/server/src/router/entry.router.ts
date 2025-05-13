@@ -4,10 +4,12 @@ import { uploadToCloudinary } from "../utils/cloudinary.util";
 import fs from "fs"
 import Entry from "../models/entries.model";
 import { v2 as cloudinary } from "cloudinary";
+import { getAllEntries, handleEntryDelete, handleEntryEdit } from "../controllers/entry.controller";
+import isAdmin from "../middleware/isadmin.middleware";
 
 const router = express.Router();
 
-router.post("/upload", upload.single("document"), async (req: any, res: any) => {
+router.post("/upload", isAdmin, upload.single("document"), async (req: any, res: any) => {
 	const { sem, course, year, note_link } = req.body;
 
 	if (!req.file) {
@@ -43,5 +45,9 @@ router.post("/upload", upload.single("document"), async (req: any, res: any) => 
 		});
 	}
 });
+
+router.get("/all", getAllEntries);
+// router.post("/edit/:id", isAdmin, handleEntryEdit);
+router.post("/delete/:id", isAdmin, handleEntryDelete);
 
 export default router;

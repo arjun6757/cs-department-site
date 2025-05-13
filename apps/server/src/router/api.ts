@@ -9,6 +9,6 @@ const router = express.Router();
 
 router.use("/auth", AuthRouter);
 router.use("/user", UserRouter);
-router.use("/entry", isAuthenticated, isAdmin, EntryRouter);
+router.use("/entry", isAuthenticated, EntryRouter);
 
 export default router;
