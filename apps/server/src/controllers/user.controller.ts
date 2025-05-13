@@ -4,16 +4,16 @@ import User from "../models/user.model";
 export async function getAllUsers(req: Request, res: Response) {
 	// /api/user/all?withAdmin=true
 	try {
-		if (!req.user) {
-			res.status(401).json({ message: "Unauthorized access" });
-			return;
-		}
+		// if (!req.user) {
+		// 	res.status(401).json({ message: "Unauthorized access" });
+		// 	return;
+		// }
 
-		// @ts-ignore
-		if (req.user.role !== "admin") {
-			res.status(403).json({ message: "Not a valid admin" });
-			return;
-		}
+		// // @ts-ignore
+		// if (req.user.role !== "admin") {
+		// 	res.status(403).json({ message: "Not a valid admin" });
+		// 	return;
+		// }
 
 		const { role = "user" } = req.query;
 
@@ -33,6 +33,7 @@ export async function getAllUsers(req: Request, res: Response) {
 
 export async function handleDeleteUser(req: Request, res: Response) {
 	// api/user/delete/:id
+	// TODO: refactor it to deactivate the user instead of deletion
 	try {
 		if (!req.user) {
 			res.status(401).json({ message: "Unauthorized access" });

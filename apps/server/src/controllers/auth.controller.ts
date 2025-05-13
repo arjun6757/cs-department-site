@@ -156,13 +156,6 @@ const handleAdminLogin = async (req: Request, res: Response, next: NextFunction)
 }
 
 const handleAdminLogout = async (req: Request, res: Response, next: NextFunction) => {
-
-	// @ts-ignore
-	if(req.user?.role !== "admin") {
-		res.status(403).json({ message: "Not a valid admin" })
-		return;
-	}
-
 	req.logOut((err) => {
 		if (err) return next(err);
 
@@ -172,7 +165,7 @@ const handleAdminLogout = async (req: Request, res: Response, next: NextFunction
 
 const whoAmI = async (req: Request, res: Response) => {
 	if (!req.user) {
-		res.status(401).json({ message: "Unauthorized access", data: req.user })
+		res.status(401).json({ message: "Unauthorized access", data: null })
 		return;
 	}
 
