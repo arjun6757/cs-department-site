@@ -3,11 +3,12 @@ import { upload } from "../middleware/multer.middleware";
 import { uploadToCloudinary } from "../utils/cloudinary.util";
 import fs from "fs"
 import Entry from "../models/entries.model";
+import { v2 as cloudinary } from "cloudinary";
 
 const router = express.Router();
-// upload.single can be any name just need to specify it too in the form input type=file and name=exactsame as in upload.single
+
 router.post("/upload", upload.single("document"), async (req: any, res: any) => {
-	const { sem, course, year } = req.body;
+	const { sem, course, year, note_link } = req.body;
 
 	if (!req.file) {
 		res.status(400).json({ message: "Failed to upload file" });
@@ -19,10 +20,20 @@ router.post("/upload", upload.single("document"), async (req: any, res: any) => 
 
 		fs.unlinkSync(file.local_path);
 
-		await Entry.create({ owner: req.user || "null" , sem, course, year, filename: file.original_filename, download_link: file.secure_url, note_link: file.url });
+		const download_link = cloudinary.url(file.public_id, {
+			resource_type: 'image',
+			type: 'upload',
+			secure: true,
+			transformation: [
+				{ flags: 'attachment' },
+			],
+		});
+
+		const entry = await Entry.create({ owner: req.user?.username || "null" , sem, course, year, filename: file.original_filename, download_link, note_link });
 
 		res.status(200).json({
-			message: `File uploaded: ${req.file.filename} and document uploaded to mongodb 😁`,
+			message: `File uploaded: ${req.file.filename}`,
+			data: entry
 		});
 
 	} catch (err: any) {

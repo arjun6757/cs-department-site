@@ -9,7 +9,6 @@ const router = express.Router();
 
 router.use("/auth", AuthRouter);
 router.use("/user", UserRouter);
-// router.use("/file", isAuthenticated, isAdmin, EntryRouter);
-router.use("/entry", EntryRouter);
+router.use("/entry", isAuthenticated, isAdmin, EntryRouter);
 
 export default router;

@@ -71,6 +71,9 @@ const Dashboard = () => {
                     <button onClick={handleLogout} className="mt-6 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
                         Logout
                     </button>
+                    <a href='https://res.cloudinary.com/cs-department-site/raw/upload/fl_attachment/rwd4blybhkmxt6i9jwng.pdf?_a=BAMClqOa0' download className="mt-6 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                        download
+                    </a>
 
                     {error && <p className='mt-5 text-red-500'>{error}</p>}
                 </div>

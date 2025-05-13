@@ -16,7 +16,8 @@ export const uploadToCloudinary = async (filePath: string) => {
 		if(!filePath) throw new Error("Invalid file path");
 
 		const file = await cloudinary.uploader.upload(filePath, {
-			resource_type: "raw", // auto doesnt work so raw
+			// resource_type: "raw", // auto doesnt work so raw
+			resource_type: "auto",
 		})
 
 		if(!file) throw new Error("Error occured while uploading the file");
