@@ -1,10 +1,9 @@
 import express from "express";
 import { upload } from "../middleware/multer.middleware";
 import { uploadToCloudinary } from "../utils/cloudinary.util";
-import fs from "fs"
-import Entry from "../models/entries.model";
+import Entry from "../models/entry.model";
 import { v2 as cloudinary } from "cloudinary";
-import { getAllEntries, handleEntryDelete, handleEntryEdit } from "../controllers/entry.controller";
+import { getAllEntries, handleEntryDelete } from "../controllers/entry.controller";
 import isAdmin from "../middleware/isadmin.middleware";
 
 const router = express.Router();
@@ -18,10 +17,8 @@ router.post("/upload", isAdmin, upload.single("document"), async (req: any, res:
 	}
 
 	try {
+
 		const file = await uploadToCloudinary(req.file.path);
-
-		fs.unlinkSync(file.local_path);
-
 		const download_link = cloudinary.url(file.public_id, {
 			resource_type: 'image',
 			type: 'upload',
@@ -31,7 +28,8 @@ router.post("/upload", isAdmin, upload.single("document"), async (req: any, res:
 			],
 		});
 
-		const entry = await Entry.create({ owner: req.user?.username || "null" , sem, course, year, filename: file.original_filename, download_link, note_link });
+		const entry = await Entry.create({ owner: req.user.username, owner_id: req.user._id, sem, course, year, filename: file.original_filename, download_link, note_link, file_id: file.public_id });
+
 
 		res.status(200).json({
 			message: `File uploaded: ${req.file.filename}`,
@@ -47,7 +45,6 @@ router.post("/upload", isAdmin, upload.single("document"), async (req: any, res:
 });
 
 router.get("/all", getAllEntries);
-// router.post("/edit/:id", isAdmin, handleEntryEdit);
 router.post("/delete/:id", isAdmin, handleEntryDelete);
 
 export default router;

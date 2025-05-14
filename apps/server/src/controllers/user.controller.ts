@@ -2,19 +2,7 @@ import { Request, Response } from "express";
 import User from "../models/user.model";
 
 export async function getAllUsers(req: Request, res: Response) {
-	// /api/user/all?withAdmin=true
 	try {
-		// if (!req.user) {
-		// 	res.status(401).json({ message: "Unauthorized access" });
-		// 	return;
-		// }
-
-		// // @ts-ignore
-		// if (req.user.role !== "admin") {
-		// 	res.status(403).json({ message: "Not a valid admin" });
-		// 	return;
-		// }
-
 		const { role = "user" } = req.query;
 
 		const users = await User.find({ role }).select("-hashedPassword");

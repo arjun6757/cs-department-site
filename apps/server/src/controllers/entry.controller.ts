@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import Entry from "../models/entries.model";
+import Entry from "../models/entry.model";
+import { deleteFromCloudinary } from "../utils/cloudinary.util";
 
 export async function getAllEntries(req: Request, res: Response) {
 	try {
@@ -29,17 +30,20 @@ export async function handleEntryDelete(req: Request, res: Response) {
 			return;
 		}
 
-		const entry = Entry.deleteOne({ _id: id.toString() });
 
-		// TODO: cloudinary asset delete after entry delete
+		const entry = await Entry.findByIdAndDelete(id.toString());
 
 		if (!entry) {
 			throw new Error("Failed to remove entry");
 		}
 
+
+		const asset = await deleteFromCloudinary(entry.file_id);
+
+
 		res.status(200).json({
 			message: "Entry removed successfully",
-			data: entry,
+			data: { entry, asset },
 		});
 	} catch (err: any) {
 		console.error(err);
@@ -48,20 +52,3 @@ export async function handleEntryDelete(req: Request, res: Response) {
 		});
 	}
 }
-
-// export async function handleEntryEdit(req: Request, res: Response) {
-// 	try {
-// 		const { id } = req.params;
-// 		const { sem, course, year, filename }
-
-// 		if(!id) {
-// 			res.status(400).json({ message: "Invalid Request" });
-// 			return;
-// 		}
-
-
-
-// 	} catch (err) {
-
-// 	}
-// }
