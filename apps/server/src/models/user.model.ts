@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType } from "mongoose";
 import bcrypt from "bcrypt";
 import { Document, Model, Schema } from "mongoose";
 
@@ -47,6 +47,8 @@ UserSchema.methods.setPassword = async function (password: string) {
 UserSchema.statics.findByEmail = async function (email: string) {
 	return this.findOne({ email });
 };
+
+export type User = InferSchemaType<typeof UserSchema>;
 
 const User = mongoose.model<IUserDocument, IUserModel>("User", UserSchema);
 export default User;

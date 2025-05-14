@@ -2,7 +2,6 @@ import express from "express";
 import AuthRouter from "./auth.router";
 import UserRouter from "./user.router";
 import EntryRouter from "./entry.router";
-import isAdmin from "../middleware/isadmin.middleware";
 import isAuthenticated from "../middleware/isauthenticated.middleware";
 
 const router = express.Router();

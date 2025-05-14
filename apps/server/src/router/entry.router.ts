@@ -1,48 +1,13 @@
 import express from "express";
 import { upload } from "../middleware/multer.middleware";
-import { uploadToCloudinary } from "../utils/cloudinary.util";
-import Entry from "../models/entry.model";
-import { v2 as cloudinary } from "cloudinary";
-import { getAllEntries, handleEntryDelete } from "../controllers/entry.controller";
+import { getAllEntries, handleEntryDelete, handleUpload } from "../controllers/entry.controller";
 import isAdmin from "../middleware/isadmin.middleware";
 
 const router = express.Router();
 
-router.post("/upload", isAdmin, upload.single("document"), async (req: any, res: any) => {
-	const { sem, course, year, note_link } = req.body;
-
-	if (!req.file) {
-		res.status(400).json({ message: "Failed to upload file" });
-		return;
-	}
-
-	try {
-
-		const file = await uploadToCloudinary(req.file.path);
-		const download_link = cloudinary.url(file.public_id, {
-			resource_type: 'image',
-			type: 'upload',
-			secure: true,
-			transformation: [
-				{ flags: 'attachment' },
-			],
-		});
-
-		const entry = await Entry.create({ owner: req.user.username, owner_id: req.user._id, sem, course, year, filename: file.original_filename, download_link, note_link, file_id: file.public_id });
-
-
-		res.status(200).json({
-			message: `File uploaded: ${req.file.filename}`,
-			data: entry
-		});
-
-	} catch (err: any) {
-		console.error(err);
-		res.status(err.status || 500).json({
-			message: err.message || "Something went wrong",
-		});
-	}
-});
+// @ts-ignore
+// as Request != ModRequest
+router.post("/upload", isAdmin, upload.single("document"), handleUpload);
 
 router.get("/all", getAllEntries);
 router.post("/delete/:id", isAdmin, handleEntryDelete);
