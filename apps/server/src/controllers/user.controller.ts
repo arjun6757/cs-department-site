@@ -3,7 +3,6 @@ import User from "../models/user.model";
 
 export async function getAllUsers(req: Request, res: Response) {
 	try {
-		const { role = "user" } = req.query;
 
 		const users = await User.find().select("-hashedPassword");
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { deleteUser, getAllUsers } from '../actions/user.action'
-import { Search } from 'lucide-react'
+import { Search, Trash } from 'lucide-react'
 
 export default function Users() {
 
@@ -48,6 +48,7 @@ export default function Users() {
         try {
             // Call the delete user API here
             const result = await deleteUser(userId);
+            console.log(result);
             setUsers(users.filter(user => user._id !== userId));
         } catch (error) {
             console.error("Error deleting user:", error);
@@ -98,7 +99,7 @@ export default function Users() {
                                 <td className='border border-[#ddd] p-2 text-center'>{new Date(user.createdAt).toLocaleDateString()}</td>
                                 <td className='border border-[#ddd] p-2 text-center'>{new Date(user.updatedAt).toLocaleDateString()}</td>
                                 <td className='border border-[#ddd] p-2 text-center'>
-                                    <button onClick={() => handleDelete(user._id)} className='bg-white text-gray-800 border border-[#aaa] hover:border-red-500 hover:bg-red-500 hover:text-white rounded px-2 py-1 cursor-pointer active:border-red-400 outline-blue-500'>Delete</button>
+                                    <button disabled={user.role==="admin"} onClick={() => handleDelete(user._id)} className='disabled:opacity-50 text-red-400 hover:text-red-500 disabled:pointer-events-none p-1.5 rounded-full cursor-pointer outline-blue-500'><Trash className="w-4 h-4" /></button>
                                 </td>
                             </tr>
                         ))}

@@ -10,6 +10,11 @@ const EntrySchema = new Schema(
 			type: String,
 			required: true,
 		},
+		department: {
+			type: String,
+			required: true,
+			default: "CS"
+		},
 		sem: {
 			type: String,
 			required: true,
