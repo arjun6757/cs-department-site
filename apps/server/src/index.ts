@@ -80,7 +80,7 @@ app.use((err: E, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.get("/", (req, res) => {
-    res.send("hi from moon");
+    res.send("hi from server");
 });
 
 app.listen(PORT, () => {

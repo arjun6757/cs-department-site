@@ -5,7 +5,7 @@ export async function getAllUsers(req: Request, res: Response) {
 	try {
 		const { role = "user" } = req.query;
 
-		const users = await User.find({ role }).select("-hashedPassword");
+		const users = await User.find().select("-hashedPassword");
 
 		res.status(200).json({
 			message: "Users fetched successfully!",

@@ -1,27 +1,28 @@
 import { useNavigate } from 'react-router-dom';
-import { useUser } from './context/auth.context';
-import { useEffect } from 'react';
-import { adminLogout } from './actions/auth.action';
+import { useAuth } from '../context/auth.context';
+import { useEffect, useState } from 'react';
+import { logout } from '../actions/auth.action';
 
 const Dashboard = () => {
-    const { user, setUser, error, loading } = useUser();
+    const { user, setUser, error: userError, loading } = useAuth();
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
     useEffect(() => {
 
         if (loading === undefined)  return;
 
         if (!loading && !user) {
-            navigate("/admin/login", { replace: true });
+            navigate("/login", { replace: true });
         }
 
-        if (!loading && user && user.role !== "admin") {
-            navigate("/admin/login?message=Not a valid admin", { replace: true });
+        if(!loading && user && user.role !== "user") {
+            navigate("/login?message=Not a valid user", { replace: true });
         }
 
     }, [user, loading, navigate]);
 
-    if (loading || !user || user.role !== "admin") {
+    if (loading || !user || user.role !== "user") {
         return (
             <div className="flex items-center justify-center min-h-screen">
                 <div className="w-8 h-8 border-4 rounded-full border-gray-500 p-2 border-r-transparent animate-spin"></div>
@@ -31,11 +32,11 @@ const Dashboard = () => {
 
     async function handleLogout() {
         try {
-            await adminLogout();
+            await logout()
             setUser(null)
         } catch (error) {
             console.error('Logout error:', error);
-            setError(error.message || "Something went wrong");
+            setError(error.message);
         }
     }
 
@@ -43,6 +44,7 @@ const Dashboard = () => {
         <div className="min-h-screen bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div className="bg-white rounded-lg shadow p-6">
+
 
                     <div className="flex items-center space-x-4">
                         <div>
@@ -66,12 +68,11 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <button onClick={handleLogout} className="mt-6 bg-neutral-800 text-white px-4 py-2 rounded-lg hover:bg-neutral-700">
+                    <button onClick={handleLogout} className="mt-6 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
                         Logout
                     </button>
 
-                    {error && <p className='text-sm text-red-500 mt-5'>{error}</p>}
-
+                    {error && <p className='mt-5 text-red-500'>{error}</p>}
                 </div>
             </div>
         </div>

@@ -50,6 +50,6 @@ export default function AuthProvider({ children }) {
     );
 }
 
-export const useUser = () => {
+export const useAuth = () => {
     return useContext(AuthContext);
 };

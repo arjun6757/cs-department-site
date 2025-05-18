@@ -1,17 +1,36 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "./context/auth.context";
-import { signup } from "./actions/auth.action";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useAuth } from "../context/auth.context";
+import { adminLogin } from "../actions/auth.action";
 
-export default function Signup() {
+export default function AdminLogin() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
-    username: "",
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
-  const { setUser } = useUser();
+  const { user, loading, setUser } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const message = searchParams.get("message");
+
+  useEffect(() => {
+    if (!message) return;
+
+    const timeoutId = setTimeout(() => {
+      setSearchParams("");
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [message]);
+
+  useEffect(() => {
+    if (loading === undefined) return;
+
+    if (!loading && user && user.role === "admin") {
+      navigate("/admin/dashboard");
+    }
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (!error) return;
@@ -32,36 +51,25 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, email, password } = credentials;
-
-    if (!username || !email || !password) {
-      setError("Fill in all the fields!");
-      return;
-    }
-
-    if(password.length < 4) {
-      setError("Password must be atleast four characters");
-      return;
-    }
+    const { email, password } = credentials;
 
     setCredentials({
-      username: "",
       email: "",
       password: "",
     });
 
     try {
-      const user = await signup({ username, email, password });
+      const user = await adminLogin({ email, password });
 
       if (!user) {
-        throw new Error("Error occured while logging in the user");
+        throw new error("Error occured while logging in the admin");
       }
 
       setUser(user);
-      navigate("/dashboard", { replace: true });
+      navigate("/admin/dashboard", { replace: true });
     } catch (err) {
-      console.error("Login error", err);
-      setError(err.message || "Something went wrong, pleasy try again.");
+      console.error("Login error:", err);
+      setError(err.message || "Something went wrong, please try again.");
     }
   };
 
@@ -69,29 +77,13 @@ export default function Signup() {
     <div className="w-full h-full flex items-center justify-center bg-gray-50">
       <div className="w-xs sm:w-md py-8 px-6 bg-white rounded-md shadow-md border border-[#ddd]">
         <div className="flex flex-col justify-start gap-1">
-          <h2 className="text-2xl font-semibold text-gray-800">User Signup</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Admin Login</h2>
           <p className="text-xs text-gray-500">
-            Fill in your credentials as per the labels
+            Please sign in with your admin credentials
           </p>
         </div>
 
         <form className="mt-5 space-y-4 text-sm" onSubmit={handleSubmit}>
-
-          <div className="space-y-1">
-            <label htmlFor="username" className=" block">
-              Username
-            </label>
-            <input
-              name="username"
-              type="text"
-              required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
-              placeholder="name"
-              value={credentials.username}
-              onChange={handleChange}
-            />
-          </div>
-
           <div className="space-y-1">
             <label htmlFor="email" className=" block">
               Email
@@ -125,19 +117,18 @@ export default function Signup() {
             type="submit"
             className="w-full flex gap-2 justify-center items-center h-9 py-2 px-3 rounded-md text-white font-medium bg-neutral-800 hover:bg-neutral-700 focus:outline-2 outline-offset-2 outline-gray-500 cursor-pointer text-xs"
           >
-            Sign up
+            Log in
           </button>
-
-          <div className=" flex justify-center items-center gap-2">
-            <span className="text-gray-500">Already have an account?</span>
-            <Link to="/login" className="hover:underline underline-offset-4">
-              Login
-            </Link>
-          </div>
 
           {error && (
             <div className="text-red-500 text-center bg-gray-50 p-2 rounded-md">
               {error}
+            </div>
+          )}
+
+          {message && (
+            <div className="text-neutral-700 text-center bg-gray-50 p-2 rounded-md">
+              {message}
             </div>
           )}
         </form>
