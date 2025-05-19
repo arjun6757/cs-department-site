@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Download, Search, Trash, Upload } from 'lucide-react'
-import { getAllEntry } from '../actions/entry.action';
+import { deleteEntry, getAllEntry } from '../actions/entry.action';
 import { Link } from 'react-router-dom';
 
 export default function Uploads() {
@@ -27,12 +27,12 @@ export default function Uploads() {
 
     useEffect(() => {
 
-        if(!entries || entries.length === 0) {
+        if (!entries || entries.length === 0) {
             setFilteredEntries([]);
             return;
         }
 
-        if(!query) {
+        if (!query) {
             setFilteredEntries(entries);
             return;
         }
@@ -45,16 +45,16 @@ export default function Uploads() {
 
     }, [entries, query])
 
-    // const handleDelete = async (entryId) => {
-    //     try {
-    //         // Call the delete user API here
-    //         const result = await deleteUser(userId);
-    //         console.log(result);
-    //         setUsers(users.filter(user => user._id !== userId));
-    //     } catch (error) {
-    //         console.error("Error deleting user:", error);
-    //     }
-    // }
+    const handleDelete = async (entryId) => {
+        try {
+            // Call the delete user API here
+            const result = await deleteEntry(entryId);
+            console.log(result);
+            setFilteredEntries(entries.filter(e => e._id !== entryId));
+        } catch (error) {
+            console.error("Error deleting user:", error);
+        }
+    }
 
     return (
         <div className='p-6 text-sm text-gray-700'>
@@ -95,7 +95,7 @@ export default function Uploads() {
 
                         {filteredEntries.length === 0 && (
                             <tr>
-                                <td colSpan={7} className='border border-[#ddd] p-2 text-center'>No users found</td>
+                                <td colSpan={9} className='border border-[#ddd] p-2 text-center'>No users found</td>
                             </tr>
                         )}
 
@@ -109,12 +109,14 @@ export default function Uploads() {
                                 <td className='border border-[#ddd] p-2 text-center'>{entry.filename}</td>
                                 <td className='border border-[#ddd] p-2 text-center'><a target='_blank' href={entry.download_link}>
                                     <Download className='w-4 h-4 text-gray-500 mx-auto' />
-                                    </a></td>
+                                </a></td>
                                 <td className='border border-[#ddd] p-2 text-center'>
-                                <a target='_blank' href={entry.note_link} className='text-blue-500 hover:underline underline-offset-4'>view</a>
+                                    <a target='_blank' href={entry.note_link} className='text-blue-500 hover:underline underline-offset-4'>view</a>
                                 </td>
                                 <td className='border border-[#ddd] p-2 text-center text-red-500 hover:text-red-400'>
-                                <Trash className='w-4 h-4 mx-auto' />
+                                    <button className='cursor-pointer' onClick={() => handleDelete(entry._id)}>
+                                        <Trash className='w-4 h-4 mx-auto' />
+                                    </button>
                                 </td>
                             </tr>
                         ))}

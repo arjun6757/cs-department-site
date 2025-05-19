@@ -1,11 +1,8 @@
-import { Link, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../context/auth.context';
 import { adminLogout } from '../actions/auth.action';
-import Home from '../admin/home';
-import Users from '../admin/users';
-import Uploads from '../admin/uploads';
-import { Clock, House, HouseIcon, LayoutDashboard, LogOut, Upload, User, UserIcon, UsersIcon } from 'lucide-react';
+import { Clock, LayoutDashboard, LogOut, Upload, UsersIcon } from 'lucide-react';
 
 const Dashboard = () => {
     const { user, setUser, error, loading } = useAuth();

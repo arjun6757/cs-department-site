@@ -7,6 +7,7 @@ const router = express.Router();
 
 // @ts-ignore
 // as Request != ModRequest
+
 router.post("/upload", isAdmin, upload.single("document"), handleUpload);
 
 router.get("/all", getAllEntries);

@@ -47,7 +47,7 @@ const EntrySchema = new Schema(
 	{ timestamps: true },
 );
 
-type EntryType = InferSchemaType<typeof EntrySchema>;
+export type EntryType = InferSchemaType<typeof EntrySchema>;
 const Entry = model<EntryType>("Entry", EntrySchema);
 
 export default Entry;

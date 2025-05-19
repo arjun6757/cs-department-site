@@ -9,7 +9,7 @@ interface ModRequest extends Request {
 }
 
 export async function handleUpload(req: ModRequest, res: Response) {
-	const { sem, course, year, note_link } = req.body;
+	const { department, sem, course, year, note_link } = req.body;
 
 	if (!req.file) {
 		res.status(400).json({ message: "Failed to upload file" });
@@ -26,7 +26,7 @@ export async function handleUpload(req: ModRequest, res: Response) {
 			transformation: [{ flags: "attachment" }],
 		});
 
-		const entry = await Entry.create({
+		const data: any = {
 			owner: req.user?.username,
 			owner_id: req.user?._id,
 			sem,
@@ -36,12 +36,19 @@ export async function handleUpload(req: ModRequest, res: Response) {
 			download_link,
 			note_link,
 			file_id: file.public_id,
-		});
+		}
+
+		if(department) {
+			data.department = department
+		}
+
+		const entry = await Entry.create(data);
 
 		res.status(200).json({
 			message: `File uploaded: ${req.file.filename}`,
 			data: entry,
 		});
+
 	} catch (err: any) {
 		console.error(err);
 		res.status(err.status || 500).json({
