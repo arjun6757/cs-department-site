@@ -66,7 +66,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gray-50">
+    <div className="w-full h-screen flex items-center justify-center bg-gray-50">
       <div className="w-xs sm:w-md py-8 px-6 bg-white rounded-md shadow-md border border-[#ddd]">
         <div className="flex flex-col justify-start gap-1">
           <h2 className="text-2xl font-semibold text-gray-800">User Signup</h2>

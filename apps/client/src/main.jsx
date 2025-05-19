@@ -7,9 +7,9 @@ import AuthProvider from './context/auth.context.jsx'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <AuthProvider>
-      <div className='w-full h-screen flex justify-center items-center font-inter'>
+      <div className='flex justify-center font-inter'>
         <App />
-      </div>
+        </div>
     </AuthProvider>
   </BrowserRouter>
 )

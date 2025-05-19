@@ -2,7 +2,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../context/auth.context';
 import { adminLogout } from '../actions/auth.action';
-import { Clock, LayoutDashboard, LogOut, Upload, UsersIcon } from 'lucide-react';
+import { Clock, LayoutDashboard, LogOut, Upload, UserCheck, UsersIcon } from 'lucide-react';
 
 const Dashboard = () => {
     const { user, setUser, error, loading } = useAuth();
@@ -62,8 +62,9 @@ const Dashboard = () => {
                             className='data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500'><Upload className='w-4 h-4 text-gray-700' /> Uploads</Link>
                         </li>
                         <li>
-                            <Link data-active={location.pathname==="/admin/dashboard/history"} to="/admin/dashboard/history"
-                            className='data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500'><Clock className='w-4 h-4 text-gray-700' /> History</Link>
+                            <Link data-active={location.pathname==="/admin/dashboard/attendance"} to="/admin/dashboard/attendance"
+                            className='data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500'>
+                                <UserCheck className='w-4 h-4 text-gray-700' /> Attendance</Link>
                         </li>
                     </ul>
 

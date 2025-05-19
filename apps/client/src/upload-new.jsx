@@ -54,15 +54,15 @@ export default function NewUpload() {
 	}
 
 	return (
-		<div className="flex w-full min-h-screen justify-center items-center text-sm">
-			{/*department, sem, course, year, note_link*/}
+		<div className="text-sm w-full h-full">
 
-			<Link to="/admin/dashboard/uploads" className="absolute top-4 left-4 hover:underline underline-offset-4">
+			<Link to="/admin/dashboard/uploads" className="sticky top-4 left-4 hover:underline underline-offset-4">
 				&larr; All Uploads
 			</Link>
 
-			<div className="sm:w-lg w-xs border border-[#ddd] shadow-sm rounded-md p-6">
-				<form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data" >
+			<div className="sm:w-lg w-xs mx-auto border border-[#ddd] shadow-sm rounded-md px-6 py-8 my-10">
+
+				<form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data"  >
 					<div className="flex flex-col gap-1 mb-5">
 						<h1 className="text-lg font-semibold text-gray-800">
 							Upload Form
@@ -163,9 +163,10 @@ export default function NewUpload() {
 						/>
 					</div>
 
-					<button className="px-4 py-1.5 rounded bg-blue-500 active:opacity-90 cursor-pointer text-gray-100 outline-offset-2 outline-blue-500">
+					<button className="w-full px-4 py-1.5 rounded bg-blue-500 active:opacity-90 cursor-pointer text-gray-100 outline-offset-2 outline-blue-500">
 						Upload
 					</button>
+
 				</form>
 			</div>
 		</div>

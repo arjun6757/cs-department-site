@@ -4,12 +4,26 @@ import User from "../models/user.model";
 export async function getAllUsers(req: Request, res: Response) {
 	try {
 
-		const users = await User.find().select("-hashedPassword");
+		const { type = "all" } = req.query;
 
-		res.status(200).json({
-			message: "Users fetched successfully!",
-			data: users,
-		});
+		if (type !== "all") {
+			const users = await User.find({ role: type }).select("-hashedPassword");
+
+			res.status(200).json({
+				message: "Users fetched successfully!",
+				data: users,
+			});
+
+		} else {
+			const users = await User.find().select("-hashedPassword");
+
+			res.status(200).json({
+				message: "Users fetched successfully!",
+				data: users,
+			});
+
+		}
+
 	} catch (err: any) {
 		console.error(err);
 		res.status(err.status || 500).json({

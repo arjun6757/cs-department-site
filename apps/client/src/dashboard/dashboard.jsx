@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/auth.context';
 import { useEffect, useState } from 'react';
 import { logout } from '../actions/auth.action';
+import { LogOut, LayoutDashboard, Download } from 'lucide-react';
 
 const Dashboard = () => {
     const { user, setUser, error: userError, loading } = useAuth();
@@ -41,40 +42,36 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div className="bg-white rounded-lg shadow p-6">
 
+        <div className="w-full grid grid-cols-5 overflow-hidden h-screen">
 
-                    <div className="flex items-center space-x-4">
-                        <div>
-                            <h1 className="text-2xl font-semibold text-gray-800">
-                                Welcome, {user?.username}!
-                            </h1>
-                            <p className="text-gray-600">{user?.email}</p>
-                        </div>
-                    </div>
+            <aside className='col-span-1 text-sm text-gray-700 overflow-hidden py-5 px-4 border-r border-[#ddd] select-none h-full'>
 
-                    <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div className="bg-blue-50 p-4 rounded-lg">
-                            <h2 className="text-lg font-medium text-blue-800">Profile Info</h2>
-                            <div className="mt-3 space-y-2">
-                                <p className="text-gray-600">Role: {user?.role}</p>
-                                <p className="text-gray-600">Member since: {new Date(user?.createdAt).toLocaleDateString("US", {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: '2-digit'
-                                })}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button onClick={handleLogout} className="mt-6 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                        Logout
+                <div className='flex flex-col h-full justify-between'>
+
+                    <ul className='flex flex-col'>
+                        <li>
+                            <Link data-active={location.pathname==="/dashboard"}
+                             to="/dashboard"
+                              className='data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded inline-flex items-center w-full h-full gap-2.5 outline-blue-500'><LayoutDashboard className='w-4 h-4 text-gray-700' /> Overview</Link>
+                        </li>
+
+                        <li>
+                            <Link data-active={location.pathname==="/dashboard/pyqs"} to="/dashboard/pyqs"
+                            className='data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500'><Download className='w-4 h-4 text-gray-700' /> PYQs</Link>
+                        </li>
+                    </ul>
+
+                    <button onClick={handleLogout} className='cursor-pointer inline-flex gap-2.5 outline-blue-500 items-center p-2 rounded hover:bg-gray-100'>
+                        <LogOut className='w-4 h-4' /> Logout
                     </button>
 
-                    {error && <p className='mt-5 text-red-500'>{error}</p>}
                 </div>
-            </div>
+            </aside>
+
+            <main className='col-span-4 overflow-y-scroll h-full'>
+                <Outlet />
+            </main>
         </div>
     );
 };

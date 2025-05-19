@@ -7,6 +7,7 @@ interface IUser {
 	email: string;
 	hashedPassword: string;
 	role: string;
+	attendance?: string;
 }
 
 export interface IUserDocument extends IUser, Document {
@@ -28,6 +29,10 @@ const UserSchema: Schema<IUserDocument> = new Schema(
 			enum: ["user", "admin"],
 			default: "user",
 		},
+		attendance: {
+			type: String,
+			default: "0",
+		}
 	},
 	{ timestamps: true },
 );
