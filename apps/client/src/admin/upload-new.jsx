@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { upload } from "./actions/entry.action";
+import { upload } from "../actions/entry.action";
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from "./context/auth.context";
+import { useAuth } from "../context/auth.context";
 
 export default function NewUpload() {
 	const [file, setFile] = useState("No file chosen");
@@ -146,7 +146,7 @@ export default function NewUpload() {
 								}}
 								className="outline-blue-500 outline-offset-2 w-fit px-4 py-1.5 rounded bg-blue-500 active:opacity-90 cursor-pointer text-gray-100"
 							>
-								New
+								Choose
 							</button>
 						</div>
 					</div>

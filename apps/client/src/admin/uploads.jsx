@@ -89,7 +89,7 @@ export default function Uploads() {
                             </th>
                             <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Course</th>
                             <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Year</th>
-                            <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Filename</th>
+                            <th className='border border-[#ddd] font-normal p-2 text-gray-800'>File Name</th>
                             <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Download</th>
                             <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Note</th>
                             <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Actions</th>
@@ -101,7 +101,7 @@ export default function Uploads() {
 
                         {filteredEntries.length === 0 && (
                             <tr>
-                                <td colSpan={9} className='border border-[#ddd] p-2 text-center'>No users found</td>
+                                <td colSpan={9} className='border border-[#ddd] p-2 text-center'>No entries found</td>
                             </tr>
                         )}
 

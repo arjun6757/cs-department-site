@@ -1,6 +1,30 @@
 import { Request, Response } from "express";
 import User from "../models/user.model";
 
+export async function handleUpdate(req: Request, res: Response) {
+	const { id, field } = req.body;
+	// TODO: update attendance
+	if(!id || !field) {
+		res.status(400).json({ message: "Invalid request" })
+		return;
+	}
+
+	try {
+		const user = await User.findById(id);
+
+		if(!user) {
+			res.status(404).json({ message: "Not a valid user" })
+			return;
+		}
+
+		await User.updateOne({})
+
+	} catch (err: any) {
+		console.error(err);
+		res.status(err.status || 500).json({ message: err.message || "Something went wrong" })
+	}
+}
+
 export async function getAllUsers(req: Request, res: Response) {
 	try {
 

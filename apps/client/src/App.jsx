@@ -9,7 +9,7 @@ import AdminDashboard from "./dashboard/admin-dashboard";
 import Overview from "./admin/overview";
 import Uploads from "./admin/uploads";
 import Users from "./admin/users";
-import NewUpload from "./upload-new";
+import NewUpload from "./admin/upload-new";
 import UserOverview from "./user/overview";
 import PYQ from "./user/pyq";
 import Attendance from "./admin/attendance";

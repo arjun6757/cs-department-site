@@ -94,7 +94,10 @@ export default function Attendance() {
                                 <td className='border border-[#ddd] p-2 text-center'>{user.username}</td>
                                 <td className='border border-[#ddd] p-2 text-center'>{user.email}</td>
                                 <td className='border border-[#ddd] p-2 text-center'>
-                                    <input className='w-10' type="number" name="attendance" value={user.attendance} />
+                                    {/* <input className='w-10 mx-auto border border-[#ddd] rounded' type="number" name="attendance"
+                                    value={user.attendance}
+                                     /> */}
+                                     {user.attendance}
                                 </td>
                                 <td className='border border-[#ddd] p-2 text-center'>{new Date(user.updatedAt).toLocaleDateString()}</td>
                             </tr>
