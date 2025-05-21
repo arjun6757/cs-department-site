@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
+import { API } from "../actions/index.js";
 
 const AuthContext = createContext(null);
 
@@ -13,7 +14,7 @@ export default function AuthProvider({ children }) {
             setLoading(true);
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/auth/whoami",
+                    `${API}/auth/whoami`,
                     { credentials: "include" },
                 );
                 const result = await response.json();

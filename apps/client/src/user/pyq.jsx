@@ -20,7 +20,6 @@ export default function Uploads() {
         const fetchEntries = async () => {
             try {
                 const entries = await getAllEntry();
-                console.log(entries);
                 setEntries(entries);
             } catch (error) {
                 console.error("Error fetching entries:", error);

@@ -1,6 +1,8 @@
+import { API } from ".";
+
 export async function resetPassword(data) {
 	try {
-		const response = await fetch("http://localhost:3000/api/auth/forgot-password", {
+		const response = await fetch(`${API}/auth/forgot-password`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -22,7 +24,7 @@ export async function resetPassword(data) {
 
 export async function login(data) {
 	try {
-		const response = await fetch("http://localhost:3000/api/auth/login", {
+		const response = await fetch(`${API}/auth/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -45,7 +47,7 @@ export async function login(data) {
 
 export async function signup(data) {
 	try {
-		const response = await fetch("http://localhost:3000/api/auth/signup", {
+		const response = await fetch(`${API}/auth/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -68,7 +70,7 @@ export async function signup(data) {
 
 export async function logout() {
 	try {
-		const response = await fetch("http://localhost:3000/api/auth/logout", {
+		const response = await fetch(`${API}/auth/logout`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -86,7 +88,7 @@ export async function logout() {
 
 export async function adminLogout() {
 	try {
-		const response = await fetch("http://localhost:3000/api/auth/admin/logout", {
+		const response = await fetch(`${API}/auth/admin/logout`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -105,7 +107,7 @@ export async function adminLogout() {
 export async function adminLogin(data) {
 	try {
 		const response = await fetch(
-			"http://localhost:3000/api/auth/admin/login",
+			`${API}/auth/admin/login`,
 			{
 				method: "POST",
 				headers: {

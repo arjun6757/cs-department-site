@@ -1,7 +1,8 @@
+import { API } from ".";
 
 export async function getTypeUsers() {
 	try {
-		const response = await fetch("http://localhost:3000/api/user/all?type=user", {
+		const response = await fetch(`${API}/user/all?type=user`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -24,7 +25,7 @@ export async function getTypeUsers() {
 
 export async function getAllUsers() {
 	try {
-		const response = await fetch("http://localhost:3000/api/user/all", {
+		const response = await fetch(`${API}/user/all`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -47,7 +48,7 @@ export async function getAllUsers() {
 
 export async function deleteUser(userId) {
 	try {
-		const response = await fetch(`http://localhost:3000/api/user/delete/${userId}`, {
+		const response = await fetch(`${API}/user/delete/${userId}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",

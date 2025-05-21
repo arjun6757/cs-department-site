@@ -13,7 +13,6 @@ export default function Users() {
         const fetchUsers = async () => {
             try {
                 const users = await getAllUsers();
-                console.log(users);
                 setUsers(users);
             } catch (error) {
                 console.error("Error fetching users:", error);
@@ -46,9 +45,7 @@ export default function Users() {
 
     const handleDelete = async (userId) => {
         try {
-            // Call the delete user API here
             const result = await deleteUser(userId);
-            console.log(result);
             setUsers(users.filter(user => user._id !== userId));
         } catch (error) {
             console.error("Error deleting user:", error);

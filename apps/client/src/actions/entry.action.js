@@ -1,6 +1,8 @@
+import { API } from ".";
+
 export async function getAllEntry() {
     try {
-        const response = await fetch("http://localhost:3000/api/entry/all", {
+        const response = await fetch(`${API}/entry/all`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -23,7 +25,7 @@ export async function getAllEntry() {
 
 export async function upload(data) {
 	try {
-		const response = await fetch("http://localhost:3000/api/entry/upload", {
+		const response = await fetch(`${API}/entry/upload`, {
 			method: "POST",
 			credentials: "include",
 			body: data,
@@ -43,7 +45,7 @@ export async function upload(data) {
 
 export async function deleteEntry(entryId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/entry/delete/${entryId}`, {
+        const response = await fetch(`${API}/entry/delete/${entryId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

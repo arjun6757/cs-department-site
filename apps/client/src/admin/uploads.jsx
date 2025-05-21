@@ -20,7 +20,6 @@ export default function Uploads() {
         const fetchEntries = async () => {
             try {
                 const entries = await getAllEntry();
-                console.log(entries);
                 setEntries(entries);
             } catch (error) {
                 console.error("Error fetching entries:", error);
@@ -53,9 +52,7 @@ export default function Uploads() {
 
     const handleDelete = async (entryId) => {
         try {
-            // Call the delete user API here
             const result = await deleteEntry(entryId);
-            console.log(result);
             setFilteredEntries(entries.filter(e => e._id !== entryId));
         } catch (error) {
             console.error("Error deleting user:", error);

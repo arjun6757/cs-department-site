@@ -47,7 +47,6 @@ export default function NewUpload() {
 
 		try {
 			const result = await upload(formData);
-			console.log(result);
 		} catch (err) {
 			console.error(err);
 		}
