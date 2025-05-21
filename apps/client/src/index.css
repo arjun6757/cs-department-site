@@ -14,3 +14,13 @@
 @theme {
 	--font-sans: var(--font-inter);
 }
+
+@media screen and (max-width: 350px) {
+	.overview_wrapper {
+		flex-direction: column;
+	}
+
+	.overview_sub_wrapper {
+		align-items: center;
+	}
+}

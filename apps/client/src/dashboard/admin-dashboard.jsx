@@ -1,12 +1,13 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../context/auth.context';
 import { adminLogout } from '../actions/auth.action';
-import { Clock, LayoutDashboard, LogOut, Upload, UserCheck, UsersIcon } from 'lucide-react';
+import { Clock, Menu, LayoutDashboard, LogOut, Upload, UserCheck, UsersIcon } from 'lucide-react';
 
 const Dashboard = () => {
     const { user, setUser, error, loading } = useAuth();
     const navigate = useNavigate();
+    const [isHidden, setIsHidden] = useState(true);
 
     useEffect(() => {
 
@@ -41,9 +42,15 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="w-full grid grid-cols-5 overflow-hidden h-screen">
+        <div className="w-full grid grid-cols-4 sm:grid-cols-5 overflow-hidden h-screen relative">
 
-            <aside className='col-span-1 text-sm text-gray-700 overflow-hidden py-5 px-4 border-r border-[#ddd] select-none h-full'>
+            <button data-hidden={isHidden} onClick={() => setIsHidden(p => !p)} className='sm:hidden border border-[#ddd] absolute top-0 data-[hidden=false]:left-0 mx-6 my-4 text-gray-700 rounded p-1'>
+                <Menu className='w-6 h-6' />
+            </button>
+
+            <div className='data-[hidden=true]:hidden data-[hidden=false]:absolute data-hidden:sm:hidden top-0 left-0 w-full h-full bg-white/30 backdrop-blur-xs z-10 border' data-hidden={isHidden} onClick={() => setIsHidden(true)}></div>
+
+            <aside data-hidden={isHidden} className={`data-[hidden=false]:block data-[hidden=true]:hidden data-hidden:sm:grid absolute left-0 top-0 w-[60vw] sm:w-auto sm:static sm:col-span-1 text-sm text-gray-700 overflow-hidden py-5 px-4 border-r border-[#ddd] select-none h-full bg-white z-20`}>
 
                 <div className='flex flex-col h-full justify-between'>
 
@@ -75,7 +82,7 @@ const Dashboard = () => {
                 </div>
             </aside>
 
-            <main className='col-span-4 overflow-y-scroll h-full'>
+            <main className='col-span-4 overflow-y-scroll h-full pt-10 sm:pt-0'>
                 <Outlet />
             </main>
         </div>

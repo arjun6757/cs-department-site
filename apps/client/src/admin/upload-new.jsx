@@ -60,7 +60,7 @@ export default function NewUpload() {
 				&larr; All Uploads
 			</Link>
 
-			<div className="sm:w-lg w-xs mx-auto border border-[#ddd] shadow-sm rounded-md px-6 py-8 my-10">
+			<div className="sm:w-lg w-[90vw] mx-auto border border-[#ddd] shadow-sm rounded-md px-6 py-8 my-10">
 
 				<form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data"  >
 					<div className="flex flex-col gap-1 mb-5">
