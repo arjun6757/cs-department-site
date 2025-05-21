@@ -2,9 +2,6 @@
   "name": "cs-department-site",
   "version": "1.0.0",
   "main": "index.js",
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
     "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\""
   },
