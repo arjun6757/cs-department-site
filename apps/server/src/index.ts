@@ -57,7 +57,7 @@ app.use(
         cookie: {
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
             sameSite: "none",
-            secure: true,
+            secure: process.env.NODE_ENV ? false : true,
             httpOnly: true, // server only
         },
     }),
