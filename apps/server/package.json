@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && npm rebuild bcrypt && tsc",
+    "build": "npm rebuild bcrypt && tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -23,18 +24,18 @@
     "mongoose": "^8.14.1",
     "multer": "1.4.5-lts.2",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
-  },
-  "devDependencies": {
+    "passport-local": "^1.0.0",
     "@types/bcrypt": "^5.0.2",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.1",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
     "@types/express-session": "^1.18.1",
     "@types/multer": "^1.4.12",
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
   }
 }
