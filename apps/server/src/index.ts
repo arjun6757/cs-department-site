@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import "./.config/passport.config";
 import cors from "cors";
+import MongoStore from "connect-mongo";
 
 dotenv.config();
 
@@ -49,9 +50,13 @@ app.use(
         // initially empty store
         saveUninitialized: false,
 
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGO_URI
+        }),
+
         cookie: {
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
-            secure: process.env.NODE_ENV === "production" ? true : false, // need to change it to true for production
+            secure: process.env.NODE_ENV ? false : true,
             httpOnly: true, // server only
             sameSite: "strict",
         },
