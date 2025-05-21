@@ -10,6 +10,10 @@
     "preview": "vite preview",
     "exp": "vite --host"
   },
+  "engines": {
+    "node": "22.x",
+    "npm": "11.x"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.5",
     "lucide-react": "^0.508.0",
