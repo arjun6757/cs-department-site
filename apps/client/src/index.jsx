@@ -1,13 +1,152 @@
 import { Link } from "react-router-dom";
+import Carousel from "./carousel";
+import { Shield, UploadCloud, UserCheck } from "lucide-react";
+import * as Icons from "./svg/index"
 
 export default function Index() {
+
 	return (
-		<div className="space-y-2 text-sm h-screen flex flex-col justify-center items-center">
-			<Link to="/login" className="w-xs rounded block p-2 border border-black hover:bg-black hover:text-white">User Login</Link>
-			<Link to="/admin/login" className="w-xs rounded block p-2 border border-black hover:bg-black hover:text-white">Admin Login</Link>
-			<Link to="/dashboard" className="w-xs rounded block p-2 border border-black hover:bg-black hover:text-white">User Dashboard</Link>
-			<Link to="/admin/dashboard" className="w-xs rounded block p-2 border border-black hover:bg-black hover:text-white">Admin Dashboard</Link>
-			<Link to="/signup" className="w-xs rounded block p-2 border border-black hover:bg-black hover:text-white" >User Signup</Link>
+		<div className="min-h-screen text-sm text-gray-700">
+			<header>
+
+				<nav className=" p-5 bg-[#212121] text-gray-100 flex justify-between items-center">
+					<ul className="flex gap-4">
+						<li><a href="#home" >Home</a></li>
+						<li><a href="#features" >About</a></li>
+						<li><a href="#contact" >Contact</a></li>
+					</ul>
+
+					<ul className="flex gap-4">
+						<li><Link to="/login" className="p-2 bg-blue-500 hover:opacity-90 active:opacity-80 rounded text-white">Login</Link></li>
+						<li>
+							<Link to="/dashboard" className="p-2 bg-white hover:opacity-90 active:opacity-80 text-black rounded">Dashboard</Link>
+						</li>
+					</ul>
+
+				</nav>
+
+				<div className="">
+					<Carousel />
+				</div>
+
+			</header>
+
+
+			<main className="my-6">
+
+				<div id="home" className="my-[5rem] w-4xl mx-auto flex flex-col gap-2 sm:gap-5 p-8 ">
+					<h1 className="text-2xl font-bold text-center ">Introduction</h1>
+					<p className="text-gray-500 text-sm">
+						A simple solution for students and faculty to access academic resources, manage attendance, and securely upload or download past question papers — built with the MERN stack.
+					</p>
+				</div>
+
+				<div id="features" className="my-[5rem] flex flex-col gap-1 items-center px-4 py-12 bg-gray-100">
+
+					<h2 className="text-xl font-bold">
+						Features
+					</h2>
+
+					<ul className="grid grid-cols-1 sm:grid-cols-3 items-center justify-center gap-20 mt-8 p-4">
+						<li className=" space-y-4 p-5 w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-lg font-medium inline-flex gap-2 items-center"><UserCheck className="text-blue-500" />Online Attendance System</h3>
+							<p className="text-gray-600">
+								A planned system to manage and track student attendance online. Will include a role-based login for students and faculty, allowing faculty to mark attendance and students to view their records. The implementation will be handled on both the client and server side.
+							</p>
+						</li>
+						<li className=" space-y-4 p-5 w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-lg font-medium inline-flex gap-2 items-center"><UploadCloud className="text-blue-500" />Easily Upload & Get PYQs</h3>
+							<p className="text-gray-600">
+								Users can upload and download previous year question papers (PYQs). Uploaded entries are stored in a database along with optional note links. A dedicated route displays a table listing each PYQ's name, download link (PDF), and notes if available.
+							</p>
+						</li>
+						<li className=" space-y-4 p-5 w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-lg font-medium inline-flex gap-2 items-center"><Shield className="text-blue-500" />Role-Based User Access</h3>
+							<p className="text-gray-600">
+								Role verification is handled on both client and server sides to control access to different sections of the site. For example, only admins can upload new PYQs, while students can view and download them. This helps maintain secure and organized data access.
+							</p>
+						</li>
+
+					</ul>
+				</div>
+
+				<div id="tech-stack" className="my-[5rem] flex flex-col gap-4 items-center px-4 py-12">
+					<h2 className="text-xl font-bold mb-15">Tech Stack</h2>
+
+					<div className="flex gap-20 transition-transform duration-300">
+						{Icons.svgIcons.map(({ name, component: Component }) => (
+							<Component key={name} className="w-12 h-12" />
+						))}
+					</div>
+				</div>
+
+			</main>
+
+			<footer className="flex flex-col gap-0 bg-[#171717] text-gray-300 px-12 py-6">
+
+				<div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-20 my-6 ">
+
+					<div className="flex flex-col gap-4">
+						<h3 className="font-bold text-xl">CS Department Site</h3>
+						<p className="text-xs">A place exclusively for the cs department of Bankura Sammilani College.</p>
+					</div>
+
+					<div className="flex flex-col gap-4">
+						<h3 className="font-bold text-xl">
+							Quick Links
+						</h3>
+						<ul className="flex gap-8">
+							<div className="flex flex-col gap-2">
+								<li>
+									<Link to="/login" >User Login</Link>
+								</li>
+								<li>
+									<Link to="/dashboard" >User Dashboard</Link>
+								</li>
+								<li>
+									<Link to="/signup"  >User Signup</Link>
+								</li>
+							</div>
+
+							<div className="flex flex-col gap-2">
+								<li>
+									<Link to="/admin/login" >Admin Login</Link>
+								</li>
+								<li>
+									<Link to="/admin/dashboard" >Admin Dashboard</Link>
+								</li>
+							</div>
+						</ul>
+					</div>
+
+					<div id="contact" className="flex flex-col gap-2">
+						<h3 className="font-bold text-xl">
+							Contact Us
+						</h3>
+						<div>
+							<p>
+								Bankura Sammilani College, Kenduadihi, Bankura, West Bengal - 722102
+							</p>
+							<p>
+								Email: arjunbanerjee13@gmail.com
+							</p>
+						</div>
+
+					</div>
+				</div>
+
+				<div className="flex flex-col sm:flex-row justify-center items-center gap-2 p-2 pt-8">
+					<p className="text-gray-400 text-xs">Copyright &copy; Bankura Sammilani College</p>
+					<span className="hidden sm:block text-gray-400 text-xs"> | </span>
+
+					<div className="flex gap-2">
+						<p className="text-gray-400 text-xs">College website:</p>
+						<a href="https://www.bankurasammilanicollege.net/" target="_blank" rel="noopener noreferrer" className="text-blue-500 text-xs hover:underline underline-offset-4">Bankura Sammilani College</a>
+
+					</div>
+				</div>
+			</footer>
+
 		</div>
-		)
+	)
 }
