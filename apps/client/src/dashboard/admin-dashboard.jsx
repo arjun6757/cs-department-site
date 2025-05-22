@@ -42,7 +42,7 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="w-full grid grid-cols-4 sm:grid-cols-5 overflow-hidden h-screen relative">
+        <div className="w-full h-svh grid grid-cols-4 sm:grid-cols-5 overflow-hidden relative">
 
             <button data-hidden={isHidden} onClick={() => setIsHidden(p => !p)} className='sm:hidden border border-[#ddd] absolute top-0 data-[hidden=false]:left-0 mx-6 my-4 text-gray-700 rounded p-1'>
                 <Menu className='w-6 h-6' />

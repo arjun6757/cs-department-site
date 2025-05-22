@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/auth.context";
+import { useNavigate } from "react-router-dom";
 import { resetPassword } from "../actions/auth.action";
 
 export default function forgotPassword() {
@@ -11,16 +10,6 @@ export default function forgotPassword() {
     newPassword: "",
   });
   const [error, setError] = useState("");
-  // const { setUser } = useUser();
-
-  // useEffect(() => {
-  //   if (loading === undefined) return;
-
-  //   if (!loading && user && user.role === "user") {
-  //     navigate("/dashboard");
-  //   }
-
-  // }, [user, loading, navigate]);
 
   useEffect(() => {
     if (!error) return;
@@ -75,7 +64,7 @@ export default function forgotPassword() {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-gray-50">
+    <div className="w-full h-svh flex items-center justify-center bg-gray-50">
       <div className="w-xs sm:w-md py-8 px-6 bg-white rounded-md shadow-md border border-[#ddd]">
         <div className="flex flex-col justify-start gap-1">
           <h2 className="text-2xl font-semibold text-gray-800">Forgot Password</h2>

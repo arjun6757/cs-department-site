@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Download, Search } from 'lucide-react'
+import { Download, Loader, Search } from 'lucide-react'
 import { getAllEntry } from '../actions/entry.action';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/auth.context';
@@ -9,7 +9,8 @@ export default function Uploads() {
     const [entries, setEntries] = useState([])
     const [query, setQuery] = useState("");
     const [filteredEntries, setFilteredEntries] = useState([]);
-    const { user, loading } = useAuth();
+    const { user, loading: userLoading } = useAuth();
+    const [loading, setLoading] = useState(false);
 
     if(!user || user.role !== "user") {
         return <Navigate to="/login?message=Not a valid user" />
@@ -19,10 +20,13 @@ export default function Uploads() {
 
         const fetchEntries = async () => {
             try {
+                setLoading(true);
                 const entries = await getAllEntry();
                 setEntries(entries);
             } catch (error) {
                 console.error("Error fetching entries:", error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -82,7 +86,13 @@ export default function Uploads() {
 
                     <tbody>
 
-                        {filteredEntries.length === 0 && (
+                        {loading ? (
+                            <tr>
+                                <td colSpan={9} className='border border-[#ddd] p-2 text-center'>
+                                    <Loader className='text-gray-700 animate-spin w-5 h-5 mx-auto' />
+                                </td>
+                            </tr>
+                            ) : filteredEntries.length === 0 && (
                             <tr>
                                 <td colSpan={9} className='border border-[#ddd] p-2 text-center'>It&apos;s empty here</td>
                             </tr>

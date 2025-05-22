@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Download, Search, Trash, Upload } from 'lucide-react'
+import { Download, Loader, Search, Trash, Upload } from 'lucide-react'
 import { deleteEntry, getAllEntry } from '../actions/entry.action';
 import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/auth.context';
@@ -9,7 +9,9 @@ export default function Uploads() {
     const [entries, setEntries] = useState([])
     const [query, setQuery] = useState("");
     const [filteredEntries, setFilteredEntries] = useState([]);
-    const { user, loading } = useAuth();
+    const { user, loading: userLoading } = useAuth();
+    const [loading, setLoading] = useState(false);
+
 
     if(!user || user.role !== "admin") {
         return <Navigate to="/admin/login?message=Not a valid admin" />
@@ -19,10 +21,13 @@ export default function Uploads() {
 
         const fetchEntries = async () => {
             try {
+                setLoading(true);
                 const entries = await getAllEntry();
                 setEntries(entries);
             } catch (error) {
                 console.error("Error fetching entries:", error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -96,10 +101,23 @@ export default function Uploads() {
 
                     <tbody>
 
-                        {filteredEntries.length === 0 && (
+                        {loading ? (
                             <tr>
-                                <td colSpan={9} className='border border-[#ddd] p-2 text-center'>No entries found</td>
+                                <td colSpan={7} className="p-2">
+                                    <Loader className="w-5 h-5 mx-auto text-gray-700 animate-spin" />
+                                </td>
                             </tr>
+                        ) : (
+                            filteredEntries.length === 0 && (
+                                <tr>
+                                    <td
+                                        colSpan={9}
+                                        className="border border-[#ddd] p-2 text-center"
+                                    >
+                                        No entries found
+                                    </td>
+                                </tr>
+                            )
                         )}
 
                         {filteredEntries.map((entry, index) => (

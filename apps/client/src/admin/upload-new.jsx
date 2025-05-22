@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { upload } from "../actions/entry.action";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth.context";
+import { Loader } from "lucide-react";
 
 export default function NewUpload() {
 	const [file, setFile] = useState("No file chosen");
 	const fileInputRef = useRef(null);
 	const { user, setUser, error, loading } = useAuth();
 	const navigate = useNavigate();
-
+	const [pending, setPending] = useState(false);
 
 	useEffect(() => {
-
 		if (loading === undefined) return;
 
 		if (!loading && !user) {
@@ -19,9 +19,10 @@ export default function NewUpload() {
 		}
 
 		if (!loading && user && user.role !== "admin") {
-			navigate("/admin/login?message=Not a valid admin", { replace: true });
+			navigate("/admin/login?message=Not a valid admin", {
+				replace: true,
+			});
 		}
-
 	}, [user, loading, navigate]);
 
 	if (loading || !user || user.role !== "admin") {
@@ -29,7 +30,7 @@ export default function NewUpload() {
 			<div className="flex items-center justify-center min-h-screen">
 				<div className="w-8 h-8 border-4 rounded-full border-gray-500 p-2 border-r-transparent animate-spin"></div>
 			</div>
-		)
+		);
 	}
 
 	const handleChange = (e) => {
@@ -44,24 +45,32 @@ export default function NewUpload() {
 		const formData = new FormData(e.target);
 		e.target.reset();
 		setFile("No file chosen");
+		setPending(true);
 
 		try {
 			const result = await upload(formData);
 		} catch (err) {
 			console.error(err);
+		} finally {
+			setPending(false);
 		}
-	}
+	};
 
 	return (
 		<div className="text-sm w-full h-full">
-
-			<Link to="/admin/dashboard/uploads" className="sticky top-4 left-4 hover:underline underline-offset-4">
+			<Link
+				to="/admin/dashboard/uploads"
+				className="sticky top-4 left-4 hover:underline underline-offset-4"
+			>
 				&larr; All Uploads
 			</Link>
 
 			<div className="sm:w-lg w-[90vw] mx-auto border border-[#ddd] shadow-sm rounded-md px-6 py-8 my-10">
-
-				<form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data"  >
+				<form
+					onSubmit={handleSubmit}
+					className="space-y-4"
+					encType="multipart/form-data"
+				>
 					<div className="flex flex-col gap-1 mb-5">
 						<h1 className="text-lg font-semibold text-gray-800">
 							Upload Form
@@ -125,7 +134,9 @@ export default function NewUpload() {
 						</label>
 
 						<div className="flex flex-col gap-2">
-							<span className="border border-[#ddd] p-1 rounded truncate">{file}</span>
+							<span className="border border-[#ddd] p-1 rounded truncate">
+								{file}
+							</span>
 
 							<input
 								ref={fileInputRef}
@@ -143,7 +154,7 @@ export default function NewUpload() {
 										fileInputRef.current.click();
 									}
 								}}
-								className="outline-blue-500 outline-offset-2 w-fit px-4 py-1.5 rounded bg-blue-500 active:opacity-90 cursor-pointer text-gray-100"
+								className="outline-blue-500 outline-offset-2 w-fit px-4 py-1.5 rounded bg-blue-500 hover:opacity-80 active:opacity-90 cursor-pointer text-gray-100"
 							>
 								Choose
 							</button>
@@ -162,10 +173,16 @@ export default function NewUpload() {
 						/>
 					</div>
 
-					<button className="w-full px-4 py-1.5 rounded bg-blue-500 active:opacity-90 cursor-pointer text-gray-100 outline-offset-2 outline-blue-500">
+					<button
+						disabled={pending}
+						className="disabled:cursor-not-allowed w-full px-4 py-1.5 rounded bg-blue-500 hover:opacity-80 active:opacity-90 cursor-pointer text-gray-100 outline-offset-2 outline-blue-500 inline-flex gap-4 justify-center items-center"
+					>
 						Upload
-					</button>
 
+						{pending && (
+							<Loader className="w-5 h-5 text-gray-300 animate-spin" />
+						)}
+					</button>
 				</form>
 			</div>
 		</div>
