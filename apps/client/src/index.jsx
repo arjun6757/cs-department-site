@@ -34,8 +34,8 @@ export default function Index() {
 
 			<main className="my-6">
 
-				<div id="home" className="my-[5rem] w-4xl mx-auto flex flex-col gap-2 sm:gap-5 p-8 ">
-					<h1 className="text-2xl font-bold text-center ">Introduction</h1>
+				<div id="home" className="my-[5rem] w-xs sm:w-4xl mx-auto flex flex-col gap-2 sm:gap-5 p-8 ">
+					<h1 className="text-xl sm:text-2xl font-bold text-center ">Introduction</h1>
 					<p className="text-gray-500 text-sm">
 						A simple solution for students and faculty to access academic resources, manage attendance, and securely upload or download past question papers — built with the MERN stack.
 					</p>
@@ -43,7 +43,7 @@ export default function Index() {
 
 				<div id="features" className="my-[5rem] flex flex-col gap-1 items-center px-4 py-12 bg-gray-100">
 
-					<h2 className="text-xl font-bold">
+					<h2 className="text-lg sm:text-xl font-bold">
 						Features
 					</h2>
 
@@ -71,11 +71,11 @@ export default function Index() {
 				</div>
 
 				<div id="tech-stack" className="my-[5rem] flex flex-col gap-4 items-center px-4 py-12">
-					<h2 className="text-xl font-bold mb-15">Tech Stack</h2>
+					<h2 className="text-lg sm:text-xl font-bold mb-8 sm:mb-15">Tech Stack</h2>
 
-					<div className="flex gap-20 transition-transform duration-300">
+					<div className="flex gap-4 sm:gap-20 transition-transform duration-300">
 						{Icons.svgIcons.map(({ name, component: Component }) => (
-							<Component key={name} className="w-12 h-12" />
+							<Component key={name} className="w-5 sm:w-12 h-5 sm:h-12" />
 						))}
 					</div>
 				</div>
@@ -87,12 +87,12 @@ export default function Index() {
 				<div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-20 my-6 ">
 
 					<div className="flex flex-col gap-4">
-						<h3 className="font-bold text-xl">CS Department Site</h3>
+						<h3 className="font-bold text-lg sm:text-xl">CS Department Site</h3>
 						<p className="text-xs">A place exclusively for the cs department of Bankura Sammilani College.</p>
 					</div>
 
 					<div className="flex flex-col gap-4">
-						<h3 className="font-bold text-xl">
+						<h3 className="font-bold text-lg sm:text-xl">
 							Quick Links
 						</h3>
 						<ul className="flex gap-8">
@@ -120,7 +120,7 @@ export default function Index() {
 					</div>
 
 					<div id="contact" className="flex flex-col gap-2">
-						<h3 className="font-bold text-xl">
+						<h3 className="font-bold text-lg sm:text-xl">
 							Contact Us
 						</h3>
 						<div>
