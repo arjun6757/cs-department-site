@@ -1,28 +1,83 @@
 import { Link } from "react-router-dom";
 import Carousel from "./carousel";
-import { Shield, UploadCloud, UserCheck } from "lucide-react";
+import { ChevronRight, Menu, Shield, UploadCloud, UserCheck } from "lucide-react";
 import * as Icons from "./svg/index"
+import { useState } from "react";
 
 export default function Index() {
+
+	const [isHidden, setIsHidden] = useState(true);
+ 	const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 
 
 	return (
 		<div className="min-h-screen text-sm text-gray-700">
 			<header>
+				<nav className="p-4 flex flex-col gap-2 bg-[#212121] text-gray-100">
 
-				<nav className=" p-5 bg-[#212121] text-gray-100 flex justify-between items-center">
-					<ul className="flex gap-4">
-						<li><a href="#home" >Home</a></li>
-						<li><a href="#features" >About</a></li>
-						<li><a href="#contact" >Contact</a></li>
+					<button
+						data-hidden={isHidden}
+						onClick={() => setIsHidden(p => !p)}
+						className='sm:data-hidden:hidden text-gray-100 cursor-pointer w-6 h-6'
+					>
+						<Menu />
+					</button>
+
+
+					<ul data-hidden={isHidden} className="data-[hidden=true]:hidden data-[hidden=false]:flex sm:data-hidden:flex sm:flex-row flex-col sm:justify-between gap-6 py-2 sm:py-0">
+
+						<div className="flex flex-col sm:flex-row">
+							<li className="p-2 border-b border-[#555] sm:border-none"><a href="#home" >Home</a></li>
+							<li className="p-2 border-b border-[#555] sm:border-none"><a href="#features" >About</a></li>
+							<li className="p-2 border-b border-[#555] sm:border-none"><a href="#contact" >Contact</a></li>
+
+							<details
+								onMouseEnter={(e) => touch ? undefined : e.currentTarget.open = true}
+								onMouseLeave={(e) => touch ? undefined : e.currentTarget.open = false}
+								className="group md:hover:[open] p-2 border-b border-[#555] sm:border-none relative">
+								<summary className="flex items-center gap-2 cursor-pointer">
+									<span>Student</span>
+									<ChevronRight className="w-4 h-4 sm:rotate-90 sm:group-open:-rotate-90 group-open:rotate-90 transition-transform duration-300" />
+								</summary>
+								<ul className="sm:absolute sm:left-0 sm:bg-[#272727] sm:border sm:border-[#333] p-2 pl-6 sm:p-4 sm:rounded-md sm:shadow-md sm:z-10 flex flex-col gap-2">
+									<li>
+										<Link to="/login" >Login</Link>
+									</li>
+									<li>
+										<Link to="/dashboard" >Dashboard</Link>
+									</li>
+									<li>
+										<Link to="/signup"  >Signup</Link>
+									</li>
+								</ul>
+							</details>
+
+							<details
+								onMouseEnter={(e) => touch ? undefined : e.currentTarget.open = true}
+								onMouseLeave={(e) => touch ? undefined : e.currentTarget.open = false}
+								className="group md:hover:[open] p-2 border-b border-[#555] sm:border-none relative">
+								<summary className="flex items-center gap-2 cursor-pointer">
+									<span>Admin</span>
+									<ChevronRight className="w-4 h-4 sm:rotate-90 sm:group-open:-rotate-90 group-open:rotate-90 transition-transform duration-300" />
+								</summary>
+								<ul className="sm:absolute sm:left-0 sm:bg-[#272727] sm:border sm:border-[#333] p-2 pl-6 sm:p-4 sm:rounded-md sm:shadow-md sm:z-10 flex flex-col gap-2">
+									<li>
+										<Link to="/admin/login" >Login</Link>
+									</li>
+									<li>
+										<Link to="/admin/dashboard" >Dashboard</Link>
+									</li>
+								</ul>
+							</details>
+
+						</div>
+
+						<div className="flex gap-4 sm:items-center">
+							<li><Link to="/login" className="p-2 bg-blue-500 hover:opacity-90 active:opacity-80 rounded text-white">Login</Link></li>
+							<li>
+								<Link to="/dashboard" className="p-2 bg-white hover:opacity-90 active:opacity-80 text-black rounded">Dashboard</Link>
+							</li>
+						</div>
 					</ul>
-
-					<ul className="flex gap-4">
-						<li><Link to="/login" className="p-2 bg-blue-500 hover:opacity-90 active:opacity-80 rounded text-white">Login</Link></li>
-						<li>
-							<Link to="/dashboard" className="p-2 bg-white hover:opacity-90 active:opacity-80 text-black rounded">Dashboard</Link>
-						</li>
-					</ul>
-
 				</nav>
 
 				<div className="">
