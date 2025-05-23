@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\""
+    "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+    "postinstall": "npm run dev"
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,6 @@
   },
   "homepage": "https://github.com/arjun6757/cs-department-site#readme",
   "description": "",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "bcrypt"
-    ]
-  },
   "dependencies": {
     "concurrently": "^9.1.2"
   }
