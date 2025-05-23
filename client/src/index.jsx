@@ -103,21 +103,21 @@ export default function Index() {
 					</h2>
 
 					<ul className="grid grid-cols-1 sm:grid-cols-3 items-center justify-center gap-20 mt-8 p-4">
-						<li className=" space-y-4 p-5 w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
-							<h3 className="text-lg font-medium inline-flex gap-2 items-center"><UserCheck className="text-blue-500" />Online Attendance System</h3>
-							<p className="text-gray-600">
+						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] md:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-[1em] sm:text-lg font-medium inline-flex gap-2 items-center"><UserCheck className="text-blue-500" />Online Attendance System</h3>
+							<p className="text-gray-600 text-sm sm:text-[1em]">
 								A planned system to manage and track student attendance online. Will include a role-based login for students and faculty, allowing faculty to mark attendance and students to view their records. The implementation will be handled on both the client and server side.
 							</p>
 						</li>
-						<li className=" space-y-4 p-5 w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
-							<h3 className="text-lg font-medium inline-flex gap-2 items-center"><UploadCloud className="text-blue-500" />Easily Upload & Get PYQs</h3>
-							<p className="text-gray-600">
+						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] md:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-[1em] sm:text-lg font-medium inline-flex gap-2 items-center"><UploadCloud className="text-blue-500" />Easily Upload & Get PYQs</h3>
+							<p className="text-gray-600 text-sm sm:text-[1em]">
 								Users can upload and download previous year question papers (PYQs). Uploaded entries are stored in a database along with optional note links. A dedicated route displays a table listing each PYQ's name, download link (PDF), and notes if available.
 							</p>
 						</li>
-						<li className=" space-y-4 p-5 w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
-							<h3 className="text-lg font-medium inline-flex gap-2 items-center"><Shield className="text-blue-500" />Role-Based User Access</h3>
-							<p className="text-gray-600">
+						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] md:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-[1em] sm:text-lg font-medium inline-flex gap-2 items-center"><Shield className="text-blue-500" />Role-Based User Access</h3>
+							<p className="text-gray-600 text-sm sm:text-[1em]">
 								Role verification is handled on both client and server sides to control access to different sections of the site. For example, only admins can upload new PYQs, while students can view and download them. This helps maintain secure and organized data access.
 							</p>
 						</li>
@@ -130,7 +130,7 @@ export default function Index() {
 
 					<div className="flex gap-4 sm:gap-20 transition-transform duration-300">
 						{Icons.svgIcons.map(({ name, component: Component }) => (
-							<Component key={name} className="w-5 sm:w-12 h-5 sm:h-12" />
+							<Component key={name} className="w-8 sm:w-12 h-8 sm:h-12" />
 						))}
 					</div>
 				</div>
