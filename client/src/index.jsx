@@ -102,7 +102,7 @@ export default function Index() {
 						Features
 					</h2>
 
-					<ul className="grid grid-cols-1 sm:grid-cols-3 items-center justify-center gap-20 mt-8 p-4">
+					<ul className="grid grid-cols-1 sm:grid-cols-3 items-center justify-center gap-15 sm:gap-20 mt-8 p-4">
 						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] md:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
 							<h3 className="text-[1em] sm:text-lg font-medium inline-flex gap-2 items-center"><UserCheck className="text-blue-500" />Online Attendance System</h3>
 							<p className="text-gray-600 text-sm sm:text-[1em]">
@@ -125,10 +125,10 @@ export default function Index() {
 					</ul>
 				</div>
 
-				<div id="tech-stack" className="my-[5rem] flex flex-col gap-4 items-center px-4 py-12">
+				<div id="tech-stack" className="mb-[5rem] sm:my-[5rem] flex flex-col gap-4 items-center px-4 py-12">
 					<h2 className="text-lg sm:text-xl font-bold mb-8 sm:mb-15">Tech Stack</h2>
 
-					<div className="flex gap-4 sm:gap-20 transition-transform duration-300">
+					<div className="grid grid-cols-5 sm:grid-cols-10 gap-6 sm:gap-20 transition-transform duration-300">
 						{Icons.svgIcons.map(({ name, component: Component }) => (
 							<Component key={name} className="w-8 sm:w-12 h-8 sm:h-12" />
 						))}
