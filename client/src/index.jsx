@@ -38,7 +38,7 @@ export default function Index() {
 									<span>Student</span>
 									<ChevronRight className="w-4 h-4 sm:rotate-90 sm:group-open:-rotate-90 group-open:rotate-90 transition-transform duration-300" />
 								</summary>
-								<ul className="lg:absolute lg:left-0 lg:bg-white text-gray-800 p-2 pl-6 lg:p-4 lg:rounded-md lg:shadow-md lg:z-10 flex flex-col gap-2">
+								<ul className="lg:absolute lg:left-0 lg:bg-white lg:text-gray-800 p-2 pl-6 lg:p-4 lg:rounded-md lg:shadow-md lg:z-10 flex flex-col gap-2">
 									<li className="lg:hover:text-blue-500">
 										<Link to="/login" >Login</Link>
 									</li>
@@ -59,7 +59,7 @@ export default function Index() {
 									<span>Admin</span>
 									<ChevronRight className="w-4 h-4 sm:rotate-90 sm:group-open:-rotate-90 group-open:rotate-90 transition-transform duration-300" />
 								</summary>
-								<ul className="lg:absolute lg:left-0 lg:bg-white text-gray-800 p-2 pl-6 lg:p-4 lg:rounded-md lg:shadow-md lg:z-10 flex flex-col gap-2">
+								<ul className="lg:absolute lg:left-0 lg:bg-white lg:text-gray-800 p-2 pl-6 lg:p-4 lg:rounded-md lg:shadow-md lg:z-10 flex flex-col gap-2">
 									<li className="lg:hover:text-blue-500">
 										<Link to="/admin/login" >Login</Link>
 									</li>
