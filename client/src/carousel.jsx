@@ -59,7 +59,7 @@ export default function Carousel() {
 					);
 				})}
 
-				<div className="absolute bottom-5 left-5 border border-white px-4 py-2 bg-black/10 flex items-center text-sm text-white uppercase tracking-[0.5rem] font-light transition-all duration-500">
+				<div className="absolute bottom-5 left-5 border border-white px-4 py-2 bg-black/10 hidden sm:flex items-center text-sm text-white uppercase tracking-[0.5rem] font-light transition-all duration-500">
 					{images[imageIndex]?.alt}
 				</div>
 			</div>
