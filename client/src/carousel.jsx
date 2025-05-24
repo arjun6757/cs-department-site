@@ -13,9 +13,9 @@ export default function Carousel() {
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() =>
-			setImageIndex((prev) => {
-				return (prev + 1) % images?.length;
-			}),
+				setImageIndex((prev) => {
+					return (prev + 1) % images?.length;
+				}),
 			3000,
 		);
 
@@ -45,24 +45,24 @@ export default function Carousel() {
 	}
 
 	return (
-		<div className="relative w-full h-[30vh] sm:h-[calc(90vh-2.8rem)] shadow-sm overflow-hidden">
-
-			<div
-				className="w-full h-full flex overflow-hidden"
-			>
-				{images?.map((image) => {
+		<div className="relative w-full h-[30vh] md:h-[400px] xl:h-[calc(100vh-4rem)] shadow-sm overflow-hidden">
+			<div className="w-full h-full flex overflow-hidden relative">
+				{images?.map((image, index) => {
 					return (
 						<img
-							className="w-full h-full grow-0 shrink-0 object-cover object-center transition-transform duration-300 sm:duration-500 ease-in-out"
-							style={{ translate: `${-100 * imageIndex}%` }}
+							style={{ translate: `-${imageIndex * 100}%` }}
+							className="transition-transform duration-300 sm:duration-500 w-full select-none h-full grow-0 shrink-0 object-cover object-center"
 							key={image.src.toString()}
 							src={image.src.toString()}
 							alt={image.alt.toString()}
 						/>
 					);
 				})}
-			</div>
 
+				<div className="absolute bottom-5 left-5 border border-white px-4 py-2 bg-black/10 flex items-center text-sm text-white uppercase tracking-[0.5rem] font-light transition-all duration-500">
+					{images[imageIndex]?.alt}
+				</div>
+			</div>
 
 			<button
 				onClick={() => {
@@ -84,7 +84,10 @@ export default function Carousel() {
 			<div className="absolute bottom-0 sm:bottom-5 left-0 right-0 flex justify-center items-center gap-2 p-4">
 				{images?.map((_, index) => (
 					<button
-					style={{ background: index === imageIndex ? "white" : "transparent", transform: index === imageIndex ? "scale(1.2)" : "scale(1)" }}
+						style={{
+							background:
+								index === imageIndex ? "white" : "transparent",
+						}}
 						className="rounded-full border border-white bg-transparent p-1"
 						key={index}
 						onClick={() => {

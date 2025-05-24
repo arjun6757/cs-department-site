@@ -17,35 +17,35 @@ export default function Index() {
 					<button
 						data-hidden={isHidden}
 						onClick={() => setIsHidden(p => !p)}
-						className='sm:data-hidden:hidden text-gray-100 cursor-pointer w-6 h-6'
+						className='lg:data-hidden:hidden text-gray-100 cursor-pointer w-6 h-6'
 					>
 						<Menu />
 					</button>
 
 
-					<ul data-hidden={isHidden} className="data-[hidden=true]:hidden data-[hidden=false]:flex sm:data-hidden:flex sm:flex-row flex-col sm:justify-between gap-6 py-2 sm:py-0">
+					<ul data-hidden={isHidden} className="data-[hidden=true]:hidden data-[hidden=false]:flex lg:data-hidden:flex lg:flex-row flex-col lg:justify-between gap-6 py-2 xl:py-0">
 
-						<div className="flex flex-col sm:flex-row">
-							<li className="p-2 border-b border-[#555] sm:border-none"><a href="#home" >Home</a></li>
-							<li className="p-2 border-b border-[#555] sm:border-none"><a href="#features" >About</a></li>
-							<li className="p-2 border-b border-[#555] sm:border-none"><a href="#contact" >Contact</a></li>
+						<div className="flex flex-col lg:flex-row">
+							<li className="p-2 border-b border-[#555] lg:border-none"><a href="#home" >Home</a></li>
+							<li className="p-2 border-b border-[#555] lg:border-none"><a href="#features" >About</a></li>
+							<li className="p-2 border-b border-[#555] lg:border-none"><a href="#contact" >Contact</a></li>
 
 							<details
 								onMouseEnter={(e) => touch ? undefined : e.currentTarget.open = true}
 								onMouseLeave={(e) => touch ? undefined : e.currentTarget.open = false}
-								className="group md:hover:[open] p-2 border-b border-[#555] sm:border-none relative">
+								className="group p-2 border-b border-[#555] lg:border-none relative">
 								<summary className="flex items-center gap-2 cursor-pointer">
 									<span>Student</span>
 									<ChevronRight className="w-4 h-4 sm:rotate-90 sm:group-open:-rotate-90 group-open:rotate-90 transition-transform duration-300" />
 								</summary>
-								<ul className="sm:absolute sm:left-0 sm:bg-[#272727] sm:border sm:border-[#333] p-2 pl-6 sm:p-4 sm:rounded-md sm:shadow-md sm:z-10 flex flex-col gap-2">
-									<li>
+								<ul className="lg:absolute lg:left-0 lg:bg-white text-gray-800 p-2 pl-6 lg:p-4 lg:rounded-md lg:shadow-md lg:z-10 flex flex-col gap-2">
+									<li className="lg:hover:text-blue-500">
 										<Link to="/login" >Login</Link>
 									</li>
-									<li>
+									<li className="lg:hover:text-blue-500">
 										<Link to="/dashboard" >Dashboard</Link>
 									</li>
-									<li>
+									<li className="lg:hover:text-blue-500">
 										<Link to="/signup"  >Signup</Link>
 									</li>
 								</ul>
@@ -54,16 +54,16 @@ export default function Index() {
 							<details
 								onMouseEnter={(e) => touch ? undefined : e.currentTarget.open = true}
 								onMouseLeave={(e) => touch ? undefined : e.currentTarget.open = false}
-								className="group md:hover:[open] p-2 border-b border-[#555] sm:border-none relative">
+								className="group p-2 border-b border-[#555] lg:border-none relative">
 								<summary className="flex items-center gap-2 cursor-pointer">
 									<span>Admin</span>
 									<ChevronRight className="w-4 h-4 sm:rotate-90 sm:group-open:-rotate-90 group-open:rotate-90 transition-transform duration-300" />
 								</summary>
-								<ul className="sm:absolute sm:left-0 sm:bg-[#272727] sm:border sm:border-[#333] p-2 pl-6 sm:p-4 sm:rounded-md sm:shadow-md sm:z-10 flex flex-col gap-2">
-									<li>
+								<ul className="lg:absolute lg:left-0 lg:bg-white text-gray-800 p-2 pl-6 lg:p-4 lg:rounded-md lg:shadow-md lg:z-10 flex flex-col gap-2">
+									<li className="lg:hover:text-blue-500">
 										<Link to="/admin/login" >Login</Link>
 									</li>
-									<li>
+									<li className="lg:hover:text-blue-500">
 										<Link to="/admin/dashboard" >Dashboard</Link>
 									</li>
 								</ul>
@@ -71,7 +71,7 @@ export default function Index() {
 
 						</div>
 
-						<div className="flex gap-4 sm:items-center">
+						<div className="flex gap-4 lg:items-center">
 							<li><Link to="/login" className="p-2 bg-blue-500 hover:opacity-90 active:opacity-80 rounded text-white">Login</Link></li>
 							<li>
 								<Link to="/dashboard" className="p-2 bg-white hover:opacity-90 active:opacity-80 text-black rounded">Dashboard</Link>
@@ -89,35 +89,35 @@ export default function Index() {
 
 			<main className="my-6">
 
-				<div id="home" className="my-[5rem] w-xs sm:w-4xl mx-auto flex flex-col gap-2 sm:gap-5 p-8 ">
+				<div id="home" className="my-[5rem] w-xs md:w-lg lg:w-4xl mx-auto flex flex-col gap-2 sm:gap-5 p-8 ">
 					<h1 className="text-xl sm:text-2xl font-bold text-center ">Introduction</h1>
 					<p className="text-gray-500 text-sm">
 						A simple solution for students and faculty to access academic resources, manage attendance, and securely upload or download past question papers — built with the MERN stack.
 					</p>
 				</div>
 
-				<div id="features" className="my-[5rem] flex flex-col gap-1 items-center px-4 py-12 bg-gray-100">
+				<div id="features" className="mt-[5rem] flex flex-col gap-1 items-center px-4 py-12 bg-gray-100">
 
 					<h2 className="text-lg sm:text-xl font-bold">
 						Features
 					</h2>
 
-					<ul className="grid grid-cols-1 sm:grid-cols-3 items-center justify-center gap-15 sm:gap-20 mt-8 p-4">
-						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] md:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
-							<h3 className="text-[1em] sm:text-lg font-medium inline-flex gap-2 items-center"><UserCheck className="text-blue-500" />Online Attendance System</h3>
-							<p className="text-gray-600 text-sm sm:text-[1em]">
+					<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-15 sm:gap-8 xl:gap-20 mt-8 xl:p-4">
+						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] xl:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-[1em] xl:text-lg font-medium inline-flex gap-2 items-center"><UserCheck className="text-blue-500" />Online Attendance System</h3>
+							<p className="text-gray-600 text-sm xl:text-[1em]">
 								A planned system to manage and track student attendance online. Will include a role-based login for students and faculty, allowing faculty to mark attendance and students to view their records. The implementation will be handled on both the client and server side.
 							</p>
 						</li>
-						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] md:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
-							<h3 className="text-[1em] sm:text-lg font-medium inline-flex gap-2 items-center"><UploadCloud className="text-blue-500" />Easily Upload & Get PYQs</h3>
-							<p className="text-gray-600 text-sm sm:text-[1em]">
+						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] xl:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-[1em] xl:text-lg font-medium inline-flex gap-2 items-center"><UploadCloud className="text-blue-500" />Easily Upload & Get PYQs</h3>
+							<p className="text-gray-600 text-sm xl:text-[1em]">
 								Users can upload and download previous year question papers (PYQs). Uploaded entries are stored in a database along with optional note links. A dedicated route displays a table listing each PYQ's name, download link (PDF), and notes if available.
 							</p>
 						</li>
-						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] md:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
-							<h3 className="text-[1em] sm:text-lg font-medium inline-flex gap-2 items-center"><Shield className="text-blue-500" />Role-Based User Access</h3>
-							<p className="text-gray-600 text-sm sm:text-[1em]">
+						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] xl:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
+							<h3 className="text-[1em] xl:text-lg font-medium inline-flex gap-2 items-center"><Shield className="text-blue-500" />Role-Based User Access</h3>
+							<p className="text-gray-600 text-sm xl:text-[1em]">
 								Role verification is handled on both client and server sides to control access to different sections of the site. For example, only admins can upload new PYQs, while students can view and download them. This helps maintain secure and organized data access.
 							</p>
 						</li>
@@ -125,12 +125,12 @@ export default function Index() {
 					</ul>
 				</div>
 
-				<div id="tech-stack" className="mb-[5rem] sm:my-[5rem] flex flex-col gap-4 items-center px-4 py-12">
-					<h2 className="text-lg sm:text-xl font-bold mb-8 sm:mb-15">Tech Stack</h2>
+				<div id="tech-stack" className="flex flex-col gap-8 items-center py-12">
+					<h2 className="text-lg sm:text-xl font-bold ">Tech Stack</h2>
 
-					<div className="grid grid-cols-5 sm:grid-cols-10 gap-6 sm:gap-20 transition-transform duration-300">
+					<div className="grid grid-cols-5 sm:grid-cols-10 gap-5 md:gap-6 xl:gap-10">
 						{Icons.svgIcons.map(({ name, component: Component }) => (
-							<Component key={name} className="w-8 sm:w-12 h-8 sm:h-12" />
+							<Component key={name} className="w-10 h-10 sm:w-12 sm:h-12 border border-[#eee] p-2 rounded-lg shadow-xs select-none" />
 						))}
 					</div>
 				</div>
