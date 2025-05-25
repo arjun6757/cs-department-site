@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Carousel from "./carousel";
+import Carousel from "./carousel.jsx";
 import { ChevronRight, Menu, Shield, UploadCloud, UserCheck } from "lucide-react";
 import * as Icons from "./svg/index"
 import { useState } from "react";
@@ -8,6 +8,13 @@ export default function Index() {
 
 	const [isHidden, setIsHidden] = useState(true);
  	const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 
+
+	const images = [
+		{ src: "/images/beach.jpg", alt: "beach" },
+		{ src: "images/bora-bora.jpg", alt: "bora" },
+		{ src: "images/ocean.jpg", alt: "ocean" },
+		{ src: "images/sunrise.jpg", alt: "sunrise" },
+	];
 
 	return (
 		<div className="min-h-screen text-sm text-gray-700">
@@ -80,8 +87,9 @@ export default function Index() {
 					</ul>
 				</nav>
 
-				<div className="">
-					<Carousel />
+				<div
+				className="">
+					<Carousel images={images} />
 				</div>
 
 			</header>
@@ -130,7 +138,7 @@ export default function Index() {
 
 					<div className="grid grid-cols-5 sm:grid-cols-10 gap-5 md:gap-6 xl:gap-10">
 						{Icons.svgIcons.map(({ name, component: Component }) => (
-							<Component key={name} className="w-10 h-10 sm:w-12 sm:h-12 border border-[#eee] p-2 rounded-lg shadow-xs select-none" />
+							<Component key={name} className="w-10 h-10 sm:w-12 sm:h-12 border border-[#ddd] p-2 rounded-lg shadow-xs select-none" />
 						))}
 					</div>
 				</div>

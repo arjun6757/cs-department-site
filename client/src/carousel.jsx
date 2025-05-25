@@ -1,30 +1,41 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Carousel() {
-	const images = [
-		{ src: "/images/beach.jpg", alt: "beach" },
-		{ src: "images/bora-bora.jpg", alt: "bora" },
-		{ src: "images/ocean.jpg", alt: "ocean" },
-		{ src: "images/sunrise.jpg", alt: "sunrise" },
-	];
+export default function Carousel({ images }) {
 
 	const [imageIndex, setImageIndex] = useState(0);
+	const [isSliding, SetIsSliding] = useState(false);
+
+	useEffect(() => {
+		if (!isSliding) return;
+
+		const id = setTimeout(() => {
+			SetIsSliding(false);
+		}, 1000);
+
+		return () => clearTimeout(id)
+
+	}, [isSliding])
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() =>
-				setImageIndex((prev) => {
-					return (prev + 1) % images?.length;
-				}),
-			3000,
+			setImageIndex(p => {
+				return (p + 1) % images.length;
+			}),
+			4000,
 		);
 
 		return () => {
 			clearTimeout(timeoutId);
 		};
+
 	}, [images, imageIndex]);
 
 	function showNextImage() {
+		if (isSliding) return;
+
+		SetIsSliding(true);
+
 		setImageIndex((index) => {
 			if (index === images.length - 1) {
 				return 0;
@@ -35,6 +46,10 @@ export default function Carousel() {
 	}
 
 	function showPrevImage() {
+		if (isSliding) return;
+
+		SetIsSliding(true);
+		
 		setImageIndex((index) => {
 			if (index === 0) {
 				return images.length - 1;
@@ -42,40 +57,44 @@ export default function Carousel() {
 				return index - 1;
 			}
 		});
+
 	}
 
 	return (
-		<div className="relative w-full h-[30vh] md:h-[400px] xl:h-[calc(100vh-4rem)] shadow-sm overflow-hidden">
-			<div className="w-full h-full flex overflow-hidden relative">
-				{images?.map((image, index) => {
+		<div className="relative w-full h-[30vh] md:h-[400px] lg:h-[320px] shadow-sm overflow-hidden">
+			<div
+				style={{
+					transform: `translate3d(-${imageIndex * 100}%, 0, 0)`,
+					willChange: "transform"
+				}}
+				className={`w-full h-full flex transition-transform duration-300 sm:duration-1000 relative`}>
+				{images?.map((image) => {
 					return (
 						<img
-							style={{ translate: `-${imageIndex * 100}%` }}
-							className="transition-transform duration-300 sm:duration-500 w-full select-none h-full grow-0 shrink-0 object-cover object-center"
+							decoding="async"
+							loading="lazy"
+							className="w-full select-none h-full shrink-0 object-cover object-center"
 							key={image.src.toString()}
 							src={image.src.toString()}
 							alt={image.alt.toString()}
 						/>
 					);
 				})}
-
-				<div className="absolute bottom-5 left-5 border border-white px-4 py-2 bg-black/10 hidden sm:flex items-center text-sm text-white uppercase tracking-[0.5rem] font-light transition-all duration-500">
-					{images[imageIndex]?.alt}
-				</div>
 			</div>
 
+
 			<button
-				onClick={() => {
-					showPrevImage();
-				}}
-				className="absolute top-1/2 left-5 sm:left-10 -translate-y-1/2 text-white p-2 rounded-full bg-black/30 sm:bg-transparent sm:hover:bg-black/30"
+				disabled={isSliding}
+				onClick={showPrevImage}
+				className="absolute disabled:opacity-50 top-1/2 left-5 sm:left-10 -translate-y-1/2 text-white p-2 rounded-full outline-none border-none focus:ring-2 bg-black/20 sm:bg-transparent sm:hover:bg-black/30"
 				aria-label="view previous image"
 			>
 				<ChevronLeft />
 			</button>
 			<button
+				disabled={isSliding}
 				onClick={showNextImage}
-				className="absolute top-1/2 right-5 sm:right-10 -translate-y-1/2  text-white p-2 rounded-full bg-black/30 sm:bg-transparent sm:hover:bg-black/30"
+				className="absolute disabled:opacity-50 top-1/2 right-5 sm:right-10 -translate-y-1/2  text-white p-2 rounded-full outline-none border-none focus:ring-2 bg-black/20 sm:bg-transparent sm:hover:bg-black/30"
 				aria-label="view next image"
 			>
 				<ChevronRight />
@@ -84,11 +103,12 @@ export default function Carousel() {
 			<div className="absolute bottom-0 sm:bottom-5 left-0 right-0 flex justify-center items-center gap-2 p-4">
 				{images?.map((_, index) => (
 					<button
+						data-active={index === imageIndex}
 						style={{
 							background:
 								index === imageIndex ? "white" : "transparent",
 						}}
-						className="rounded-full border border-white bg-transparent p-1"
+						className="w-1 data-[active=true]:scale-110 data-[active=true]:shadow-md data-[active=false]:shadow-none data-[active=false]:scale-100 transition-transform duration-300 ease-in-out rounded-full border border-white outline-none focus:ring-2 bg-transparent p-1"
 						key={index}
 						onClick={() => {
 							setImageIndex(index);
