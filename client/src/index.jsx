@@ -156,7 +156,7 @@ export default function Index() {
 				>
 					<h2 className="text-lg sm:text-xl font-bold">Features</h2>
 
-					<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-15 sm:gap-8 xl:gap-20 mt-8 xl:p-4">
+					<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15 sm:gap-8 xl:gap-20 mt-8 xl:p-4">
 						<li className="space-y-2.5 sm:space-y-4 p-5 w-[18rem] xl:w-[20rem] h-[15rem] rounded-lg bg-white shadow-custom">
 							<h3 className="text-[1em] xl:text-lg font-medium inline-flex gap-2 items-center">
 								<UserCheck className="text-blue-500" />
