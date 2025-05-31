@@ -111,19 +111,19 @@ export default function UserOverview() {
                     Overall Presence:
                   </div>
                   <div className="text-gray-700">
-                    {attendanceInfo?.total_presents_percentage}%
+                    {`${attendanceInfo?.total_presents_percentage}%` || "Unavailable"}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="font-medium text-gray-600">Days Present:</div>
                   <div className="text-gray-700">
-                    {attendanceInfo?.total_presents}
+                    {attendanceInfo?.total_presents || "Unavailable"}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="font-medium text-gray-600">Days Absent:</div>
                   <div className="text-gray-700">
-                    {attendanceInfo?.total_absents}
+                    {attendanceInfo?.total_absents || "Unavailable"}
                   </div>
                 </div>
               </div>
