@@ -108,10 +108,10 @@ export default function UserOverview() {
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
                   <div className="font-medium text-gray-600">
-                    Overall Presence:
+                    Overall Presence (%):
                   </div>
                   <div className="text-gray-700">
-                    {`${attendanceInfo?.total_presents_percentage}%` || "Unavailable"}
+                    {attendanceInfo?.total_presents_percentage || "Unavailable"}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
