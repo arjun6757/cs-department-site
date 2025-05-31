@@ -1,107 +1,93 @@
-import { useEffect, useState } from 'react'
-import { deleteUser, getTypeUsers } from '../actions/user.action'
-import { Search } from 'lucide-react'
+import MarkAttendance from "./mark-attendance";
+import AttendanceSummary from "./attendance-summary";
+import AttendanceHistory from "./attendance-history";
+import { useState } from "react";
 
 export default function Attendance() {
-
-    const [users, setUsers] = useState([])
-    const [query, setQuery] = useState("");
-    const [filteredUsers, setFilteredUsers] = useState([]);
-
-    useEffect(() => {
-
-        const fetchUsers = async () => {
-            try {
-                const users = await getTypeUsers();
-                setUsers(users);
-            } catch (error) {
-                console.error("Error fetching users:", error);
-            }
-        }
-
-        fetchUsers();
-
-    }, [])
-
-    useEffect(() => {
-
-        if (!users || users.length === 0) {
-            setFilteredUsers([]);
-            return;
-        }
-
-        if (!query) {
-            setFilteredUsers(users);
-            return;
-        }
-
-        const result = users.filter(u => (
-            u.username.toLowerCase().includes(query.toLowerCase()) || u.email.toLowerCase().includes(query.toLowerCase())
-        ))
-
-        setFilteredUsers(result);
-
-    }, [users, query])
-
-    const handleDelete = async (userId) => {
-        try {
-            const result = await deleteUser(userId);
-            setUsers(users.filter(user => user._id !== userId));
-        } catch (error) {
-            console.error("Error deleting user:", error);
-        }
-    }
+    const [options, setOptions] = useState({
+        mark_attendance: true,
+        attendance_summary: false,
+        attendance_history: false,
+    });
 
     return (
-        <div className='p-6 text-sm text-gray-700'>
-            <div className='flex items-center relative'>
+        <div className="p-6 text-gray-700 space-y-4 text-sm">
+            <div className="border-b border-[#ddd]">
+                <ul className="flex">
+                    <li>
+                        <button
+                            data-active={options["mark_attendance"] === true}
+                            onClick={(e) => {
+                                setOptions((o) => {
+                                    const obj = { ...o };
+                                    for (let key in obj) {
+                                        obj[key] =
+                                            key === e.target.name
+                                                ? true
+                                                : false;
+                                    }
+                                    return obj;
+                                });
+                            }}
+                            name="mark_attendance"
+                            className="p-2 cursor-pointer data-[active=true]:text-gray-800 data-[active=false]:text-gray-500 data-[active=true]:font-medium data-[active=true]:border-b-2 border-b-gray-800"
+                        >
+                            Mark Attendance
+                        </button>
+                    </li>
 
-                <div className='absolute left-0 top-0 w-fit h-full p-2'>
-                    <Search className='w-6 h-full text-gray-500' />
-                </div>
-
-                <input type="text" placeholder='Type here to search...' className='border border-gray-300 rounded w-full py-2 pl-10 outline-blue-500' value={query} onChange={(e) => setQuery(e.target.value)} />
-
+                    <li>
+                        <button
+                            data-active={options["attendance_summary"] === true}
+                            onClick={(e) => {
+                                setOptions((o) => {
+                                    const obj = { ...o };
+                                    for (let key in obj) {
+                                        obj[key] =
+                                            key === e.target.name
+                                                ? true
+                                                : false;
+                                    }
+                                    return obj;
+                                });
+                            }}
+                            name="attendance_summary"
+                            className="p-2 cursor-pointer data-[active=true]:text-gray-800 data-[active=false]:text-gray-500 data-[active=true]:font-medium data-[active=true]:border-b-2 border-b-gray-800"
+                        >
+                            Attendance Summary
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            data-active={options["attendance_history"] === true}
+                            onClick={(e) => {
+                                setOptions((o) => {
+                                    const obj = { ...o };
+                                    for (let key in obj) {
+                                        obj[key] =
+                                            key === e.target.name
+                                                ? true
+                                                : false;
+                                    }
+                                    return obj;
+                                });
+                            }}
+                            name="attendance_history"
+                            className="p-2 cursor-pointer data-[active=true]:text-gray-800 data-[active=false]:text-gray-500 data-[active=true]:font-medium data-[active=true]:border-b-2 border-b-gray-800"
+                        >
+                            Attendance History
+                        </button>
+                    </li>
+                </ul>
             </div>
-            <div className='overflow-x-auto mt-4'>
-                <table className='w-full border-collapse text-sm min-h-[50px]'>
-                    <thead>
-                        <tr className='bg-gray-100'>
-                            <th className='border border-[#ddd] font-normal p-2 text-gray-800'>No</th>
-                            <th className='border border-[#ddd] font-normal p-2 text-gray-800'>
-                                Username
-                            </th>
-                            <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Email</th>
-                            <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Attendance</th>
-                            <th className='border border-[#ddd] font-normal p-2 text-gray-800'>Updated At</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
+            <main>
+                {options.mark_attendance && <MarkAttendance />}
 
-                        {filteredUsers.length === 0 && (
-                            <tr>
-                                <td colSpan={7} className='border border-[#ddd] p-2 text-center'>No users found</td>
-                            </tr>
-                        )}
+                {options.attendance_summary && <AttendanceSummary />}
 
-                        {filteredUsers.map((user, index) => (
-                            <tr key={user._id}>
-                                <td className='border border-[#ddd] p-2 text-center'>{index + 1}</td>
-                                <td className='border border-[#ddd] p-2 text-center'>{user.username}</td>
-                                <td className='border border-[#ddd] p-2 text-center'>{user.email}</td>
-                                <td className='border border-[#ddd] p-2 text-center'>
-                                    {/* <input className='w-10 mx-auto border border-[#ddd] rounded' type="number" name="attendance"
-                                    value={user.attendance}
-                                     /> */}
-                                     {user.attendance}
-                                </td>
-                                <td className='border border-[#ddd] p-2 text-center'>{new Date(user.updatedAt).toLocaleDateString()}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                {options.attendance_history && <AttendanceHistory />}
+            </main>
         </div>
-    )
+    );
 }

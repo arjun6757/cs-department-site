@@ -1,21 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Download, Loader, Search, Trash, Upload } from 'lucide-react'
 import { deleteEntry, getAllEntry } from '../actions/entry.action';
-import { Link, Navigate } from 'react-router-dom';
-import { useAuth } from '../context/auth.context';
+import { Link } from 'react-router-dom';
 
 export default function Uploads() {
 
     const [entries, setEntries] = useState([])
     const [query, setQuery] = useState("");
     const [filteredEntries, setFilteredEntries] = useState([]);
-    const { user, loading: userLoading } = useAuth();
     const [loading, setLoading] = useState(false);
-
-
-    if(!user || user.role !== "admin") {
-        return <Navigate to="/admin/login?message=Not a valid admin" />
-    }
 
     useEffect(() => {
 
@@ -74,7 +67,7 @@ export default function Uploads() {
 
                 <input type="text" placeholder='Type here to search...' className='border border-gray-300 rounded w-full py-2 pl-10 outline-blue-500' value={query} onChange={(e) => setQuery(e.target.value)} />
 
-                <Link to="/new" className='px-4 py-2 inline-flex gap-2 items-center text-white rounded bg-blue-500 hover:bg-blue-400 h-full'>
+                <Link to="new" className='px-4 py-2 inline-flex gap-2 items-center text-white rounded bg-blue-500 hover:bg-blue-400 h-full'>
                     <Upload className='w-4 h-4' /> New
                 </Link>
             </div>

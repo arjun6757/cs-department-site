@@ -1,43 +1,19 @@
 import { Request, Response } from "express";
 import User from "../models/user.model";
 
-export async function handleUpdate(req: Request, res: Response) {
-	const { id, field } = req.body;
-	// TODO: update attendance
-	if(!id || !field) {
-		res.status(400).json({ message: "Invalid request" })
-		return;
-	}
-
-	try {
-		const user = await User.findById(id);
-
-		if(!user) {
-			res.status(404).json({ message: "Not a valid user" })
-			return;
-		}
-
-		await User.updateOne({})
-
-	} catch (err: any) {
-		console.error(err);
-		res.status(err.status || 500).json({ message: err.message || "Something went wrong" })
-	}
-}
-
 export async function getAllUsers(req: Request, res: Response) {
 	try {
-
 		const { type = "all" } = req.query;
 
 		if (type !== "all") {
-			const users = await User.find({ role: type }).select("-hashedPassword");
+			const users = await User.find({ role: type }).select(
+				"-hashedPassword",
+			);
 
 			res.status(200).json({
 				message: "Users fetched successfully!",
 				data: users,
 			});
-
 		} else {
 			const users = await User.find().select("-hashedPassword");
 
@@ -45,9 +21,7 @@ export async function getAllUsers(req: Request, res: Response) {
 				message: "Users fetched successfully!",
 				data: users,
 			});
-
 		}
-
 	} catch (err: any) {
 		console.error(err);
 		res.status(err.status || 500).json({
@@ -102,7 +76,6 @@ export async function handleDeleteUser(req: Request, res: Response) {
 			message: "User entry removed successfully!",
 			data: entry,
 		});
-
 	} catch (err: any) {
 		console.error(err);
 		res.status(err.status || 500).json({

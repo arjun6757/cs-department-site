@@ -10,7 +10,7 @@ export default function AdminLogin() {
     password: "",
   });
   const [error, setError] = useState("");
-  const { user, loading, setUser } = useAuth();
+  const { setUser } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const message = searchParams.get("message");
 
@@ -23,14 +23,6 @@ export default function AdminLogin() {
 
     return () => clearTimeout(timeoutId);
   }, [message]);
-
-  useEffect(() => {
-    if (loading === undefined) return;
-
-    if (!loading && user && user.role === "admin") {
-      navigate("/admin/dashboard");
-    }
-  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (!error) return;
@@ -68,6 +60,7 @@ export default function AdminLogin() {
       setUser(user);
       navigate("/admin/dashboard", { replace: true });
     } catch (err) {
+      setUser(null);
       console.error("Login error:", err);
       setError(err.message || "Something went wrong, please try again.");
     }
@@ -121,13 +114,13 @@ export default function AdminLogin() {
           </button>
 
           {error && (
-            <div className="text-red-500 text-center bg-gray-50 p-2 rounded-md">
+            <div className="text-red-500 text-center bg-gray-100 p-2 rounded-md">
               {error}
             </div>
           )}
 
           {message && (
-            <div className="text-neutral-700 text-center bg-gray-50 p-2 rounded-md">
+            <div className="text-neutral-700 text-center bg-gray-100 p-2 rounded-md">
               {message}
             </div>
           )}

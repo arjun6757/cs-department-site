@@ -10,18 +10,9 @@ export default function Login() {
     password: "",
   });
   const [error, setError] = useState("");
-  const { user, setUser, loading } = useAuth();
+  const { setUser } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const message = searchParams.get("message");
-
-  useEffect(() => {
-    if (loading === undefined) return;
-
-    if (!loading && user && user.role === "user") {
-      navigate("/dashboard");
-    }
-
-  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (!error) return;
@@ -75,6 +66,7 @@ export default function Login() {
       setUser(user);
       navigate("/dashboard", { replace: true });
     } catch (err) {
+      setUser(null);
       console.error("Login error", err);
       setError(err.message || "Something went wrong, pleasy try again.");
     }
@@ -144,13 +136,13 @@ export default function Login() {
           </div>
 
           {error && (
-            <div className="text-red-500 text-center bg-gray-50 p-2 rounded-md">
+            <div className="text-red-500 text-center bg-gray-100 p-2 rounded-md">
               {error}
             </div>
           )}
 
           {message && (
-            <div className="text-neutral-700 text-center bg-gray-50 p-2 rounded-md">
+            <div className="text-neutral-700 text-center bg-gray-100 p-2 rounded-md">
               {message}
             </div>
           )}

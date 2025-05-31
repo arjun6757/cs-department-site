@@ -1,37 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { upload } from "../actions/entry.action";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/auth.context";
+import { Link} from "react-router-dom";
 import { Loader } from "lucide-react";
 
 export default function NewUpload() {
 	const [file, setFile] = useState("No file chosen");
 	const fileInputRef = useRef(null);
-	const { user, setUser, error, loading } = useAuth();
-	const navigate = useNavigate();
 	const [pending, setPending] = useState(false);
-
-	useEffect(() => {
-		if (loading === undefined) return;
-
-		if (!loading && !user) {
-			navigate("/admin/login", { replace: true });
-		}
-
-		if (!loading && user && user.role !== "admin") {
-			navigate("/admin/login?message=Not a valid admin", {
-				replace: true,
-			});
-		}
-	}, [user, loading, navigate]);
-
-	if (loading || !user || user.role !== "admin") {
-		return (
-			<div className="flex items-center justify-center min-h-screen">
-				<div className="w-8 h-8 border-4 rounded-full border-gray-500 p-2 border-r-transparent animate-spin"></div>
-			</div>
-		);
-	}
 
 	const handleChange = (e) => {
 		const filename = e.target.files[0]?.name || "No file chosen";
@@ -57,15 +32,15 @@ export default function NewUpload() {
 	};
 
 	return (
-		<div className="text-sm w-full h-full">
+		<div className="text-sm w-full min-h-screen flex flex-col gap-4 p-6">
 			<Link
 				to="/admin/dashboard/uploads"
-				className="sticky top-4 left-4 hover:underline underline-offset-4"
+				className="hover:underline underline-offset-4"
 			>
 				&larr; All Uploads
 			</Link>
 
-			<div className="sm:w-lg w-[90vw] mx-auto border border-[#ddd] shadow-sm rounded-md px-6 py-8 my-10">
+			<div className="sm:w-lg w-[90vw] mx-auto border border-[#ddd] shadow-xs rounded-md px-6 py-8">
 				<form
 					onSubmit={handleSubmit}
 					className="space-y-4"
@@ -149,6 +124,7 @@ export default function NewUpload() {
 							/>
 
 							<button
+								type="button"
 								onClick={() => {
 									if (fileInputRef.current) {
 										fileInputRef.current.click();

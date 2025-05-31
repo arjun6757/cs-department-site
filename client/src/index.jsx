@@ -15,7 +15,7 @@ export default function Index() {
 	const touch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 	const images = [
-		{ src: "/images/beach.jpg", alt: "beach" },
+		{ src: "/images/department-1.jpg", alt: "department room" },
 		{ src: "images/bora-bora.jpg", alt: "bora" },
 		{ src: "images/ocean.jpg", alt: "ocean" },
 		{ src: "images/sunrise.jpg", alt: "sunrise" },

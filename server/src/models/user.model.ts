@@ -7,12 +7,13 @@ interface IUser {
 	email: string;
 	hashedPassword: string;
 	role: string;
-	attendance?: string;
+	// attendance?: string;
 }
 
 export interface IUserDocument extends IUser, Document {
 	setPassword: (password: string) => Promise<void>;
 	verifyPassword: (password: string) => Promise<boolean>;
+	setAttendance: (value: number) => Promise<void>;
 }
 
 interface IUserModel extends Model<IUserDocument> {
@@ -29,10 +30,10 @@ const UserSchema: Schema<IUserDocument> = new Schema(
 			enum: ["user", "admin"],
 			default: "user",
 		},
-		attendance: {
-			type: String,
-			default: "0",
-		}
+		// attendance: {
+		// 	type: Number,
+		// 	default: "0",
+		// }
 	},
 	{ timestamps: true },
 );

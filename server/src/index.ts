@@ -18,7 +18,11 @@ app.set("trust proxy", 1);
 
 // connecting to db
 mongoose
-    .connect(process.env.MONGO_URI!)
+    .connect(
+        process.env.NODE_ENV === "production"
+            ? process.env.MONGO_URI!
+            : process.env.MONGO_LOCAL_URI!,
+    )
     .then(() => {
         console.log("MongoDB successfully connected!");
     })
@@ -41,7 +45,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // global error handling middleware
-// to make it global error handling we need to pass 4 arguments
+// to make it global error handling need to pass 4 arguments
 
 app.use(
     session({
@@ -54,12 +58,12 @@ app.use(
         saveUninitialized: false,
 
         store: MongoStore.create({
-            mongoUrl: process.env.MONGO_URI
+            mongoUrl: process.env.MONGO_URI,
         }),
 
         cookie: {
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7days
-            sameSite: process.env.NODE_ENV==="production" ? "none" : "strict",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
             secure: process.env.NODE_ENV === "production" ? true : false,
             httpOnly: true, // server only
         },
@@ -85,10 +89,6 @@ app.use((err: E, req: Request, res: Response, next: NextFunction) => {
         status: err.statusCode,
         message: err.message,
     });
-});
-
-app.get("/", (req, res) => {
-    res.send("hi from server");
 });
 
 app.listen(PORT, () => {

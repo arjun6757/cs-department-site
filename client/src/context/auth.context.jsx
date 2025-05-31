@@ -27,6 +27,7 @@ export default function AuthProvider({ children }) {
 
                 setUser(result.data);
             } catch (err) {
+                console.error(err);
                 setError(err.message || "Error occured while fetching user");
             } finally {
                 setLoading(false);

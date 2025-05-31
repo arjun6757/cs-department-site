@@ -9,6 +9,7 @@
 
 :root {
 	--font-inter: "Inter", sans-serif;
+	--t-space: 4px;
 }
 
 @theme {
@@ -28,4 +29,15 @@
 .shadow-custom {
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1),
 		0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cxl\:carousel {
+	@media (width >= 1300px) {
+		width: 1000px;
+		margin-inline: auto;
+		margin-block: 3em;
+		border-radius: 6px;
+		box-shadow: none;
+		@apply shadow-2xl;
+	}
 }

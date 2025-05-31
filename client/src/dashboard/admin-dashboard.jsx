@@ -1,35 +1,13 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuth } from '../context/auth.context';
 import { adminLogout } from '../actions/auth.action';
-import { Clock, Menu, LayoutDashboard, LogOut, Upload, UserCheck, UsersIcon } from 'lucide-react';
+import { Menu, LayoutDashboard, LogOut, Upload, UserCheck, UsersIcon } from 'lucide-react';
 
 const Dashboard = () => {
-    const { user, setUser, error, loading } = useAuth();
-    const navigate = useNavigate();
+    const location = useLocation();
+    const { setUser } = useAuth();
     const [isHidden, setIsHidden] = useState(true);
-
-    useEffect(() => {
-
-        if (loading === undefined) return;
-
-        if (!loading && !user) {
-            navigate("/admin/login", { replace: true });
-        }
-
-        if (!loading && user && user.role !== "admin") {
-            navigate("/admin/login?message=Not a valid admin", { replace: true });
-        }
-
-    }, [user, loading, navigate]);
-
-    if (loading || !user || user.role !== "admin") {
-        return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="w-8 h-8 border-4 rounded-full border-gray-500 p-2 border-r-transparent animate-spin"></div>
-            </div>
-        )
-    }
 
     async function handleLogout() {
         try {
@@ -37,7 +15,6 @@ const Dashboard = () => {
             setUser(null)
         } catch (error) {
             console.error('Logout error:', error);
-            setError(error.message || "Something went wrong");
         }
     }
 

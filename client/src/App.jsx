@@ -13,28 +13,42 @@ import NewUpload from "./admin/upload-new";
 import UserOverview from "./user/overview";
 import PYQ from "./user/pyq";
 import Attendance from "./admin/attendance";
+import UserRoutes from "./user/user-route";
+import AdminRoutes from "./admin/admin-route";
+import UploadsLayout from "./admin/uplods-layout";
 
 export default function App() {
   return (
     <Routes>
+      {/*landing*/}
       <Route path="/" element={<Index />} />
-      <Route path="/new" element={<NewUpload />} ></Route>
+
+      {/*All user routes*/}
+      <Route element={<UserRoutes />}>
+        <Route path="/dashboard/*" element={<Dashboard />}>
+          <Route index element={<UserOverview />} />
+          <Route path="pyqs" element={<PYQ />} />
+        </Route>
+      </Route>
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard/*" element={<Dashboard />}>
-        <Route index element={<UserOverview />} />
-        <Route path="pyqs" element={<PYQ />} />
-      </Route>
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+
       <Route path="/admin/login" element={<AdminLogin />} />
 
-      <Route path="/admin/dashboard/*" element={<AdminDashboard />}>
-        <Route index element={<Overview />} />
-        <Route path="users" element={<Users />} />
-        <Route path="uploads" element={<Uploads />} />
-        <Route path="attendance" element={<Attendance />} />
+      {/*All admin routes*/}
+      <Route element={<AdminRoutes />}>
+        <Route path="/admin/dashboard/*" element={<AdminDashboard />}>
+          <Route index element={<Overview />} />
+          <Route path="users" element={<Users />} />
+          <Route path="uploads/*" element={<UploadsLayout />}>
+            <Route index element={<Uploads />} />
+            <Route path="new" element={<NewUpload />} />
+          </Route>
+          <Route path="attendance" element={<Attendance />} />
+        </Route>
       </Route>
-      
-      <Route path="/forgot-password" element={<ForgotPassword />} />
     </Routes>
   );
 }

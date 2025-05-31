@@ -1,20 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Download, Loader, Search } from 'lucide-react'
 import { getAllEntry } from '../actions/entry.action';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/auth.context';
 
 export default function Uploads() {
 
     const [entries, setEntries] = useState([])
     const [query, setQuery] = useState("");
     const [filteredEntries, setFilteredEntries] = useState([]);
-    const { user, loading: userLoading } = useAuth();
     const [loading, setLoading] = useState(false);
 
-    if(!user || user.role !== "user") {
-        return <Navigate to="/login?message=Not a valid user" />
-    }
 
     useEffect(() => {
 

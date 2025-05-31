@@ -2,79 +2,90 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Carousel({ images }) {
+	const [imageIndex, setImageIndex] = useState(1);
+	const [jump, setJump] = useState(false);
+	const [transitioning, setTransitioning] = useState(false);
 
-	const [imageIndex, setImageIndex] = useState(0);
-	const [isSliding, SetIsSliding] = useState(false);
-
-	useEffect(() => {
-		if (!isSliding) return;
-
-		const id = setTimeout(() => {
-			SetIsSliding(false);
-		}, 1000);
-
-		return () => clearTimeout(id)
-
-	}, [isSliding])
+	const slides = [images[images.length - 1], ...images, images[0]];
 
 	useEffect(() => {
-		const timeoutId = setTimeout(() =>
-			setImageIndex(p => {
-				return (p + 1) % images.length;
-			}),
-			4000,
-		);
+		const timeoutId = setTimeout(() => {
+			showNextImage();
+		}, 4000);
 
 		return () => {
 			clearTimeout(timeoutId);
 		};
-
-	}, [images, imageIndex]);
+	}, [imageIndex]);
 
 	function showNextImage() {
-		if (isSliding) return;
+		if (transitioning) return;
 
-		SetIsSliding(true);
+		if (imageIndex === 1 && jump) {
+			setJump(false);
+		}
+
+		if (imageIndex === slides.length - 2 && jump) {
+			setJump(false);
+		}
 
 		setImageIndex((index) => {
-			if (index === images.length - 1) {
-				return 0;
-			} else {
+				if(index === slides.length-1) {
+					return 1;
+				}
 				return index + 1;
-			}
 		});
 	}
 
 	function showPrevImage() {
-		if (isSliding) return;
+		if (transitioning) return;
 
-		SetIsSliding(true);
-		
+		if (imageIndex === 1 && jump) {
+			setJump(false);
+		}
+
+		if (imageIndex === slides.length - 2 && jump) {
+			setJump(false);
+		}
+
 		setImageIndex((index) => {
-			if (index === 0) {
-				return images.length - 1;
-			} else {
+				if(index===0) {
+					return slides.length-2;
+				}
 				return index - 1;
-			}
 		});
-
 	}
 
 	return (
-		<div className="relative w-full h-[30vh] md:h-[400px] lg:h-[320px] shadow-sm overflow-hidden">
+		<div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:h-[350px] shadow-sm overflow-hidden">
 			<div
 				style={{
 					transform: `translate3d(-${imageIndex * 100}%, 0, 0)`,
-					willChange: "transform"
+					willChange: "transform",
 				}}
-				className={`w-full h-full flex transition-transform duration-300 sm:duration-1000 relative`}>
-				{images?.map((image) => {
+				onTransitionStart={() => {
+					setTransitioning(true);
+				}}
+				onTransitionEnd={() => {
+					if (imageIndex === slides.length - 1) {
+						setJump(true);
+						setImageIndex(1);
+					} else if (imageIndex === 0) {
+						setJump(true);
+						setImageIndex(slides.length - 2);
+					}
+
+					setTransitioning(false);
+				}}
+				data-jump={jump}
+				className={`w-full h-full data-[jump=true]:transition-none
+				 data-[jump=false]:transition-transform duration-300 sm:duration-500 md:duration-700 lg:duration-1000 flex relative`}
+			>
+				{slides?.map((image, index) => {
 					return (
 						<img
-							decoding="async"
-							loading="lazy"
 							className="w-full select-none h-full shrink-0 object-cover object-center"
-							key={image.src.toString()}
+							key={`${image.src.toString()}-${index}`}
 							src={image.src.toString()}
 							alt={image.alt.toString()}
 						/>
@@ -82,9 +93,8 @@ export default function Carousel({ images }) {
 				})}
 			</div>
 
-
 			<button
-				disabled={isSliding}
+				disabled={transitioning}
 				onClick={showPrevImage}
 				className="absolute disabled:opacity-50 top-1/2 left-5 sm:left-10 -translate-y-1/2 text-white p-2 rounded-full outline-none border-none focus:ring-2 bg-black/20 sm:bg-transparent sm:hover:bg-black/30"
 				aria-label="view previous image"
@@ -92,7 +102,7 @@ export default function Carousel({ images }) {
 				<ChevronLeft />
 			</button>
 			<button
-				disabled={isSliding}
+				disabled={transitioning}
 				onClick={showNextImage}
 				className="absolute disabled:opacity-50 top-1/2 right-5 sm:right-10 -translate-y-1/2  text-white p-2 rounded-full outline-none border-none focus:ring-2 bg-black/20 sm:bg-transparent sm:hover:bg-black/30"
 				aria-label="view next image"
@@ -100,20 +110,22 @@ export default function Carousel({ images }) {
 				<ChevronRight />
 			</button>
 
-			<div className="absolute bottom-0 sm:bottom-5 left-0 right-0 flex justify-center items-center gap-2 p-4">
-				{images?.map((_, index) => (
+			<div className="absolute bottom-0 left-0 right-0 flex justify-center items-center gap-2 p-4">
+				{[1, 2, 3, 4]?.map((index) => (
 					<button
+						data-jump={jump}
 						data-active={index === imageIndex}
 						style={{
 							background:
 								index === imageIndex ? "white" : "transparent",
+							willChange: "transform",
 						}}
-						className="w-1 data-[active=true]:scale-110 data-[active=true]:shadow-md data-[active=false]:shadow-none data-[active=false]:scale-100 transition-transform duration-300 ease-in-out rounded-full border border-white outline-none focus:ring-2 bg-transparent p-1"
+						className="w-1 h-2 sm:w-3 sm:h-3 data-[active=true]:scale-110 data-[active=true]:shadow-md data-[active=false]:shadow-none data-[active=false]:scale-100 data-[jump=true]:transition-none data-[jump=false]:transition-transform duration-300 rounded-full border border-white outline-none focus:ring-2 bg-transparent p-1"
 						key={index}
 						onClick={() => {
 							setImageIndex(index);
 						}}
-						aria-label={`view image ${index + 1}`}
+						aria-label={`view image ${index}`}
 					></button>
 				))}
 			</div>

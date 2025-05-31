@@ -60,6 +60,7 @@ export default function Signup() {
       setUser(user);
       navigate("/dashboard", { replace: true });
     } catch (err) {
+      setUser(null);
       console.error("Login error", err);
       setError(err.message || "Something went wrong, pleasy try again.");
     }
