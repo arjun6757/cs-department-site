@@ -160,10 +160,10 @@ export default function MarkAttendance() {
                                         }
                                         className="data-[status=present]:text-green-700 data-[status=absent]:text-red-700 data-status:font-semibold data-[status=present]:bg-green-200 data-[status=absent]:bg-red-200 px-3 py-2 rounded-full data-[status=none]:border data-[status=none]:border-[#ddd]"
                                     >
-                                        {f?.status ? f?.status : "not marked"}
+                                        {f?.status ? f?.status : "blank"}
                                     </span>
                                 </td>
-                                <td className="p-2 font-medium text-center space-x-2">
+                                <td className="p-2 font-medium text-center space-y-2 sm:space-x-2">
                                     <button
                                         data-active={f?.status === "present"}
                                         disabled={
@@ -177,7 +177,7 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="present"
-                                        className="disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] data-[active=true]::border-none  data-[active=true]:text-white border border-[#ddd] rounded px-3 py-2 hover:bg-gray-50 cursor-pointer shadow-xs"
+                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] data-[active=true]::border-none  data-[active=true]:text-white border border-[#ddd] rounded px-3 py-2 hover:bg-gray-50 cursor-pointer shadow-xs"
                                     >
                                         Present
                                     </button>
@@ -194,7 +194,7 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="absent"
-                                        className="disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] data-[active=true]::border-none data-[active=true]:text-white border border-[#ddd] rounded px-3 py-2 hover:bg-gray-50 cursor-pointer shadow-xs"
+                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] data-[active=true]::border-none data-[active=true]:text-white border border-[#ddd] rounded px-3 py-2 hover:bg-gray-50 cursor-pointer shadow-xs"
                                     >
                                         Absent
                                     </button>

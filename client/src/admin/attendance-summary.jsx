@@ -89,7 +89,7 @@ export default function AttendanceSummary() {
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
-                <div className="flex gap-4">
+                <div className="flex sm:flex-row flex-col gap-3 sm:gap-4">
                     <div className="space-x-2">
                         <label className="text-sm" htmlFor="startDate">
                             From:
@@ -133,75 +133,76 @@ export default function AttendanceSummary() {
                         Apply
                     </button>
                 </div>
+                <div className="overflow-x-auto">
+                    <table className="w-full border-collapse min-h-[50px] ">
+                        <thead>
+                            <tr className="bg-gray-100">
+                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                    No
+                                </th>
+                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                    User
+                                </th>
 
-                <table className="w-full border-collapse min-h-[50px]">
-                    <thead>
-                        <tr className="bg-gray-100">
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
-                                No
-                            </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
-                                User
-                            </th>
-
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
-                                Total Days
-                            </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
-                                Presents (days)
-                            </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
-                                Absents (days)
-                            </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
-                                Overall Presence (%)
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {filteredEntries.length === 0 && (
-                            <tr>
-                                <td
-                                    colSpan={7}
-                                    className="border border-[#ddd] p-2 text-center"
-                                >
-                                    No entries found
-                                </td>
+                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                    Total Days
+                                </th>
+                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                    Presents (days)
+                                </th>
+                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                    Absents (days)
+                                </th>
+                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                    Overall Presence (%)
+                                </th>
                             </tr>
-                        )}
+                        </thead>
 
-                        {filteredEntries.map((entry, index) => (
-                            <tr key={entry._id}>
-                                <td className="border border-[#ddd] p-2 text-center">
-                                    {index + 1}
-                                </td>
-                                <td className="border border-[#ddd] p-2 text-start">
-                                    <span className="text-gray-800">
-                                        {entry.user_details.username}
-                                    </span>
-                                    <p className="text-gray-500">
-                                        {entry.user_details.email}
-                                    </p>
-                                </td>
+                        <tbody>
+                            {filteredEntries.length === 0 && (
+                                <tr>
+                                    <td
+                                        colSpan={7}
+                                        className="border border-[#ddd] p-2 text-center"
+                                    >
+                                        No entries found
+                                    </td>
+                                </tr>
+                            )}
 
-                                <td className="border border-[#ddd] p-2 text-center">
-                                    {entry.total_days}
-                                </td>
+                            {filteredEntries.map((entry, index) => (
+                                <tr key={entry._id}>
+                                    <td className="border border-[#ddd] p-2 text-center">
+                                        {index + 1}
+                                    </td>
+                                    <td className="border border-[#ddd] p-2 text-start">
+                                        <span className="text-gray-800">
+                                            {entry.user_details.username}
+                                        </span>
+                                        <p className="text-gray-500">
+                                            {entry.user_details.email}
+                                        </p>
+                                    </td>
 
-                                <td className="border border-[#ddd] p-2 text-center">
-                                    {entry.total_presents}
-                                </td>
-                                <td className="border border-[#ddd] p-2 text-center">
-                                    {entry.total_absents}
-                                </td>
-                                <td className="border border-[#ddd] p-2 text-center">
-                                    {entry.total_presents_percentage}%
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                    <td className="border border-[#ddd] p-2 text-center">
+                                        {entry.total_days}
+                                    </td>
+
+                                    <td className="border border-[#ddd] p-2 text-center">
+                                        {entry.total_presents}
+                                    </td>
+                                    <td className="border border-[#ddd] p-2 text-center">
+                                        {entry.total_absents}
+                                    </td>
+                                    <td className="border border-[#ddd] p-2 text-center">
+                                        {entry.total_presents_percentage}%
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

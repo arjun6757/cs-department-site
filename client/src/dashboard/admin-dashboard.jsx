@@ -21,9 +21,12 @@ const Dashboard = () => {
     return (
         <div className="w-full h-svh grid grid-cols-4 sm:grid-cols-5 overflow-hidden relative">
 
-            <button data-hidden={isHidden} onClick={() => setIsHidden(p => !p)} className='sm:hidden border border-[#ddd] absolute top-0 data-[hidden=false]:left-0 mx-6 my-4 text-gray-700 rounded p-1'>
-                <Menu className='w-6 h-6' />
+            <header className='sm:hidden fixed left-0 top-0 w-full h-fit flex items-center p-4 border-b border-[#ddd] bg-white'>
+                <button data-hidden={isHidden} onClick={() => setIsHidden(p => !p)} className='text-gray-700 rounded w-6 h-6'>
+                <Menu />
             </button>
+            </header>
+
 
             <div className='data-[hidden=true]:hidden data-[hidden=false]:absolute data-hidden:sm:hidden top-0 left-0 w-full h-full bg-white/30 backdrop-blur-xs z-10 border' data-hidden={isHidden} onClick={() => setIsHidden(true)}></div>
 
@@ -59,7 +62,7 @@ const Dashboard = () => {
                 </div>
             </aside>
 
-            <main className='col-span-4 overflow-y-scroll h-full pt-10 sm:pt-0'>
+            <main className='col-span-4 overflow-y-scroll h-full pt-14 sm:pt-0'>
                 <Outlet />
             </main>
         </div>

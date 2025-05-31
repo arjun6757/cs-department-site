@@ -11,7 +11,7 @@ export default function Attendance() {
     });
 
     return (
-        <div className="p-6 text-gray-700 space-y-4 text-sm">
+        <div className="p-6 text-gray-700 space-y-4 text-xs sm:text-sm">
             <div className="border-b border-[#ddd]">
                 <ul className="flex">
                     <li>

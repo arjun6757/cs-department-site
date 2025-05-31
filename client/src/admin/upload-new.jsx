@@ -32,12 +32,12 @@ export default function NewUpload() {
 	};
 
 	return (
-		<div className="text-sm w-full min-h-screen flex flex-col gap-4 p-6">
+		<div className="text-sm w-full min-h-screen flex flex-col gap-4 py-5">
 			<Link
 				to="/admin/dashboard/uploads"
-				className="hover:underline underline-offset-4"
+				className="hover:underline underline-offset-4 w-fit px-4 sm:px-6"
 			>
-				&larr; All Uploads
+				&larr; Back
 			</Link>
 
 			<div className="sm:w-lg w-[90vw] mx-auto border border-[#ddd] shadow-xs rounded-md px-6 py-8">
