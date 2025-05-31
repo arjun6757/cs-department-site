@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
-import { formattedDate, getLastMonthDate } from "../utils/date";
+import { formattedDate } from "../utils/date";
 import { getAllUserAttendanceSummary } from "../actions/attendance.action";
 import { Search } from "lucide-react";
 
 export default function AttendanceSummary() {
+    const now = new Date();
+    const firstDayOfCurrentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const firstDayOfNextMonth = new Date(now.getFullYear(), now.getMonth()+1, 1);
+
     const [query, setQuery] = useState("");
     const [entries, setEntries] = useState([]);
     const [filteredEntries, setFilteredEntries] = useState([]);
     const [dates, setDates] = useState({
-        startDate: formattedDate(getLastMonthDate(new Date())),
-        endDate: formattedDate(new Date()),
+        startDate: formattedDate(firstDayOfCurrentMonth),
+        endDate: formattedDate(firstDayOfNextMonth),
     });
 
     const [loading, setLoading] = useState(false);

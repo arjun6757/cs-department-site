@@ -2,6 +2,7 @@ import { CalendarCheck, Cog, Loader, Mail, Shield, User } from "lucide-react";
 import { useAuth } from "../context/auth.context";
 import { useState, useEffect } from "react";
 import { getUserAttendance } from "../actions/attendance.action";
+import { formattedDate } from "../utils/date";
 
 export default function UserOverview() {
   const { user, loading: userLoading, error } = useAuth();
@@ -10,18 +11,25 @@ export default function UserOverview() {
 
   useEffect(() => {
     async function fetchUserAttendance() {
-      const date = new Date();
-
-      const day = date.getDate().toString().padStart(2, "0");
-      const month = (date.getMonth() + 1).toString().padStart(2, "0");
-      const year = date.getFullYear().toString();
-
-      const startDate = `${year}-${month - 1}-${day}`;
-      const endDate = `${year}-${month}-${day}`;
+      const now = new Date();
+      const firstDayOfCurrentMonth = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        1,
+      );
+      const firstDayOfNextMonth = new Date(
+        now.getFullYear(),
+        now.getMonth() + 1,
+        1,
+      );
 
       try {
         setLoading(true);
-        const data = await getUserAttendance(user._id, startDate, endDate);
+        const data = await getUserAttendance(
+          user._id,
+          formattedDate(firstDayOfCurrentMonth),
+          formattedDate(firstDayOfNextMonth),
+        );
         setAttendanceInfo(data[0]);
       } catch (err) {
         console.error(err);
