@@ -85,7 +85,7 @@ export default function Login() {
 
         <form className="mt-5 space-y-4 text-sm" onSubmit={handleSubmit}>
           <div className="space-y-1">
-            <label htmlFor="email" className=" block">
+            <label htmlFor="email" className=" block text-gray-700">
               Email
             </label>
             <input
@@ -93,7 +93,7 @@ export default function Login() {
               name="email"
               type="email"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
               placeholder="name@example.com"
               value={credentials.email}
               onChange={handleChange}
@@ -102,10 +102,10 @@ export default function Login() {
 
           <div className="space-y-1">
             <div className="flex justify-between items-center">
-            <label htmlFor="password" className=" block">
+            <label htmlFor="password" className=" block text-gray-700">
               Password
             </label>
-            <Link tabIndex={5} to="/forgot-password" className="hover:underline underline-offset-4" >
+            <Link tabIndex={5} to="/forgot-password" className="hover:underline underline-offset-4 text-gray-700" >
               Forgot Password
             </Link>
             </div>
@@ -114,7 +114,7 @@ export default function Login() {
               name="password"
               type="password"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
               value={credentials.password}
               onChange={handleChange}
             />
@@ -130,7 +130,7 @@ export default function Login() {
 
           <div className=" flex justify-center items-center gap-2">
             <span className="text-gray-500">Don't have an account?</span>
-            <Link tabIndex={4} to="/signup" className="hover:underline underline-offset-4">
+            <Link tabIndex={4} to="/signup" className="hover:underline underline-offset-4 text-gray-700">
               Sign up
             </Link>
           </div>

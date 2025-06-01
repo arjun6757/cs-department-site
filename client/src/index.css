@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @font-face {
 	font-family: "Inter";
 	font-weight: 100 900;

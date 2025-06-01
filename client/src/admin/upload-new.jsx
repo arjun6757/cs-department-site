@@ -40,17 +40,17 @@ export default function NewUpload() {
 				&larr; Back
 			</Link>
 
-			<div className="sm:w-lg w-[90vw] mx-auto border border-[#ddd] shadow-xs rounded-md px-6 py-8">
+			<div className="sm:w-lg w-[90vw] mx-auto border border-[#ddd] dark:border-[#333] shadow-xs rounded-md px-6 py-8">
 				<form
 					onSubmit={handleSubmit}
 					className="space-y-4"
 					encType="multipart/form-data"
 				>
 					<div className="flex flex-col gap-1 mb-5">
-						<h1 className="text-lg font-semibold text-gray-800">
+						<h1 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
 							Upload Form
 						</h1>
-						<span className="text-xs text-gray-500">
+						<span className="text-xs text-gray-500 dark:text-neutral-400">
 							Fill in the details as per the labels
 						</span>
 					</div>
@@ -58,7 +58,7 @@ export default function NewUpload() {
 					<div className="flex flex-col gap-1">
 						<label htmlFor="department">Department</label>
 						<input
-							className="border border-[#ddd] p-1 rounded outline-blue-500"
+							className="border border-[#ddd] dark:border-[#333] p-1 rounded outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
 							type="text"
 							name="department"
 						/>
@@ -69,7 +69,7 @@ export default function NewUpload() {
 							Semester <span className="text-red-500">*</span>
 						</label>
 						<input
-							className="border border-[#ddd] p-1 rounded outline-blue-500"
+							className="border border-[#ddd] dark:border-[#333] p-1 rounded outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
 							type="number"
 							max={6}
 							name="sem"
@@ -81,7 +81,7 @@ export default function NewUpload() {
 							Course<span className="text-red-500">*</span>
 						</label>
 						<input
-							className="border border-[#ddd] p-1 rounded outline-blue-500"
+							className="border border-[#ddd] dark:border-[#333] p-1 rounded outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
 							type="text"
 							name="course"
 							required
@@ -93,7 +93,7 @@ export default function NewUpload() {
 							Year <span className="text-red-500">*</span>
 						</label>
 						<input
-							className="border border-[#ddd] p-1 rounded outline-blue-500"
+							className="border border-[#ddd] dark:border-[#333] p-1 rounded outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
 							type="number"
 							name="year"
 							min={2018}
@@ -109,7 +109,7 @@ export default function NewUpload() {
 						</label>
 
 						<div className="flex flex-col gap-2">
-							<span className="border border-[#ddd] p-1 rounded truncate">
+							<span className="border border-[#ddd] dark:border-[#333] p-1 rounded truncate">
 								{file}
 							</span>
 
@@ -130,7 +130,7 @@ export default function NewUpload() {
 										fileInputRef.current.click();
 									}
 								}}
-								className="outline-blue-500 outline-offset-2 w-fit px-4 py-1.5 rounded bg-blue-500 hover:opacity-80 active:opacity-90 cursor-pointer text-gray-100"
+								className="outline-blue-500 outline-offset-2 w-fit px-4 py-1.5 rounded bg-blue-500 dark:bg-[#272727] hover:opacity-80 active:opacity-90 cursor-pointer text-gray-100"
 							>
 								Choose
 							</button>
@@ -142,7 +142,7 @@ export default function NewUpload() {
 							Note link <span className="text-red-500">*</span>
 						</label>
 						<input
-							className="border border-[#ddd] p-1 rounded outline-blue-500"
+							className="border border-[#ddd] dark:border-[#333] p-1 rounded outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
 							type="text"
 							name="note_link"
 							required
@@ -151,7 +151,7 @@ export default function NewUpload() {
 
 					<button
 						disabled={pending}
-						className="disabled:cursor-not-allowed w-full px-4 py-1.5 rounded bg-blue-500 hover:opacity-80 active:opacity-90 cursor-pointer text-gray-100 outline-offset-2 outline-blue-500 inline-flex gap-4 justify-center items-center"
+						className="disabled:cursor-not-allowed w-full px-4 py-1.5 rounded bg-blue-500 dark:bg-[#272727] hover:opacity-80 active:opacity-90 cursor-pointer text-gray-100 outline-offset-2 outline-blue-500 inline-flex gap-4 justify-center items-center"
 					>
 						Upload
 

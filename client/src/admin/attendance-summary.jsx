@@ -83,12 +83,12 @@ export default function AttendanceSummary() {
             <div className="space-y-4">
                 <div className="flex items-center relative">
                     <div className="absolute left-0 top-0 w-fit h-full p-2">
-                        <Search className="w-6 h-full text-gray-500" />
+                        <Search className="w-6 h-full text-gray-500 dark:text-neutral-400" />
                     </div>
                     <input
                         type="text"
                         placeholder="Type here to search..."
-                        className="border border-gray-300 rounded w-full py-2 pl-10 outline-blue-500"
+                        className="border border-gray-300 dark:border-[#333] rounded w-full py-2 pl-10 outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
@@ -99,7 +99,7 @@ export default function AttendanceSummary() {
                             From:
                         </label>
                         <input
-                            className="px-2 py-1 border border-[#ddd] rounded"
+                            className="px-2 py-1 border dark:border-[#333] border-[#ddd] rounded"
                             type="date"
                             value={dates.startDate}
                             onChange={(e) =>
@@ -116,7 +116,7 @@ export default function AttendanceSummary() {
                             To:
                         </label>
                         <input
-                            className="px-2 py-1 border border-[#ddd] rounded"
+                            className="px-2 py-1 border border-[#ddd] dark:border-[#333] rounded"
                             type="date"
                             value={dates.endDate}
                             onChange={(e) =>
@@ -132,7 +132,7 @@ export default function AttendanceSummary() {
                         type="button"
                         onClick={handleApply}
                         disabled={loading}
-                        className="disabled:opacity-50 border border-[#ddd] px-3 py-1 rounded hover:bg-gray-50 transition-colors duration-300 cursor-pointer"
+                        className="disabled:opacity-50 border border-[#ddd] dark:border-[#333] px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-[#212121] transition-colors duration-300 cursor-pointer"
                     >
                         Apply
                     </button>
@@ -140,24 +140,24 @@ export default function AttendanceSummary() {
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse min-h-[50px] ">
                         <thead>
-                            <tr className="bg-gray-100">
-                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                            <tr className="bg-gray-100 dark:bg-[#212121]">
+                                <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                     No
                                 </th>
-                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                     User
                                 </th>
 
-                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                     Total Days
                                 </th>
-                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                     Presents (days)
                                 </th>
-                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                     Absents (days)
                                 </th>
-                                <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                                <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                     Overall Presence (%)
                                 </th>
                             </tr>
@@ -168,7 +168,7 @@ export default function AttendanceSummary() {
                                 <tr>
                                     <td
                                         colSpan={7}
-                                        className="border border-[#ddd] p-2 text-center"
+                                        className="border border-[#ddd] dark:border-[#333] p-2 text-center"
                                     >
                                         No entries found
                                     </td>
@@ -177,29 +177,29 @@ export default function AttendanceSummary() {
 
                             {filteredEntries.map((entry, index) => (
                                 <tr key={entry._id}>
-                                    <td className="border border-[#ddd] p-2 text-center">
+                                    <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                         {index + 1}
                                     </td>
-                                    <td className="border border-[#ddd] p-2 text-start">
-                                        <span className="text-gray-800">
+                                    <td className="border border-[#ddd] dark:border-[#333] p-2 text-start">
+                                        <span className="text-gray-800 dark:text-gray-200">
                                             {entry.user_details.username}
                                         </span>
-                                        <p className="text-gray-500">
+                                        <p className="text-gray-500 dark:text-neutral-500">
                                             {entry.user_details.email}
                                         </p>
                                     </td>
 
-                                    <td className="border border-[#ddd] p-2 text-center">
+                                    <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                         {entry.total_days}
                                     </td>
 
-                                    <td className="border border-[#ddd] p-2 text-center">
+                                    <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                         {entry.total_presents}
                                     </td>
-                                    <td className="border border-[#ddd] p-2 text-center">
+                                    <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                         {entry.total_absents}
                                     </td>
-                                    <td className="border border-[#ddd] p-2 text-center">
+                                    <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                         {entry.total_presents_percentage}%
                                     </td>
                                 </tr>

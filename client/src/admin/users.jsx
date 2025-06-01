@@ -54,16 +54,16 @@ export default function Users() {
     };
 
     return (
-        <div className="p-6 text-sm text-gray-700">
+        <div className="p-6 text-sm text-gray-700 dark:text-gray-300">
             <div className="flex items-center relative">
                 <div className="absolute left-0 top-0 w-fit h-full p-2">
-                    <Search className="w-6 h-full text-gray-500" />
+                    <Search className="w-6 h-full text-gray-500 dark:text-neutral-400" />
                 </div>
 
                 <input
                     type="text"
                     placeholder="Type here to search..."
-                    className="border border-gray-300 rounded w-full py-2 pl-10 outline-blue-500"
+                    className="border border-gray-300 dark:border-[#333] rounded w-full py-2 pl-10 outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
@@ -71,38 +71,36 @@ export default function Users() {
             <div className="overflow-x-auto mt-4">
                 <table className="w-full border-collapse text-sm min-h-[50px]">
                     <thead>
-                        <tr className="bg-gray-100">
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                        <tr className="bg-gray-100 dark:bg-[#212121]">
+                            <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                 No
                             </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                            <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                 Username
                             </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                            <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                 Email
                             </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                            <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                 Role
                             </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                            <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                 Created At
                             </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                            <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                 Updated At
                             </th>
-                            <th className="border border-[#ddd] font-normal p-2 text-gray-800">
+                            <th className="border border-[#ddd] dark:border-[#333] font-normal p-2 text-gray-800 dark:text-gray-200">
                                 Actions
                             </th>
                         </tr>
                     </thead>
 
                     <tbody>
-
-
                         {loading ? (
                             <tr>
                                 <td colSpan={7} className="p-2">
-                                    <Loader className="w-5 h-5 mx-auto text-gray-700 animate-spin" />
+                                    <Loader className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300 animate-spin" />
                                 </td>
                             </tr>
                         ) : (
@@ -110,7 +108,7 @@ export default function Users() {
                                 <tr>
                                     <td
                                         colSpan={7}
-                                        className="border border-[#ddd] p-2 text-center"
+                                        className="border border-[#ddd] dark:border-[#333] p-2 text-center"
                                     >
                                         No users found
                                     </td>
@@ -120,29 +118,29 @@ export default function Users() {
 
                         {filteredUsers.map((user, index) => (
                             <tr key={user._id}>
-                                <td className="border border-[#ddd] p-2 text-center">
+                                <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                     {index + 1}
                                 </td>
-                                <td className="border border-[#ddd] p-2 text-center">
+                                <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                     {user.username}
                                 </td>
-                                <td className="border border-[#ddd] p-2 text-center">
+                                <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                     {user.email}
                                 </td>
-                                <td className="border border-[#ddd] p-2 text-center">
+                                <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                     {user.role}
                                 </td>
-                                <td className="border border-[#ddd] p-2 text-center">
+                                <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                     {new Date(
                                         user.createdAt,
                                     ).toLocaleDateString()}
                                 </td>
-                                <td className="border border-[#ddd] p-2 text-center">
+                                <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                     {new Date(
                                         user.updatedAt,
                                     ).toLocaleDateString()}
                                 </td>
-                                <td className="border border-[#ddd] p-2 text-center">
+                                <td className="border border-[#ddd] dark:border-[#333] p-2 text-center">
                                     <button
                                         disabled={user.role === "admin"}
                                         onClick={() => handleDelete(user._id)}

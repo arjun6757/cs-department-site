@@ -111,19 +111,19 @@ export default function MarkAttendance() {
             <div className="space-y-4">
                 <div className="flex items-center relative">
                     <div className="absolute left-0 top-0 w-fit h-full p-2">
-                        <Search className="w-6 h-full text-gray-500" />
+                        <Search className="w-6 h-full text-gray-500 dark:text-neutral-400" />
                     </div>
                     <input
                         type="text"
                         placeholder="Type here to search..."
-                        className="border border-gray-300 rounded w-full py-2 pl-10 outline-blue-500"
+                        className="border border-gray-300 dark:border-[#333] rounded w-full py-2 pl-10 outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
                 <table className="w-full">
                     <thead>
-                        <tr className="border-b border-[#ddd]">
+                        <tr className="border-b border-[#ddd] dark:border-[#333]">
                             <th className="p-2 font-semibold">User</th>
                             <th className="p-2 font-semibold">Status</th>
                             <th className="p-2 font-semibold">Actions</th>
@@ -131,7 +131,7 @@ export default function MarkAttendance() {
                     </thead>
                     <tbody>
                         {filteredEntries.length === 0 && (
-                            <tr className="border-b border-[#ddd]">
+                            <tr className="border-b border-[#ddd] dark:border-[#333]">
                                 <td colSpan={3} className="text-center h-10">
                                     It's empty here
                                 </td>
@@ -144,13 +144,13 @@ export default function MarkAttendance() {
                                 data-lastindex={
                                     index === filteredEntries.length - 1
                                 }
-                                className="data-[lastindex=false]:border-b data-[lastindex=false]:border-[#ddd]"
+                                className="data-[lastindex=false]:border-b data-[lastindex=false]:border-[#ddd] dark:data-[lastindex=false]:border-[#333]"
                             >
                                 <td className="p-2 font-medium">
-                                    <span className="text-gray-700 text-sm">
+                                    <span className="text-gray-700 dark:text-gray-300 text-sm">
                                         {f?.username}
                                     </span>
-                                    <p className="text-gray-500">{f?.email}</p>
+                                    <p className="text-gray-500 dark:text-neutral-500">{f?.email}</p>
                                 </td>
 
                                 <td className="p-2 font-medium text-center">
@@ -158,7 +158,7 @@ export default function MarkAttendance() {
                                         data-status={
                                             f?.status ? f?.status : "none"
                                         }
-                                        className="data-[status=present]:text-green-700 data-[status=absent]:text-red-700 data-status:font-semibold data-[status=present]:bg-green-200 data-[status=absent]:bg-red-200 px-3 py-2 rounded-full data-[status=none]:border data-[status=none]:border-[#ddd]"
+                                        className="data-[status=present]:text-green-700 dark:data-[status=present]:text-green-500 data-[status=absent]:text-red-700 dark:data-[status=absent]:bg-red-400/40 dark:data-[status=absent]:text-red-500 data-status:font-semibold data-[status=present]:bg-green-200 dark:data-[status=present]:bg-green-400/40 data-[status=absent]:bg-red-200 px-3 py-2 rounded-full data-[status=none]:border data-[status=none]:border-[#ddd] dark:data-[status=none]:border-[#333] inline-flex items-center"
                                     >
                                         {f?.status ? f?.status : "blank"}
                                     </span>
@@ -177,7 +177,7 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="present"
-                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] data-[active=true]:border-none  data-[active=true]:text-white border border-[#ddd] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 cursor-pointer shadow-sm"
+                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none  data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
                                     >
                                         Present
                                     </button>
@@ -194,7 +194,7 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="absent"
-                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] data-[active=true]:border-none data-[active=true]:text-white border border-[#ddd] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 cursor-pointer shadow-sm"
+                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
                                     >
                                         Absent
                                     </button>

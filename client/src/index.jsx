@@ -22,7 +22,7 @@ export default function Index() {
 	];
 
 	return (
-		<div className="min-h-screen text-sm text-gray-700">
+		<div className="min-h-screen text-sm text-gray-700 bg-white">
 			<header>
 				<nav className="p-4 flex flex-col gap-2 bg-[#212121] text-gray-100">
 					<button
@@ -137,7 +137,7 @@ export default function Index() {
 			<main className="my-6">
 				<div
 					id="home"
-					className="my-[5rem] w-xs md:w-lg lg:w-4xl mx-auto flex flex-col gap-2 sm:gap-5 p-8 "
+					className="my-[5rem] w-xs md:w-lg lg:w-4xl mx-auto flex flex-col gap-2 sm:gap-5 p-8"
 				>
 					<h1 className="text-xl sm:text-2xl font-bold text-center ">
 						Introduction

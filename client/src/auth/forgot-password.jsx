@@ -76,7 +76,7 @@ export default function forgotPassword() {
         <form className="mt-5 space-y-4 text-sm" onSubmit={handleSubmit}>
 
           <div className="space-y-1">
-            <label htmlFor="email" className=" block">
+            <label htmlFor="email" className=" block text-gray-700">
               Email
             </label>
             <input
@@ -91,7 +91,7 @@ export default function forgotPassword() {
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="Current Password" className=" block">
+            <label htmlFor="Current Password" className=" block text-gray-700">
               Current Password
             </label>
             <input
@@ -106,7 +106,7 @@ export default function forgotPassword() {
 
 
           <div className="space-y-1">
-            <label htmlFor="New Password" className=" block">
+            <label htmlFor="New Password" className=" block text-gray-700">
               New Password
             </label>
             <input

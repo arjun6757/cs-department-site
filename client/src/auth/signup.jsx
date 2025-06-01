@@ -79,14 +79,14 @@ export default function Signup() {
         <form className="mt-5 space-y-4 text-sm" onSubmit={handleSubmit}>
 
           <div className="space-y-1">
-            <label htmlFor="username" className=" block">
+            <label htmlFor="username" className=" block text-gray-700">
               Username
             </label>
             <input
               name="username"
               type="text"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
               placeholder="name"
               value={credentials.username}
               onChange={handleChange}
@@ -94,14 +94,14 @@ export default function Signup() {
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="email" className=" block">
+            <label htmlFor="email" className=" block text-gray-700">
               Email
             </label>
             <input
               name="email"
               type="email"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
               placeholder="name@example.com"
               value={credentials.email}
               onChange={handleChange}
@@ -109,14 +109,14 @@ export default function Signup() {
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="password" className=" block">
+            <label htmlFor="password" className=" block text-gray-700">
               Password
             </label>
             <input
               name="password"
               type="password"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
               value={credentials.password}
               onChange={handleChange}
             />
@@ -131,7 +131,7 @@ export default function Signup() {
 
           <div className=" flex justify-center items-center gap-2">
             <span className="text-gray-500">Already have an account?</span>
-            <Link to="/login" className="hover:underline underline-offset-4">
+            <Link to="/login" className="hover:underline underline-offset-4 text-gray-700">
               Login
             </Link>
           </div>
