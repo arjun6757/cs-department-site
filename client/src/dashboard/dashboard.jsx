@@ -21,7 +21,7 @@ const Dashboard = () => {
     return (
         <div className="w-full grid grid-cols-4 sm:grid-cols-5 overflow-hidden h-svh relative">
 
-            <header className='sm:hidden fixed left-0 top-0 w-full h-fit flex items-center p-4 border-b border-[#ddd] bg-white'>
+            <header className='sm:hidden fixed left-0 top-0 w-full h-fit flex items-center p-4 border-b border-[#ddd] bg-white z-10'>
                 <button data-hidden={isHidden} onClick={() => setIsHidden(p => !p)} className='text-gray-700 rounded w-6 h-6'>
                 <Menu />
             </button>
