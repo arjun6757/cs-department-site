@@ -71,7 +71,7 @@ export default function UserOverview() {
                 </p>
               </div>
 
-              <div className="w-fit h-fit px-3 py-1 rounded-full border border-[#ccc] bg-blue-50 text-gray-700 text-xs sm:text-sm font-medium inline-flex items-center">
+              <div className="w-fit h-fit px-3 py-1 rounded-full border border-[#ddd] bg-gray-50 text-gray-700 text-xs sm:text-sm font-medium inline-flex items-center shadow-xs">
                 <Shield className="w-4 h-4 mr-1 text-blue-500" />
                 {user?.role || "Member"}
               </div>

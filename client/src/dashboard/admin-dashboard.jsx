@@ -27,7 +27,7 @@ const Dashboard = () => {
 
     return (
         <div className="w-full h-svh grid grid-cols-4 sm:grid-cols-5 overflow-hidden relative">
-            <header className="sm:hidden fixed left-0 top-0 w-full h-fit flex items-center p-4 border-b border-[#ddd] bg-white z-10">
+            <header className="sm:hidden fixed left-0 top-0 w-full h-fit flex items-center p-4 border-b border-[#ddd] bg-gray-50 z-10">
                 <button
                     data-hidden={isHidden}
                     onClick={() => setIsHidden((p) => !p)}
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
             <aside
                 data-hidden={isHidden}
-                className={`data-[hidden=false]:block data-[hidden=true]:hidden data-hidden:sm:grid absolute left-0 top-0 w-[60vw] sm:w-auto sm:static sm:col-span-1 text-sm text-gray-700 overflow-hidden py-5 px-4 border-r border-[#ddd] select-none h-full bg-white z-20`}
+                className={`data-[hidden=false]:block data-[hidden=true]:hidden data-hidden:sm:grid absolute left-0 top-0 w-[60vw] sm:w-auto sm:static sm:col-span-1 text-sm text-gray-700 overflow-hidden py-5 px-4 border-r border-[#ddd] select-none h-full bg-gray-50 z-20`}
             >
                 <div className="flex flex-col h-full justify-between">
                     <ul className="flex flex-col">
@@ -55,7 +55,7 @@ const Dashboard = () => {
                                     location.pathname === "/admin/dashboard"
                                 }
                                 to="/admin/dashboard"
-                                className="data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded inline-flex items-center w-full h-full gap-2.5 outline-blue-500"
+                                className="data-[active=true]:bg-[#eee] p-2 hover:bg-gray-100 rounded inline-flex items-center w-full h-full gap-2.5 outline-blue-500"
                             >
                                 <LayoutDashboard className="w-4 h-4 text-gray-700" />{" "}
                                 Overview
@@ -69,7 +69,7 @@ const Dashboard = () => {
                                     "/admin/dashboard/users"
                                 }
                                 to="/admin/dashboard/users"
-                                className="data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500"
+                                className="data-[active=true]:bg-[#eee] p-2 hover:bg-gray-100 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500"
                             >
                                 <UsersIcon className="w-4 h-4 text-gray-700" />
                                 Users
@@ -82,7 +82,7 @@ const Dashboard = () => {
                                     "/admin/dashboard/uploads"
                                 }
                                 to="/admin/dashboard/uploads"
-                                className="data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500"
+                                className="data-[active=true]:bg-[#eee] p-2 hover:bg-gray-100 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500"
                             >
                                 <Upload className="w-4 h-4 text-gray-700" />{" "}
                                 Uploads
@@ -95,7 +95,7 @@ const Dashboard = () => {
                                     "/admin/dashboard/attendance"
                                 }
                                 to="/admin/dashboard/attendance"
-                                className="data-[active=true]:bg-gray-100 p-2 hover:bg-gray-50 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500"
+                                className="data-[active=true]:bg-[#eee] p-2 hover:bg-gray-100 rounded w-full h-full inline-flex items-center gap-2.5 outline-blue-500"
                             >
                                 <UserCheck className="w-4 h-4 text-gray-700" />{" "}
                                 Attendance
@@ -105,7 +105,7 @@ const Dashboard = () => {
 
                     <button
                         onClick={handleLogout}
-                        className="cursor-pointer inline-flex gap-2.5 outline-blue-500 items-center p-2 rounded hover:bg-gray-100"
+                        className="cursor-pointer inline-flex gap-2.5 outline-blue-500 items-center p-2 rounded hover:bg-[#ececec]"
                     >
                         <LogOut className="w-4 h-4" /> Logout
                     </button>
