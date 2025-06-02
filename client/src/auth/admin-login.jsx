@@ -78,7 +78,7 @@ export default function AdminLogin() {
 
         <form className="mt-5 space-y-4 text-sm" onSubmit={handleSubmit}>
           <div className="space-y-1">
-            <label htmlFor="email" className=" block">
+            <label htmlFor="email" className=" block text-gray-700">
               Email
             </label>
             <input
@@ -93,7 +93,7 @@ export default function AdminLogin() {
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="password" className=" block">
+            <label htmlFor="password" className=" block text-gray-700">
               Password
             </label>
             <input

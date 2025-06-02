@@ -103,7 +103,7 @@ export default function AttendanceHistory() {
                                 <td className="p-2 font-medium text-center">
                                     <span
                                         data-present={f.status === "present"}
-                                        className="data-[present=true]:text-green-700 dark:data-[present=true]:text-green-500 data-[present=false]:text-red-500 dark:data-[present=false]:bg-red-400/40 data-present:font-semibold data-[present=true]:bg-green-200 dark:data-[present=true]:bg-green-400/40 data-[present=false]:bg-red-200 px-3 py-2 rounded-full"
+                                        className="select-none data-[present=true]:text-green-700 data-[present=false]:text-red-500   data-present:font-semibold data-[present=true]:bg-green-200  data-[present=false]:bg-red-200 px-3 py-2 rounded-full dark:data-[present=true]:text-green-400 dark:data-[present=true]:bg-green-400/20 dark:data-[present=false]:bg-red-400/20 dark:data-[present=false]:text-red-400"
                                     >
                                         {f.status}
                                     </span>
