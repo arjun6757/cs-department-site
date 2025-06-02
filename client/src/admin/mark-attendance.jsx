@@ -158,7 +158,7 @@ export default function MarkAttendance() {
                                         data-status={
                                             f?.status ? f?.status : "none"
                                         }
-                                        className="data-[status=present]:text-green-700 dark:data-[status=present]:text-green-400 data-[status=absent]:text-red-700 dark:data-[status=absent]:bg-red-400/20 dark:data-[status=absent]:text-red-400 data-status:font-semibold data-[status=present]:bg-green-200 dark:data-[status=present]:bg-green-400/20 data-[status=absent]:bg-red-200 px-3 py-2 rounded-full data-[status=none]:border data-[status=none]:border-[#ddd] dark:data-[status=none]:border-[#333] inline-flex items-center select-none"
+                                        className="data-[status=present]:text-green-700 dark:data-[status=present]:text-green-400 data-[status=absent]:text-red-700 dark:data-[status=absent]:bg-red-400/16 dark:data-[status=absent]:text-red-400 data-status:font-semibold data-[status=present]:bg-green-200 dark:data-[status=present]:bg-green-400/16 data-[status=absent]:bg-red-200 px-3 py-2 rounded-full data-[status=none]:border data-[status=none]:border-[#ddd] dark:data-[status=none]:border-[#333] inline-flex items-center select-none"
                                     >
                                         {f?.status ? f?.status : "blank"}
                                     </span>
