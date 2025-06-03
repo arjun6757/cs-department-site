@@ -25,7 +25,7 @@ export const uploadToCloudinary = async (filePath: string) => {
 
 		return file;
 	} catch (err) {
-		fs.unlinkSync(filePath); // stops the event loop until deletion
+		if(filePath) fs.unlinkSync(filePath); // stops the event loop until deletion
 		throw err;
 	}
 };

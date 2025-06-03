@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader } from "lucide-react";
 
 export default function Carousel({ images }) {
 	const [imageIndex, setImageIndex] = useState(1);
@@ -11,7 +11,7 @@ export default function Carousel({ images }) {
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
 			showNextImage();
-		}, 4000);
+		}, 3000);
 
 		return () => {
 			clearTimeout(timeoutId);
@@ -30,10 +30,10 @@ export default function Carousel({ images }) {
 		}
 
 		setImageIndex((index) => {
-				if(index === slides.length-1) {
-					return 1;
-				}
-				return index + 1;
+			if (index === slides.length - 1) {
+				return 1;
+			}
+			return index + 1;
 		});
 	}
 
@@ -49,15 +49,15 @@ export default function Carousel({ images }) {
 		}
 
 		setImageIndex((index) => {
-				if(index===0) {
-					return slides.length-2;
-				}
-				return index - 1;
+			if (index === 0) {
+				return slides.length - 2;
+			}
+			return index - 1;
 		});
 	}
 
 	return (
-		<div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:h-[350px] shadow-sm overflow-hidden">
+		<div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:w-[960px] lg:h-[320px] lg:mx-auto lg:rounded lg:mt-8 lg:shadow-xl shadow-sm overflow-hidden">
 			<div
 				style={{
 					transform: `translate3d(-${imageIndex * 100}%, 0, 0)`,
@@ -79,12 +79,14 @@ export default function Carousel({ images }) {
 				}}
 				data-jump={jump}
 				className={`w-full h-full data-[jump=true]:transition-none
-				 data-[jump=false]:transition-transform duration-300 sm:duration-500 md:duration-700 lg:duration-1000 flex relative`}
+				 data-[jump=false]:transition-transform duration-300 ease-in-out sm:duration-500 md:duration-700 lg:duration-1000 flex relative`}
 			>
 				{slides?.map((image, index) => {
 					return (
 						<img
-							className="w-full select-none h-full shrink-0 object-cover object-center"
+							decoding="async"
+							loading="lazy"
+							className="w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:w-[960px] lg:h-[320px] select-none shrink-0 grow-0 object-cover object-center"
 							key={`${image.src.toString()}-${index}`}
 							src={image.src.toString()}
 							alt={image.alt.toString()}
@@ -120,7 +122,7 @@ export default function Carousel({ images }) {
 								index === imageIndex ? "white" : "transparent",
 							willChange: "transform",
 						}}
-						className="w-1 h-2 sm:w-3 sm:h-3 data-[active=true]:scale-110 data-[active=true]:shadow-md data-[active=false]:shadow-none data-[active=false]:scale-100 data-[jump=true]:transition-none data-[jump=false]:transition-transform duration-300 rounded-full border border-white outline-none focus:ring-2 bg-transparent p-1"
+						className="w-1 h-2 sm:w-3 sm:h-3 data-[active=true]:scale-110 data-[active=true]:shadow-md data-[active=false]:shadow-none data-[active=false]:scale-100 data-[jump=true]:transition-none data-[jump=false]:transition-transform duration-300 ease-in-out sm:duration-500 md:duration-700 lg:duration-1000 rounded-full border border-white outline-none focus:ring-2 bg-transparent p-1"
 						key={index}
 						onClick={() => {
 							setImageIndex(index);
