@@ -11,7 +11,7 @@ export default function Carousel({ images }) {
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
 			showNextImage();
-		}, 3000);
+		}, 5000);
 
 		return () => {
 			clearTimeout(timeoutId);
