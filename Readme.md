@@ -1,17 +1,17 @@
-
 ![Image](https://github.com/user-attachments/assets/33fd3868-a02b-4979-b78c-74119dda495f)
 
 <div align="center">
     A simple fullstack app to mimic a college site — built with the MERN stack.
 </div>
 
-#### Features :
+### Features :
+
 - Role based access
 - Attendance management
 - Easily upload (admin) & download PYQs (user, admin)
 - Basic User management
 
-#### Run it locally :
+### Run it locally :
 
 Clone the project
 
@@ -33,7 +33,7 @@ cd ..
 cd server && npm install
 ```
 
-Create `server/.env` file (or rename existing `.env.example` to `.env`) and with the following content and replace it with your values
+Create `server/.env` file (or rename existing `.env.example` to `.env`) with the following content and replace it with your values
 
 ```text
 NODE_ENV=local
@@ -45,11 +45,13 @@ FRONTEND_URL=<your_frontend_url>
 MONGO_LOCAL_URI=<your_mongo_local_uri>
 ```
 
-Start dev server
+Start dev environment by running the following commands in the root directory (in two separate terminal instances):
 
 ```bash
 cd client && npm run dev
-cd ..
+```
+
+```bash
 cd server && npm run dev
 ```
 
