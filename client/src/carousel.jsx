@@ -57,7 +57,7 @@ export default function Carousel({ images }) {
 	}
 
 	return (
-		<div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:w-[960px] lg:h-[320px] lg:mx-auto lg:rounded lg:mt-8 lg:shadow-xl shadow-sm overflow-hidden">
+		<div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:w-[960px] xl:w-[1200px] lg:h-[320px] lg:mx-auto lg:mt-8 lg:rounded xl:border xl:border-[#ddd] lg:shadow-lg shadow-sm overflow-hidden">
 			<div
 				style={{
 					transform: `translate3d(-${imageIndex * 100}%, 0, 0)`,
@@ -86,7 +86,7 @@ export default function Carousel({ images }) {
 						<img
 							decoding="async"
 							loading="lazy"
-							className="w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:w-[960px] lg:h-[320px] select-none shrink-0 grow-0 object-cover object-center"
+							className="w-full h-[30vh] sm:h-[40vh] md:h-[400px] lg:w-[960px] xl:w-[1200px] lg:h-[320px] select-none shrink-0 grow-0 object-cover object-center"
 							key={`${image.src.toString()}-${index}`}
 							src={image.src.toString()}
 							alt={image.alt.toString()}
@@ -113,16 +113,14 @@ export default function Carousel({ images }) {
 			</button>
 
 			<div className="absolute bottom-0 left-0 right-0 flex justify-center items-center gap-2 p-4">
-				{[1, 2, 3, 4]?.map((index) => (
+				{[1, 2, 3].map((index) => (
 					<button
 						data-jump={jump}
 						data-active={index === imageIndex}
 						style={{
-							background:
-								index === imageIndex ? "white" : "transparent",
 							willChange: "transform",
 						}}
-						className="w-1 h-2 sm:w-3 sm:h-3 data-[active=true]:scale-110 data-[active=true]:shadow-md data-[active=false]:shadow-none data-[active=false]:scale-100 data-[jump=true]:transition-none data-[jump=false]:transition-transform duration-300 ease-in-out sm:duration-500 md:duration-700 lg:duration-1000 rounded-full border border-white outline-none focus:ring-2 bg-transparent p-1"
+						className="w-1 h-2 sm:w-3 sm:h-3 data-[active=true]:scale-110 data-[active=true]:shadow-md data-[active=false]:shadow-none data-[active=false]:scale-100 data-[jump=true]:transition-none data-[jump=false]:transition-transform duration-300 ease-in-out sm:duration-500 md:duration-700 lg:duration-1000 rounded-full border border-white outline-none focus:ring-2 data-[active=true]:bg-white data-[active=false]:bg-transparent p-1"
 						key={index}
 						onClick={() => {
 							setImageIndex(index);

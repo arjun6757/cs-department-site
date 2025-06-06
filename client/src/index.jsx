@@ -15,10 +15,15 @@ export default function Index() {
 	const touch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 	const images = [
-		{ src: "/images/department-1.jpg", alt: "department room" },
-		{ src: "images/bora-bora.jpg", alt: "bora" },
-		{ src: "images/ocean.jpg", alt: "ocean" },
-		{ src: "images/sunrise.jpg", alt: "sunrise" },
+		{
+			src: "/images/slide-1.jpg",
+			alt: "Bankura Sammilani College Entrance",
+		},
+		{ src: "images/slide-2.jpg", alt: "Acharaya Prafulla Chandra Block" },
+		{
+			src: "images/slide-3.jpg",
+			alt: "View from inside of Bankura Sammilani College",
+		},
 	];
 
 	return (
@@ -129,9 +134,7 @@ export default function Index() {
 					</ul>
 				</nav>
 
-				<div className="">
-					<Carousel images={images} />
-				</div>
+				<Carousel images={images} />
 			</header>
 
 			<main className="my-6">
@@ -229,9 +232,9 @@ export default function Index() {
 						<h3 className="font-bold text-lg sm:text-xl">
 							CS Department Site
 						</h3>
-						<p className="text-xs">
-							A place exclusively for the cs department of Bankura
-							Sammilani College.
+						<p className="text-sm">
+							A simple fullstack app to mimic a college site —
+							built with the MERN stack.
 						</p>
 					</div>
 
@@ -282,7 +285,12 @@ export default function Index() {
 				<div className="flex flex-col sm:flex-row justify-center items-center gap-2 p-2 pt-8">
 					<p className="text-gray-400 text-xs">
 						Copyright &copy; {new Date().getFullYear()}{" "}
-						<a href="https://github.com/arjun6757" className="hover:underline underline-offset-4">Arjun Banerjee</a>
+						<a
+							href="https://github.com/arjun6757"
+							className="hover:underline underline-offset-4"
+						>
+							Arjun Banerjee
+						</a>
 					</p>
 					<span className="hidden sm:block text-gray-400 text-xs">
 						{" "}
