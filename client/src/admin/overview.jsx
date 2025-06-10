@@ -1,4 +1,4 @@
-import { Calendar, Cog, Mail, Shield, User } from "lucide-react";
+import { Cog, Mail, Shield, User } from "lucide-react";
 import { useAuth } from "../context/auth.context";
 
 export default function AdminOverview() {
@@ -25,10 +25,10 @@ export default function AdminOverview() {
 
             <div className="overview_sub_wrapper flex sm:flex-row flex-col gap-4 sm:items-center">
               <div>
-                <h1 className="text-md sm:text-2xl font-semibold text-gray-700 dark:text-gray-300">
+                <h1 className="text-md sm:text-2xl max-w-50 sm:max-w-100 wrap-break-word font-semibold text-gray-700 dark:text-gray-300">
                   Welcome, {user?.username}!
                 </h1>
-                <p className="flex items-center mt-1 text-gray-500 dark:text-neutral-500 text-xs sm:text-sm">
+                <p className="flex items-center mt-1 max-w-50 sm:max-w-100 wrap-break-word text-gray-500 dark:text-neutral-500 text-xs sm:text-sm">
                   <Mail className="w-4 h-4 mr-1 text-gray-400 dark:text-neutral-500" />
                   {user?.email}
                 </p>
@@ -54,11 +54,11 @@ export default function AdminOverview() {
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm">
                 <div className="font-medium text-gray-600 dark:text-neutral-500">Username:</div>
-                <div className="text-gray-700 dark:text-gray-300">{user?.username}</div>
+                <div className="text-gray-700 dark:text-gray-300 max-w-50 sm:max-w-100 wrap-break-word">{user?.username}</div>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <div className="font-medium text-gray-600 dark:text-neutral-500">Email:</div>
-                <div className="text-gray-700 dark:text-gray-300">{user?.email}</div>
+                <div className="text-gray-700 dark:text-gray-300 max-w-50 sm:max-w-100 wrap-break-word">{user?.email}</div>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <div className="font-medium text-gray-600 dark:text-neutral-500">Role:</div>
