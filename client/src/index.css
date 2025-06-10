@@ -68,3 +68,33 @@
 		}
 	}
 }
+
+._mobile-width {
+	@media (415px < width <= 640px) {
+		width: 90%;
+	}
+
+	@media (390px < width <= 415px) {
+		width: 22rem;
+	}
+
+	@media (340px < width <= 390px) {
+		width: 20rem;
+	}
+
+	@media (width <= 340px) {
+		width: 19rem;
+	}
+}
+
+._mobile-text {
+	@media (width <= 350px) {
+		font-size: 16px;
+	}
+}
+
+._mobile-description {
+	@media (width <= 350px) {
+		font-size: 12px;
+	}
+}
