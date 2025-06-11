@@ -116,7 +116,7 @@ All available routes under *AttendanceRouter* (request-type/api-endpoint):
 client/ => responsbile for frontend, deployed on vercel
 server/ => responsbile for backend, deployed on render
 .gitignore => for ignoring sensitive files while pushing to git
-Documentation.md => 
+Documentation.md
 package-lock.json --|
 package.json      --| needed only if you want to run frontend and backend at once 
 Readme.md
