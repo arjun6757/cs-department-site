@@ -2,6 +2,9 @@
 
 <div align="center">
     A simple fullstack app to mimic a college site — built with the MERN stack.
+
+    [Web App](https://cs-department-site-beta.vercel.app)
+
 </div>
 
 ### Features :
@@ -62,3 +65,6 @@ npm install && npm run dev
 ```
 
 Now you should be able to see the app running on http://localhost:5173.
+
+### Documentation
+Please read Documentation.md
