@@ -28,7 +28,8 @@ All routes under *API router*
 - /entry => EntryRouter => pyq management
 - /attendance => AttendanceRouter => attendance management
 
-> [!Note] These route prefixes are added to the main route like this => /api/route
+> [!Note]
+> These route prefixes are added to the main route like this => /api/route
 
 ##### AuthRouter
 All available routes under *AuthRouter* (request-type/api-endpoint):
