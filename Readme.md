@@ -67,4 +67,4 @@ npm install && npm run dev
 Now you should be able to see the app running on http://localhost:5173.
 
 ### Documentation
-Please read Documentation.md
+Please read [Documentation.md](https://github.com/arjun6757/cs-department-site/blob/main/Documentation.md)
