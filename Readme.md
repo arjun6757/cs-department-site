@@ -3,7 +3,7 @@
 <div align="center">
     A simple fullstack app to mimic a college site — built with the MERN stack.
 
-    [Web App](https://cs-department-site-beta.vercel.app)
+[Web App](https://cs-department-site-beta.vercel.app)
 
 </div>
 
