@@ -118,6 +118,6 @@ server/ => responsbile for backend, deployed on render
 .gitignore => for ignoring sensitive files while pushing to git
 Documentation.md
 package-lock.json --|
-package.json      --| needed only if you want to run frontend and backend at once 
+package.json      --| needed only if you want to run frontend and backend at the same time locally (via concurrently)
 Readme.md
 ```
