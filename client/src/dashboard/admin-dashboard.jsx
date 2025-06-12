@@ -34,7 +34,7 @@ const Dashboard = () => {
 
     return (
         <div className="w-full h-svh grid grid-cols-4 sm:grid-cols-5 overflow-hidden relative">
-            <header className="sm:hidden fixed left-0 top-0 w-full h-fit flex items-center p-4 border-b border-[#ddd] dark:border-[#333] bg-gray-50 dark:bg-[#171717] z-10">
+            <header className="sm:hidden fixed left-0 top-0 w-full h-fit flex items-center p-4 border-b border-[#ddd] dark:border-[#333] bg-white dark:bg-[#171717] z-10">
                 <button
                     data-hidden={isHidden}
                     onClick={() => setIsHidden((p) => !p)}
@@ -52,7 +52,7 @@ const Dashboard = () => {
 
             <aside
                 data-hidden={isHidden}
-                className={`data-[hidden=false]:block data-[hidden=true]:hidden data-hidden:sm:grid absolute left-0 top-0 w-[60vw] sm:w-auto sm:static sm:col-span-1 text-sm text-gray-700 dark:text-gray-300 overflow-hidden py-5 px-4 border-r border-[#ddd] dark:border-[#333] select-none h-full bg-gray-50 dark:bg-[#171717] z-20`}
+                className={`data-[hidden=false]:block data-[hidden=true]:hidden data-hidden:sm:grid absolute left-0 top-0 w-[60vw] sm:w-auto sm:static sm:col-span-1 text-sm text-gray-700 dark:text-gray-300 overflow-hidden py-5 px-4 border-r border-[#ddd] dark:border-[#333] select-none h-full bg-white dark:bg-[#171717] z-20`}
             >
                 <div className="flex flex-col h-full justify-between">
                     <ul className="flex flex-col">
