@@ -29,9 +29,9 @@ export default function Index() {
 	};
 
 	return (
-		<div className="min-h-screen w-full text-sm bg-[#171717] text-white">
+		<div className="min-h-screen w-full text-sm bg-[#171717] text-gray-100">
 			<header className="sticky top-0">
-				<nav className="p-4 flex flex-col gap-2 bg-[#171717]/80 backdrop-blur-md text-white border-b border-[#333] transition-colors">
+				<nav className="p-4 flex flex-col gap-2 bg-[#171717]/80 backdrop-blur-md text-gray-100 border-b border-[#333] transition-colors">
 					<button
 						data-hidden={isHidden}
 						onClick={() => setIsHidden((p) => !p)}
