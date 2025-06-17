@@ -85,7 +85,7 @@ export default function AdminLogin() {
               name="email"
               type="email"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
               placeholder="name@example.com"
               value={credentials.email}
               onChange={handleChange}
@@ -100,7 +100,7 @@ export default function AdminLogin() {
               name="password"
               type="password"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 sm:"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
               value={credentials.password}
               onChange={handleChange}
             />

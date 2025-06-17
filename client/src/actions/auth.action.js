@@ -1,8 +1,8 @@
 import { API } from ".";
 
-export async function resetPassword(data) {
+export async function changePassword(data) {
 	try {
-		const response = await fetch(`${API}/auth/forgot-password`, {
+		const response = await fetch(`${API}/auth/change-password`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"

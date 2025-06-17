@@ -39,7 +39,7 @@ All available routes under *AuthRouter* (request-type/api-endpoint):
 - POST/logout
 - POST/admin/login
 - POST/admin/logout
-- POST/forgot-password
+- POST/change-password
 
 *Summary*
 
@@ -51,7 +51,7 @@ All available routes under *AuthRouter* (request-type/api-endpoint):
 - **POST/logout =>** clearing existing session of a authenticated user
 - **POST/admin/login =>** same as */login* but for user role *admin*
 - **POST/admin/logout =>** same as */logout* but for user role *admin*
-- **POST/forgot-password =>** updating user role *user*
+- **POST/change-password =>** updating user password (works only for "user" role)
 
 ##### UserRouter
 
@@ -144,7 +144,7 @@ client/                                – Frontend code (React + Vite)
 │   │
 │   ├── auth/                          – Auth pages and flows
 │   │   ├── admin-login.jsx           – Login page for admins
-│   │   ├── forgot-password.jsx       – Password recovery page
+│   │   ├── change-password.jsx       – Password change page
 │   │   ├── login.jsx                 – Login page for users
 │   │   └── signup.jsx                – Registration form
 │   │

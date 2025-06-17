@@ -33,6 +33,7 @@ export default function Index() {
 			<header className="sticky top-0">
 				<nav className="p-4 flex flex-col gap-2 bg-[#171717]/80 backdrop-blur-md text-gray-100 border-b border-[#333] transition-colors">
 					<button
+						title="Menu"
 						data-hidden={isHidden}
 						onClick={() => setIsHidden((p) => !p)}
 						className="lg:data-hidden:hidden text-gray-100 cursor-pointer w-6 h-6"
@@ -169,7 +170,10 @@ export default function Index() {
 
 					<div className="border border-[#333] rounded-lg overflow-hidden mt-4 sm:mt-2">
 						<img
-							loading="lazy"
+							width={800}
+							height={600}
+							style={{ width: "100%", height: "auto" }}
+							loading="eager"
 							src={demo}
 							alt="cs-department-site demo image"
 						/>

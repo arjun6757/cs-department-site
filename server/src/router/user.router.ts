@@ -6,6 +6,6 @@ import isAdmin from "../middleware/isadmin.middleware";
 const router = Router();
 
 router.get("/all", isAuthenticated, isAdmin, getAllUsers);
-router.delete("/delete/:id", handleDeleteUser);
+router.delete("/delete/:id", isAuthenticated, isAdmin, handleDeleteUser);
 
 export default router;

@@ -6,18 +6,19 @@ import {
 	handleAdminLogin,
 	handleAdminLogout,
 	whoAmI,
-	handleForgotPassword,
+	handleChangePassword,
 } from "../controllers/auth.controller";
 import isAdmin from "../middleware/isadmin.middleware";
+import isAuthenticated from "../middleware/isauthenticated.middleware";
 
 const router = express.Router();
 
-router.get("/whoami", whoAmI);
+router.get("/whoami", isAuthenticated, whoAmI);
 router.post("/login", handleLogin);
 router.post("/signup", handleSignup);
 router.post("/logout", handleLogOut);
 router.post("/admin/login", handleAdminLogin);
 router.post("/admin/logout", isAdmin, handleAdminLogout);
-router.post("/forgot-password", handleForgotPassword);
+router.post("/change-password", handleChangePassword);
 
 export default router;

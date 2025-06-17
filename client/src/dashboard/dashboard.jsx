@@ -12,6 +12,8 @@ import {
     Laptop,
     Sun,
     Moon,
+    Lock,
+    Key,
 } from "lucide-react";
 import { useTheme } from "../context/theme.context";
 
@@ -122,6 +124,28 @@ const Dashboard = () => {
                                         >
                                             <Moon className="w-4 h-4" /> Dark
                                         </button>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+                        <li>
+                            <details className="group cursor-pointer rounded">
+                                <summary className="outline-blue-500 rounded p-2 flex justify-between items-center">
+                                    <span className="flex gap-2.5 items-center">
+                                        <Lock className="w-4 h-4" /> Security
+                                    </span>
+                                    <ChevronRight className="group-open:rotate-90 w-4 h-4 transition-transform duration-300" />
+                                </summary>
+                                <ul className="flex flex-col pl-6">
+                                    <li>
+                                        <Link
+                                            to="/dashboard/change-password"
+                                            data-active={location.pathname === "/dashboard/change-password"}
+                                            className="data-[active=true]:bg-[#eee] dark:data-[active=true]:bg-[#272727] p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-[#202020] rounded inline-flex items-center w-full h-full gap-2.5 outline-blue-500"
+                                        >
+                                            <Key className="w-4 h-4" />{" "}
+                                            Change Password
+                                        </Link>
                                     </li>
                                 </ul>
                             </details>

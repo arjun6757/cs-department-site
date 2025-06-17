@@ -29,7 +29,8 @@
 }
 
 .shadow-custom {
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1),
+	box-shadow:
+		0 0 8px rgba(0, 0, 0, 0.1),
 		0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -45,12 +46,11 @@
 }
 
 ._actions {
-
 	@media (370px <= width <= 640px) {
 		@apply py-0 pt-2;
 	}
 
-	@media(width < 370px) {
+	@media (width < 370px) {
 		@apply !space-x-0 py-2;
 
 		button {
@@ -62,7 +62,7 @@
 		@apply space-x-2;
 	}
 
-	@media(width <= 420px) {
+	@media (width <= 420px) {
 		button {
 			@apply w-auto p-1.5;
 		}
@@ -84,6 +84,15 @@
 
 	@media (width <= 340px) {
 		width: 19rem;
+	}
+}
+
+._cinput {
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0 30px white inset !important;
 	}
 }
 

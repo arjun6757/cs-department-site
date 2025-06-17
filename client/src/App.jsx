@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Index from ".";
 import Login from "./auth/login";
 import Signup from "./auth/signup";
-import ForgotPassword from "./auth/forgot-password";
 import AdminLogin from "./auth/admin-login";
 import Dashboard from "./dashboard/dashboard";
 import AdminDashboard from "./dashboard/admin-dashboard";
@@ -16,6 +15,7 @@ import Attendance from "./admin/attendance";
 import UserRoutes from "./user/user-route";
 import AdminRoutes from "./admin/admin-route";
 import UploadsLayout from "./admin/uplods-layout";
+import ChangePassword from "./user/change-password";
 
 export default function App() {
   return (
@@ -28,12 +28,12 @@ export default function App() {
         <Route path="/dashboard/*" element={<Dashboard />}>
           <Route index element={<UserOverview />} />
           <Route path="pyqs" element={<PYQ />} />
+          <Route path="change-password" element={<ChangePassword />} />
         </Route>
       </Route>
 
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
 
       <Route path="/admin/login" element={<AdminLogin />} />
 

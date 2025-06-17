@@ -105,9 +105,6 @@ export default function Login() {
             <label htmlFor="password" className=" block text-gray-700">
               Password
             </label>
-            <Link tabIndex={5} to="/forgot-password" className="hover:underline underline-offset-4 text-gray-700" >
-              Forgot Password
-            </Link>
             </div>
             <input
             tabIndex={2}

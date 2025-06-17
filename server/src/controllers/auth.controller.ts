@@ -3,7 +3,7 @@ import User from "../models/user.model";
 import passport from "passport";
 import bcrypt from "bcrypt";
 
-const handleForgotPassword = async (req: Request, res: Response) => {
+const handleChangePassword = async (req: Request, res: Response) => {
 	const { email, oldPassword, newPassword } = req.body;
 
 	if(!email || !oldPassword || !newPassword) {
@@ -38,7 +38,7 @@ const handleForgotPassword = async (req: Request, res: Response) => {
 
 		await user.setPassword(newPassword);
 
-		res.status(200).json({ message: "Password updated successfully!" });
+		res.status(200).json({ message: "Password changed successfully!" });
 
 	} catch (err: any) {
 		console.error(err);
@@ -164,12 +164,7 @@ const handleAdminLogout = async (req: Request, res: Response, next: NextFunction
 }
 
 const whoAmI = async (req: Request, res: Response) => {
-	if (!req.user) {
-		res.status(401).json({ message: "Unauthorized access", data: null })
-		return;
-	}
-
 	res.status(200).json({ message: "User retrieved successfully!", data: req.user })
 }
 
-export { handleSignup, handleLogin, handleLogOut, handleAdminLogin, handleAdminLogout, whoAmI, handleForgotPassword };
+export { handleSignup, handleLogin, handleLogOut, handleAdminLogin, handleAdminLogout, whoAmI, handleChangePassword };
