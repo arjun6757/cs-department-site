@@ -12,6 +12,7 @@
 :root {
 	--font-inter: "Inter", sans-serif;
 	--t-space: 4px;
+	scroll-behavior: smooth;
 }
 
 @theme {

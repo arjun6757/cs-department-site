@@ -50,7 +50,7 @@ export default function Index() {
 								<a href="#home">Home</a>
 							</li>
 							<li className="p-2 border-b border-[#555] lg:border-none">
-								<a href="#features">About</a>
+								<a href="#about">About</a>
 							</li>
 							<li className="p-2 border-b border-[#555] lg:border-none">
 								<a href="#contact">Contact</a>
@@ -120,7 +120,7 @@ export default function Index() {
 							<li>
 								<Link
 									to="/login"
-									className="p-2 bg-blue-500 hover:opacity-90 active:opacity-80 rounded text-white"
+									className="p-2 bg-purple-500 hover:opacity-90 active:opacity-80 rounded text-white"
 								>
 									Login
 								</Link>
@@ -156,7 +156,7 @@ export default function Index() {
 					<div className="flex gap-4 justify-center items-center mt-3 sm:mt-2">
 						<Link
 							to="/dashboard"
-							className="px-4 py-2 bg-blue-500 hover:opacity-90 active:opacity-80 rounded text-white"
+							className="px-4 py-2 bg-purple-500 hover:opacity-90 active:opacity-80 rounded text-white"
 						>
 							Get Started
 						</Link>
@@ -181,7 +181,7 @@ export default function Index() {
 				</div>
 
 				<div
-					id="features"
+					id="about"
 					className="p-2 sm:p-8 md:px-4 py-6 sm:py-12 sm:px-0 _mobile-width sm:w-fit mx-auto "
 				>
 					<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-8 xl:gap-20 xl:p-4">

@@ -86,7 +86,7 @@ export default function Signup() {
               name="username"
               type="text"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 autofill:transition-colors autofill:duration-[10000s]"
               placeholder="name"
               value={credentials.username}
               onChange={handleChange}
@@ -101,7 +101,7 @@ export default function Signup() {
               name="email"
               type="email"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 autofill:transition-colors autofill:duration-[10000s]"
               placeholder="name@example.com"
               value={credentials.email}
               onChange={handleChange}
@@ -109,14 +109,14 @@ export default function Signup() {
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="password" className=" block text-gray-700">
+            <label htmlFor="password" className="block text-gray-700">
               Password
             </label>
             <input
               name="password"
               type="password"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 autofill:transition-colors autofill:duration-[10000s]"
               value={credentials.password}
               onChange={handleChange}
             />

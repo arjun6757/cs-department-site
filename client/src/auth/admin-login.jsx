@@ -78,14 +78,15 @@ export default function AdminLogin() {
 
         <form className="mt-5 space-y-4 text-sm" onSubmit={handleSubmit}>
           <div className="space-y-1">
-            <label htmlFor="email" className=" block text-gray-700">
+            <label htmlFor="email" className="block text-gray-700">
               Email
             </label>
             <input
               name="email"
               type="email"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 autofill:transition-colors autofill:duration-[10000s] outline-offset-4"
+              // autofill transition is only for hiding the autofill color
               placeholder="name@example.com"
               value={credentials.email}
               onChange={handleChange}
@@ -93,14 +94,14 @@ export default function AdminLogin() {
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="password" className=" block text-gray-700">
+            <label htmlFor="password" className="block text-gray-700">
               Password
             </label>
             <input
               name="password"
               type="password"
               required
-              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4"
+              className="rounded-md relative block w-full px-3 py-2 border border-gray-300 text-gray-900 focus:outline-2 outline-gray-500 outline-offset-4 autofill:transition-colors autofill:duration-[10000s]"
               value={credentials.password}
               onChange={handleChange}
             />
