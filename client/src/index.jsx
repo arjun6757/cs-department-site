@@ -138,9 +138,8 @@ export default function Index() {
 				</nav>
 			</header>
 
-			<main className="my-6">
+			<main id="home" className="my-6 scroll-mt-90 sm:scroll-mt-100 lg:scroll-mt-40">
 				<div
-					id="home"
 					className="mt-[2rem] sm:mt-[5rem] _mobile-width sm:w-xl md:w-2xl lg:w-4xl mx-auto flex flex-col gap-5 sm:gap-6 p-2 sm:p-8 text-sm lg:text-[16px]"
 				>
 					<h1 className="_mobile-text text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold text-center">
@@ -182,7 +181,8 @@ export default function Index() {
 
 				<div
 					id="about"
-					className="p-2 sm:p-8 md:px-4 py-6 sm:py-12 sm:px-0 _mobile-width sm:w-fit mx-auto "
+					className="p-2 sm:p-8 md:px-4 py-6 sm:py-12 sm:px-0 _mobile-width sm:w-fit mx-auto
+					 scroll-mt-75 sm:scroll-mt-70 lg:scroll-mt-40"
 				>
 					<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-8 xl:gap-20 xl:p-4">
 						<li className="border border-[#333] hover:border-gray-500 space-y-2.5 sm:space-y-4 p-5 sm:w-lg md:w-[18rem] xl:w-[20rem] md:h-[15rem] rounded-lg">
