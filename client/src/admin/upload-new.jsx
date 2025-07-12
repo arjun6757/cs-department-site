@@ -153,7 +153,7 @@ export default function NewUpload() {
 						disabled={pending}
 						className="disabled:cursor-not-allowed w-full px-4 py-1.5 rounded bg-blue-500 dark:bg-[#272727] hover:opacity-80 active:opacity-90 cursor-pointer text-gray-100 outline-offset-2 outline-blue-500 inline-flex gap-4 justify-center items-center"
 					>
-						Upload
+						{pending ? "Uploading..." : "Upload"}
 
 						{pending && (
 							<Loader className="w-5 h-5 text-gray-300 animate-spin" />
