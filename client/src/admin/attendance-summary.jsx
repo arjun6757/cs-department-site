@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { formattedDate } from "../utils/date";
 import { getAllUserAttendanceSummary } from "../actions/attendance.action";
-import { Search } from "lucide-react";
+import { Loader, Search } from "lucide-react";
 
 export default function AttendanceSummary() {
     const now = new Date();
@@ -164,7 +164,14 @@ export default function AttendanceSummary() {
                         </thead>
 
                         <tbody>
-                            {filteredEntries.length === 0 && (
+
+                        {loading ? (
+                            <tr>
+                                <td colSpan={7} className="p-2">
+                                    <Loader className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300 animate-spin" />
+                                </td>
+                            </tr>
+                        ) : filteredEntries.length === 0 && (
                                 <tr>
                                     <td
                                         colSpan={7}
@@ -173,7 +180,7 @@ export default function AttendanceSummary() {
                                         No entries found
                                     </td>
                                 </tr>
-                            )}
+                        )}
 
                             {filteredEntries.map((entry, index) => (
                                 <tr key={entry._id}>

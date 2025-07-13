@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { getAllAttendanceHistory } from "../actions/attendance.action";
-import { Search } from "lucide-react";
+import { Loader, Search } from "lucide-react";
 
 export default function AttendanceHistory() {
     const [query, setQuery] = useState("");
     const [entries, setEntries] = useState([]);
     const [filteredEntries, setFilteredEntries] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchAttendanceHistory = async () => {
             try {
+                setLoading(true);
                 const result = await getAllAttendanceHistory();
                 setEntries(result);
                 setFilteredEntries(result);
             } catch (error) {
                 console.error("Error fetching attendance entries:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -76,7 +80,14 @@ export default function AttendanceHistory() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredEntries.length === 0 && (
+
+                        {loading ? (
+                            <tr>
+                                <td colSpan={7} className="p-2">
+                                    <Loader className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300 animate-spin" />
+                                </td>
+                            </tr>
+                        ) : filteredEntries.length === 0 && (
                             <tr className="border-b border-[#ddd] dark:border-[#333]">
                                 <td colSpan={3} className="text-center h-10">
                                     It's empty here
