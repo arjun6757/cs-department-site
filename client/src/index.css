@@ -46,30 +46,6 @@
 	}
 }
 
-._actions {
-	@media (370px <= width <= 640px) {
-		@apply py-0 pt-2;
-	}
-
-	@media (width < 370px) {
-		@apply !space-x-0 py-2;
-
-		button {
-			width: 60px !important;
-		}
-	}
-
-	@media (width <= 640px) {
-		@apply space-x-2;
-	}
-
-	@media (width <= 420px) {
-		button {
-			@apply w-auto p-1.5;
-		}
-	}
-}
-
 ._mobile-width {
 	@media (415px < width <= 640px) {
 		width: 90%;

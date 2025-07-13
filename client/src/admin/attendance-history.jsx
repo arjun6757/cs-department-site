@@ -34,10 +34,10 @@ export default function AttendanceHistory() {
 
         const result = entries.filter(
             (entry) =>
-                entry?.user_id.username
+                entry?.user_id?.username
                     .toLowerCase()
                     .includes(query.toLowerCase()) ||
-                entry?.user_id.email
+                entry?.user_id?.email
                     .toLowerCase()
                     .includes(query.toLowerCase()) ||
                 entry?.status.toLowerCase().includes(query.toLowerCase()) ||
@@ -94,10 +94,10 @@ export default function AttendanceHistory() {
                             >
                                 <td className="p-2 font-medium">
                                     <span className="text-gray-700 max-w-22 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word dark:text-gray-300 text-sm">
-                                        {f?.user_id.username}
+                                        {f?.user_id?.username}
                                     </span>
                                     <p className="text-gray-500 max-w-22 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word dark:text-neutral-500">
-                                        {f?.user_id.email}
+                                        {f?.user_id?.email}
                                     </p>
                                 </td>
                                 <td className="p-2 font-medium text-center">

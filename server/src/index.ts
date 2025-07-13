@@ -58,7 +58,7 @@ app.use(
         saveUninitialized: false,
 
         store: MongoStore.create({
-            mongoUrl: process.env.MONGO_URI,
+            mongoUrl: process.env.NODE_ENV === "production" ? process.env.MONGO_URI : process.env.MONGO_LOCAL_URI,
         }),
 
         cookie: {

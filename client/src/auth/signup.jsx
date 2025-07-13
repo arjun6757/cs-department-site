@@ -12,6 +12,7 @@ export default function Signup() {
   });
   const [error, setError] = useState("");
   const { setUser } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!error) return;
@@ -51,6 +52,7 @@ export default function Signup() {
     });
 
     try {
+      setLoading(true);
       const user = await signup({ username, email, password });
 
       if (!user) {
@@ -63,6 +65,8 @@ export default function Signup() {
       setUser(null);
       console.error("Login error", err);
       setError(err.message || "Something went wrong, pleasy try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -123,10 +127,11 @@ export default function Signup() {
           </div>
 
           <button
+            disabled={loading}
             type="submit"
-            className="w-full flex gap-2 justify-center items-center h-9 py-2 px-3 rounded-md text-white font-medium bg-neutral-800 hover:bg-neutral-700 focus:outline-2 outline-offset-2 outline-gray-500 cursor-pointer text-xs"
+            className="w-full flex gap-2 justify-center items-center h-9 py-2 px-3 rounded-md text-white font-medium bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 focus:outline-2 outline-offset-2 outline-gray-500 cursor-pointer text-xs"
           >
-            Sign up
+            {loading ? "Signing up..." : "Sign up"}
           </button>
 
           <div className=" flex justify-center items-center gap-2">

@@ -13,6 +13,7 @@ export default function Login() {
   const { setUser } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const message = searchParams.get("message");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!error) return;
@@ -56,7 +57,7 @@ export default function Login() {
     });
 
     try {
-      
+      setLoading(true);
       const user = await login({ email, password });
 
       if (!user) {
@@ -69,6 +70,8 @@ export default function Login() {
       setUser(null);
       console.error("Login error", err);
       setError(err.message || "Something went wrong, pleasy try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -118,11 +121,12 @@ export default function Login() {
           </div>
 
           <button
+            disabled={loading}
           tabIndex={3}
             type="submit"
-            className="w-full flex gap-2 justify-center items-center h-9 py-2 px-3 rounded-md text-white font-medium bg-neutral-800 hover:bg-neutral-700 focus:outline-2 outline-offset-2 outline-gray-500 cursor-pointer text-xs"
+            className="w-full flex gap-2 justify-center items-center h-9 py-2 px-3 rounded-md text-white font-medium bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 focus:outline-2 outline-offset-2 outline-gray-500 cursor-pointer text-xs"
           >
-            Log in
+            {loading ? "Logging in..." : "Log in"}
           </button>
 
           <div className=" flex justify-center items-center gap-2">

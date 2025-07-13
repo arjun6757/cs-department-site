@@ -150,7 +150,7 @@ export default function MarkAttendance() {
                                     <span className="text-gray-700 max-w-22 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word dark:text-gray-300 text-sm">
                                         {f?.username}
                                     </span>
-                                    <p className="text-gray-500 max-w-22 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word dark:text-neutral-500">{f?.email}</p>
+                                    <p className="text-gray-500 max-w-20 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word dark:text-neutral-500">{f?.email}</p>
                                 </td>
 
                                 <td className="p-2 font-medium text-center">
@@ -163,7 +163,9 @@ export default function MarkAttendance() {
                                         {f?.status ? f?.status : "blank"}
                                     </span>
                                 </td>
-                                <td className="p-2 font-medium text-center space-y-2 sm:space-y-0 sm:space-x-2.5 _actions">
+                                <td>
+                                    <div className="font-medium flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 p-2">
+
                                     <button
                                         data-active={f?.status === "present"}
                                         disabled={
@@ -177,7 +179,7 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="present"
-                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none  data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
+                                        className="w-16 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none  data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
                                     >
                                         Present
                                     </button>
@@ -194,10 +196,11 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="absent"
-                                        className="w-18 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
+                                        className="w-16 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
                                     >
                                         Absent
                                     </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}

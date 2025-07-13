@@ -13,6 +13,7 @@ export default function AdminLogin() {
   const { setUser } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const message = searchParams.get("message");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!message) return;
@@ -51,6 +52,7 @@ export default function AdminLogin() {
     });
 
     try {
+      setLoading(true);
       const user = await adminLogin({ email, password });
 
       if (!user) {
@@ -63,6 +65,8 @@ export default function AdminLogin() {
       setUser(null);
       console.error("Login error:", err);
       setError(err.message || "Something went wrong, please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -108,10 +112,11 @@ export default function AdminLogin() {
           </div>
 
           <button
+            disabled={loading}
             type="submit"
-            className="w-full flex gap-2 justify-center items-center h-9 py-2 px-3 rounded-md text-white font-medium bg-neutral-800 hover:bg-neutral-700 focus:outline-2 outline-offset-2 outline-gray-500 cursor-pointer text-xs"
+            className="w-full flex gap-2 justify-center items-center h-9 py-2 px-3 rounded-md text-white font-medium bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 focus:outline-2 outline-offset-2 outline-gray-500 cursor-pointer text-xs"
           >
-            Log in
+            {loading ? "Logging in..." : "Log in"}
           </button>
 
           {error && (
