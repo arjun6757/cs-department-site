@@ -11,19 +11,9 @@ export default function AdminLogin() {
   });
   const [error, setError] = useState("");
   const { setUser } = useAuth();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const message = searchParams.get("message");
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!message) return;
-
-    const timeoutId = setTimeout(() => {
-      setSearchParams("");
-    }, 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, [message]);
 
   useEffect(() => {
     if (!error) return;
