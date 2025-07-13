@@ -159,7 +159,7 @@ export default function MarkAttendance() {
                                 }
                                 className="data-[lastindex=false]:border-b data-[lastindex=false]:border-[#ddd] dark:data-[lastindex=false]:border-[#333]"
                             >
-                                <td className="p-2 font-medium max-w-20 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word">
+                                <td className="p-2 font-medium max-w-20 sm:max-w-30 wrap-break-word">
                                     <span className="text-gray-700 dark:text-gray-300 text-sm">
                                         {f?.username}
                                     </span>
@@ -177,7 +177,7 @@ export default function MarkAttendance() {
                                     </span>
                                 </td>
                                 <td>
-                                    <div className="font-medium flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 p-2">
+                                    <div className="font-medium flex flex-col sm:flex-row justify-center items-center gap-2.5 sm:gap-4 px-2.5 py-4 sm:p-2">
 
                                     <button
                                         data-active={f?.status === "present"}
@@ -192,7 +192,7 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="present"
-                                        className="w-16 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none  data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
+                                        className="w-16 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none  data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-xs"
                                     >
                                         Present
                                     </button>
@@ -209,7 +209,7 @@ export default function MarkAttendance() {
                                             )
                                         }
                                         name="absent"
-                                        className="w-16 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-sm"
+                                        className="w-16 sm:w-auto disabled:cursor-default transition-colors duration-300 data-[active=true]:bg-[#111] dark:data-[active=true]:bg-white data-[active=true]:border-none data-[active=true]:text-white dark:data-[active=true]:text-black border border-[#ddd] dark:border-[#333] rounded px-2 py-1.5 md:px-3 md:py-2 hover:bg-gray-50 dark:hover:bg-[#212121] cursor-pointer shadow-xs"
                                     >
                                         Absent
                                     </button>
