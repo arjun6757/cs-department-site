@@ -4,7 +4,7 @@ import {
     getTodaysAttendance,
     updateAttendanceEntry,
 } from "../actions/attendance.action";
-import { Search } from "lucide-react";
+import { Loader, Search } from "lucide-react";
 import { formattedDate } from "../utils/date";
 
 export default function MarkAttendance() {
@@ -13,10 +13,12 @@ export default function MarkAttendance() {
     const [filteredEntries, setFilteredEntries] = useState([]);
     const [loading, setLoading] = useState(false);
     const entryRef = useRef(null);
+    const [pending, setPending] = useState(false);
 
     useEffect(() => {
         const fetchReport = async () => {
             try {
+                setPending(true);
                 const result = await getTodaysAttendance();
                 setEntries(result);
                 setFilteredEntries(result);
@@ -25,6 +27,8 @@ export default function MarkAttendance() {
                 );
             } catch (error) {
                 console.error("Error fetching attendance entries:", error);
+            } finally {
+                setPending(false);
             }
         };
 
@@ -130,7 +134,16 @@ export default function MarkAttendance() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredEntries.length === 0 && (
+                        
+                        {pending ? (
+                            <tr>
+                                <td colSpan={7} className="p-2">
+                                    <Loader className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300 animate-spin" />
+                                </td>
+                            </tr>
+
+                        ) : filteredEntries.length === 0 && (
+                            
                             <tr className="border-b border-[#ddd] dark:border-[#333]">
                                 <td colSpan={3} className="text-center h-10">
                                     It's empty here
