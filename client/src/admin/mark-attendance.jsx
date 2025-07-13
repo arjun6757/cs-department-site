@@ -146,11 +146,11 @@ export default function MarkAttendance() {
                                 }
                                 className="data-[lastindex=false]:border-b data-[lastindex=false]:border-[#ddd] dark:data-[lastindex=false]:border-[#333]"
                             >
-                                <td className="p-2 font-medium">
-                                    <span className="text-gray-700 max-w-22 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word dark:text-gray-300 text-sm">
+                                <td className="p-2 font-medium max-w-20 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word">
+                                    <span className="text-gray-700 dark:text-gray-300 text-sm">
                                         {f?.username}
                                     </span>
-                                    <p className="text-gray-500 max-w-20 sm:max-w-30 md:max-w-50 lg:max-w-100 wrap-break-word dark:text-neutral-500">{f?.email}</p>
+                                    <p className="text-gray-500 dark:text-neutral-500">{f?.email}</p>
                                 </td>
 
                                 <td className="p-2 font-medium text-center">
